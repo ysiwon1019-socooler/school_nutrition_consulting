@@ -210,7 +210,9 @@ table.s th{background:var(--graybg);font-weight:500;color:var(--ink2);width:130p
         <label class="opt"><input type="checkbox" name="what" value="간식·음료"><span>간식·음료</span></label>
         <label class="opt"><input type="checkbox" name="what" value="건강·생활습관"><span>건강·생활습관</span></label>
         <label class="opt"><input type="checkbox" name="what" value="식생활 환경"><span>식생활 환경</span></label>
+        <label class="opt"><input type="checkbox" name="what" value="기타"><span>기타</span></label>
       </div>
+      <input type="text" id="whatetc" placeholder="기타 문제 유형을 직접 입력" style="display:none;margin-top:8px">
     </div>
     <div class="field">
       <span class="lbl">문제를 행동으로 서술 <span class="hint">— “편식한다”가 아니라 관찰 가능한 행동으로</span></span>
@@ -223,7 +225,8 @@ table.s th{background:var(--graybg);font-weight:500;color:var(--ink2);width:130p
     <h2>원인 탐색</h2>
     <div class="field">
       <span class="lbl">주 원인 유형</span>
-      <select id="why"><option>신체·감각</option><option>정서·심리</option><option>환경</option><option>행동·습관</option><option>지식·인식</option></select>
+      <select id="why"><option>신체·감각</option><option>정서·심리</option><option>환경</option><option>행동·습관</option><option>지식·인식</option><option>기타</option></select>
+      <input type="text" id="whyetc" placeholder="기타 원인 유형을 직접 입력" style="display:none;margin-top:8px">
     </div>
     <div class="field">
       <span class="lbl">판별 근거 <span class="hint">— 사용한 검사와 결정적 수치</span></span>
@@ -311,6 +314,7 @@ table.s th{background:var(--graybg);font-weight:500;color:var(--ink2);width:130p
     <div class="risk">
       <label class="q">의료 연계 신호 <span class="hint">— 하나라도 해당하면 다른 판정보다 우선합니다</span></label>
       <div class="opts">
+        <label class="opt"><input type="checkbox" id="norisk"><span>해당 없음</span></label>
         <label class="opt danger"><input type="checkbox" name="risk" value="성장 3%ile 미만 또는 성장 속도 급감"><span>성장 3%ile 미만 또는 성장 속도 급감</span></label>
         <label class="opt danger"><input type="checkbox" name="risk" value="고도비만·저체중 또는 급격한 체중 변화"><span>고도비만·저체중 또는 급격한 체중 변화</span></label>
         <label class="opt danger"><input type="checkbox" name="risk" value="섭취 거부·구토·체중 측정 거부"><span>섭취 거부·구토·체중 측정 거부</span></label>
@@ -318,12 +322,12 @@ table.s th{background:var(--graybg);font-weight:500;color:var(--ink2);width:130p
       </div>
     </div>
 
-    <div class="field" style="margin-top:16px">
-      <span class="lbl">달성하지 못한 것 <span class="hint">— 반드시 기재</span></span>
+    <div class="field" style="margin-top:16px" id="unmetwrap">
+      <span class="lbl">달성하지 못한 것 <span class="hint">— 2회기부터 기재</span></span>
       <textarea id="unmet" placeholder="사후 재검사 미실시(방학 중첩) — 식행동의 정량 변화 미측정"></textarea>
     </div>
     <div class="field">
-      <span class="lbl">영양교사 메모</span>
+      <span class="lbl">메모 및 기타사항</span>
       <textarea id="memo" placeholder="이 가정은 아이의 섭취량보다 어머니의 불안 수준을 먼저 확인해야 합니다."></textarea>
     </div>
 
@@ -593,12 +597,14 @@ function paintCard(){
 function render(){
   var r=decide(),t=r.t,m=measure(),why=$('why').value;
   var whats=multi('what'),progs=multi('prog');
+  var whyEtc=(why==='기타'),whyLab=whyEtc?('기타 — '+($('whyetc').value.trim()||'미기재')):why;
+  whats=whats.map(function(x){return (x==='기타')?('기타 — '+($('whatetc').value.trim()||'미기재')):x;});
   var d=$('date').value?$('date').value.replace(/-/g,'. ')+'.':new Date().toLocaleDateString('ko-KR');
   var who=[$('cls').value.trim(),$('nm').value.trim(),$('sex').value,($('age').value?'만 '+$('age').value+'세':'')].filter(Boolean).join(' · ')||'대상 미기재';
   var admin=[$('school').value.trim(),$('teacher').value.trim(),$('session').value,d].filter(Boolean).join(' · ');
 
-  state.rec=(r.key==='mismatch')?RECHECK[why].to:null;
-  state.card=state.rec||why;
+  state.rec=(r.key==='mismatch'&&RECHECK[why])?RECHECK[why].to:null;
+  state.card=state.rec||(CARDS[why]?why:'신체·감각');
 
   var h='<div class="printonly" style="margin-bottom:14px"><h1>학교영양상담기록지</h1>'+
     '<div style="font-size:10.5pt;color:#5F5E5A">'+esc(admin)+'</div>'+
@@ -609,7 +615,7 @@ function render(){
   h+='<table class="s">'+
    '<tr><th>1 · 상담 요구</th><td>'+esc($('route').value)+' / '+tx('chief')+'</td></tr>'+
    '<tr><th>2 · WHAT</th><td>'+esc(whats.join(' · ')||'미선택')+'<br>'+tx('behav')+'</td></tr>'+
-   '<tr><th>3 · WHY</th><td><b>'+esc(why)+'</b> / '+tx('evid')+'</td></tr>'+
+   '<tr><th>3 · WHY</th><td><b>'+esc(whyLab)+'</b> / '+tx('evid')+'</td></tr>'+
    '<tr><th>4 · WHAT FIRST</th><td>'+tx('first')+'</td></tr>'+
    '<tr><th>5 · 목표 행동</th><td>'+tx('goal')+'</td></tr>'+
    '<tr><th>6 · HOW</th><td>'+esc(progs.join(' · ')||'미선택')+'<br>'+tx('cnt')+' · 상담기법 '+esc($('mi').value)+'</td></tr>'+
@@ -638,7 +644,8 @@ function render(){
       progs.forEach(function(p){if(PROGNEXT[p])h+='<div class="row"><div class="k">'+esc(p)+'</div><div class="v">'+esc(PROGNEXT[p])+'</div></div>';});
     }
     h+='<div class="sect">원인 유형별 유지 포인트</div>'+
-       '<div class="row top"><div class="k">'+esc(why)+'</div><div class="v">'+esc(SUSTAIN_BY_WHY[why])+'</div></div>';
+       '<div class="row top"><div class="k">'+esc(whyLab)+'</div><div class="v">'+
+       esc(SUSTAIN_BY_WHY[why]||'기타 유형은 표준 유지 전략이 없습니다. 이번에 통한 방법을 한 문장으로 남겨 다음 회기의 기준으로 삼으십시오.')+'</div></div>';
   } else {
     h+=li('HOW · 학생',t.student)+li('HOW · 가정',t.home)+li('HOW · 학교',t.school);
   }
@@ -647,12 +654,14 @@ function render(){
   h+='<div class="row"><div class="k">CHECK · 다음 점검 지표</div><div class="v">'+esc(t.check)+'</div></div>';
   h+='<div class="warn"><b>주의</b> · '+esc(t.warn)+'</div>';
 
-  h+='<div class="sect">원인 유형별 전략 카드</div><div class="tabs">'+
+  h+='<div class="sect">원인 유형별 전략 카드</div>';
+  if(whyEtc)h+='<div class="basis">원인 유형이 <b>기타</b>로 기록되어 표준 카드가 없습니다. 아래 5개 카드를 대조해 가장 가까운 것을 골라 적용하고, 다음 회기에 원인 유형을 확정하십시오.</div>';
+  h+='<div class="tabs">'+
      ORDER.map(function(k){return '<button class="tab'+(state.rec===k?' rec':'')+'" data-k="'+k+'">'+k+'</button>';}).join('')+
      '</div><div id="scardbox"></div>';
 
   if($('unmet').value.trim())h+='<div class="sect">달성하지 못한 것</div><div class="memo">'+esc($('unmet').value.trim())+'</div>';
-  if($('memo').value.trim())h+='<div class="sect">영양교사 메모</div><div class="memo">'+esc($('memo').value.trim())+'</div>';
+  if($('memo').value.trim())h+='<div class="sect">메모 및 기타사항</div><div class="memo">'+esc($('memo').value.trim())+'</div>';
 
   h+='<div class="sign" style="margin-top:26px;font-size:10.5pt;color:#5F5E5A">'+
      (r.key==='sustain'?'다음 점검 : 8주 → 3개월 시점에 목표 행동 유지 여부를 1문항으로 확인합니다.'
@@ -669,6 +678,16 @@ function render(){
 function paint(){[].slice.call(document.querySelectorAll('.opt')).forEach(function(o){
   o.classList.toggle('on',o.querySelector('input').checked);});}
 
+function toggleEtc(){
+  $('whatetc').style.display=document.querySelector('input[name=what][value=기타]').checked?'block':'none';
+  $('whyetc').style.display=($('why').value==='기타')?'block':'none';
+  $('unmetwrap').style.display=($('session').value==='1차')?'none':'block';
+}
+function syncRisk(e){
+  var no=$('norisk');
+  if(e&&e.target===no){ if(no.checked)[].slice.call(document.querySelectorAll('input[name=risk]')).forEach(function(x){x.checked=false;}); }
+  else if(e&&e.target.name==='risk'&&e.target.checked){ no.checked=false; }
+}
 function syncSession(){
   var first=$('session').value==='1차';
   var oc=val('outcome'),ad=val('adher');
@@ -682,7 +701,8 @@ function syncSession(){
 }
 document.addEventListener('change',function(e){
   if(e.target.id==='session')syncSession();
-  paint();gate();if(e.target.classList.contains('calc'))measure();});
+  syncRisk(e);toggleEtc();paint();gate();
+  if(e.target.classList.contains('calc'))measure();});
 document.addEventListener('input',function(e){if(e.target.classList.contains('calc'))measure();});
 $('run').addEventListener('click',render);
 $('print').addEventListener('click',function(){window.print();});
@@ -697,10 +717,11 @@ $('reset').addEventListener('click',function(){
   document.querySelector('input[name=q1][value=full]').checked=true;
   document.querySelector('input[name=q2][value=n]').checked=true;
   document.querySelector('input[name=q3][value=n]').checked=true;
+  $('why').value='신체·감각';$('whatetc').value='';$('whyetc').value='';$('norisk').checked=false;
   $('pct').value='normal';$('print').disabled=true;
   $('result').innerHTML='<div class="empty">왼쪽 항목을 작성한 뒤 <b>기록지 생성</b>을 누르시면<br>상담 요약과 결과 전략이 한 장으로 정리됩니다.</div>';
-  measure();paint();gate();
+  measure();paint();gate();toggleEtc();
 });
 $('date').valueAsDate=new Date();
-measure();paint();gate();
+measure();paint();gate();toggleEtc();
 </script>

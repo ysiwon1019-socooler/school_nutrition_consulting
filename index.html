@@ -320,19 +320,7 @@ ul.ev li{margin-bottom:2px}
           <select class="dxn" id="d_taste"><option value="">미실시</option><option value="sens">예민</option><option value="mid">보통</option><option value="dull">둔감</option></select></div>
       </div>
 
-      <div class="sub2">B. DIT 식사섭취 검사 <span>— 영양권장량 대비 섭취비율(%). 기록용이며 원인 판별 점수에는 반영되지 않습니다</span></div>
-      <div class="nums" style="margin-bottom:8px">
-        <div><span class="lbl">에너지</span><input type="number" class="dit" id="i_en" min="0" placeholder="105"></div>
-        <div><span class="lbl">단백질</span><input type="number" class="dit" id="i_pro" min="0" placeholder="170"></div>
-        <div><span class="lbl">칼슘</span><input type="number" class="dit" id="i_ca" min="0" placeholder="60"></div>
-        <div><span class="lbl">철</span><input type="number" class="dit" id="i_fe" min="0" placeholder="130"></div>
-        <div><span class="lbl">비타민 A</span><input type="number" class="dit" id="i_va" min="0" placeholder="45"></div>
-        <div><span class="lbl">비타민 C</span><input type="number" class="dit" id="i_vc" min="0" placeholder="30"></div>
-        <div><span class="lbl">채소 섭취 <span class="hint">회/일</span></span><input type="number" class="dit" id="i_veg" min="0" step="0.5" placeholder="1"></div>
-        <div><span class="lbl">당류 간식 <span class="hint">회/주</span></span><input type="number" class="dit" id="i_sug" min="0" step="0.5" placeholder="3"></div>
-      </div>
-
-      <div class="sub2">C. 관찰·면담 <span>— 검사를 실시하지 않았어도 이 항목만으로 판별됩니다</span></div>
+      <div class="sub2">B. 관찰·면담 <span>— 검사를 실시하지 않았어도 이 항목만으로 판별됩니다</span></div>
       <div id="obsbox"></div>
 
       <div class="dxbtn">
@@ -821,15 +809,6 @@ function paintGrades(){
     if(el){el.textContent=g[0];el.className='grade '+g[1];}
   });
 }
-function ditLine(){
-  var f=[['i_en','에너지'],['i_pro','단백질'],['i_ca','칼슘'],['i_fe','철'],
-         ['i_va','비타민A'],['i_vc','비타민C']],out=[];
-  f.forEach(function(x){var v=$(x[0]).value.trim();if(v)out.push(x[1]+' '+v+'%');});
-  var veg=$('i_veg').value.trim(),sug=$('i_sug').value.trim();
-  if(veg)out.push('채소 '+veg+'회/일');
-  if(sug)out.push('당류 간식 '+sug+'회/주');
-  return out.length?('DIT 식사섭취 — '+out.join(' · ')):'';
-}
 
 function buildObs(){
   var h='';
@@ -949,16 +928,15 @@ function paintDx(){
     });
   });
   $('dxfill').addEventListener('click',function(){
-    var s=evidSentence(d),dl=ditLine();
-    if(!s&&!dl)return;
-    var cur=$('evid').value.trim(),add=[s,dl].filter(Boolean).join('\n');
-    $('evid').value=cur?cur+'\n'+add:add;
+    var s=evidSentence(d);if(!s)return;
+    var cur=$('evid').value.trim();
+    $('evid').value=cur?cur+'\n'+s:s;
     $('dxfill').textContent='✓ 기재됨';
   });
 }
 
 function clearDx(){
-  [].slice.call(document.querySelectorAll('.dxn,.dit')).forEach(function(e){e.value='';});
+  [].slice.call(document.querySelectorAll('.dxn')).forEach(function(e){e.value='';});
   [].slice.call(document.querySelectorAll('.dxo')).forEach(function(e){e.checked=false;});
   paintChk();paintGrades();$('dxbox').className='dxbox';$('dxbox').innerHTML='';
 }

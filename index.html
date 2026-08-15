@@ -1,10 +1,10 @@
 <meta charset="utf-8">
-<title>학교영양상담(식생활코칭) 기록 관리</title>
+<title>학교 영양상담 기록 관리</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 :root{
   --ink:#2C2C2A; --ink2:#5F5E5A; --ink3:#888780;
-  --line:#D3D1C7; --line2:#B4B2A9; --paper:#fff; --page:#F7F6F2;
+  --line:#CFD6C7; --line2:#AEB6A5; --paper:#fff; --page:#EDF4E6;
   --amber:#854F0B; --amberbg:#FAEEDA;
   --coral:#993C1D; --coralbg:#FAECE7;
   --teal:#0F6E56;  --tealbg:#E1F5EE;
@@ -20,15 +20,16 @@ body{margin:0;background:var(--page);color:var(--ink);
 h1{font-size:21px;font-weight:600;margin:0}
 h2{font-size:16px;font-weight:600;margin:0 0 12px}
 .wrap{max-width:1260px;margin:0 auto;padding:24px 20px 60px}
-header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:4px}
+header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
 header .sub{color:var(--ink2);font-size:13px}
-.note{color:var(--ink3);font-size:13px;margin:0 0 18px}
-.credit{display:inline-flex;flex-wrap:wrap;gap:6px 22px;margin:10px 0 14px;
-  padding:9px 14px;border:1px solid var(--line);border-left:3px solid var(--teal);
-  border-radius:0 8px 8px 0;background:var(--paper);font-size:12.5px;color:var(--ink2)}
-.credit b{color:var(--ink);font-weight:600;margin-right:5px;font-size:12px;letter-spacing:.02em}
-.credit a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(15,110,86,.35)}
-.credit a:hover{border-bottom-color:var(--teal)}
+.credit{display:inline-flex;flex-wrap:wrap;gap:6px 20px;background:var(--paper);
+  border:1px solid var(--line);border-radius:8px;padding:9px 15px;margin-bottom:14px;
+  font-size:12.5px;color:var(--ink2)}
+.credit b{color:var(--ink);font-weight:600}
+.credit a{color:var(--purple);text-decoration:none}
+.credit a:hover{text-decoration:underline}
+.note{color:var(--ink3);font-size:13px;margin:0 0 18px;line-height:1.65}
+.note b{color:var(--ink2);font-weight:600}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
 @media(max-width:980px){.cols{grid-template-columns:1fr}}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:18px}
@@ -36,6 +37,7 @@ header .sub{color:var(--ink2);font-size:13px}
 .field{margin-bottom:14px}.field:last-child{margin-bottom:0}
 label.q{display:block;font-weight:500;margin-bottom:7px;font-size:14.5px}
 .hint{font-size:12.5px;color:var(--ink3);font-weight:400}
+.lead{font-size:13px;color:var(--ink2);margin:-4px 0 14px;line-height:1.6}
 input[type=text],input[type=number],input[type=date],select,textarea{width:100%;padding:8px 10px;
   border:1px solid var(--line);border-radius:6px;font:inherit;font-size:14px;background:#fff;color:var(--ink)}
 textarea{min-height:64px;resize:vertical;line-height:1.6}
@@ -64,7 +66,47 @@ textarea{min-height:64px;resize:vertical;line-height:1.6}
 button{font:inherit;font-size:14px;padding:10px 18px;border-radius:6px;cursor:pointer;
   border:1px solid var(--ink);background:var(--ink);color:#fff;font-weight:500}
 button.ghost{background:#fff;color:var(--ink2);border-color:var(--line2)}
+button.mini{font-size:12.5px;padding:5px 11px}
 button:disabled{opacity:.35;cursor:not-allowed}
+
+/* ── 진단결과 입력 ─────────────────────────── */
+.dgroup{font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--ink3);
+  border-top:1px solid var(--line);padding-top:11px;margin:16px 0 9px;display:flex;
+  justify-content:space-between;align-items:baseline;gap:8px}
+.dgroup .src{font-weight:400;letter-spacing:0;font-size:11.5px;color:var(--line2)}
+.dgroup.first{border-top:none;padding-top:0;margin-top:2px}
+.drow{display:grid;grid-template-columns:1fr 128px;gap:8px;align-items:center;margin-bottom:7px}
+.drow.n{grid-template-columns:1fr 84px 128px}
+.drow .dn{font-size:14px;line-height:1.4}
+.drow .dn em{font-style:normal;display:block;font-size:11.5px;color:var(--ink3)}
+.drow select,.drow input{font-size:13.5px;padding:6px 8px}
+.badge{display:block;font-size:12.5px;font-weight:600;padding:7px 0;border-radius:6px;
+  text-align:center;border:1px solid}
+.b-ok{background:var(--greenbg);border-color:#97C459;color:var(--green)}
+.b-mid{background:var(--amberbg);border-color:#EF9F27;color:var(--amber)}
+.b-risk{background:var(--redbg);border-color:#D98A8A;color:var(--red)}
+.b-na{background:var(--graybg);border-color:var(--line2);color:var(--ink3)}
+.autobox{background:var(--graybg);border-radius:8px;padding:13px 15px;margin-top:16px}
+.autobox .t{font-size:12px;font-weight:600;letter-spacing:.03em;color:var(--ink3);margin-bottom:8px}
+.autobox .none{font-size:13.5px;color:var(--ink3)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;padding:4px 10px;border-radius:20px;border:1px solid;background:#fff}
+.chip.r{border-color:#D98A8A;color:var(--red)}
+.chip.m{border-color:#EF9F27;color:var(--amber)}
+.chip.w{border-color:#AFA9EC;color:var(--purple)}
+.rank{display:grid;grid-template-columns:88px 1fr 34px;gap:9px;align-items:center;
+  margin-bottom:6px;font-size:13px}
+.rank .nmm{color:var(--ink2)}
+.rank.top .nmm{color:var(--coral);font-weight:600}
+.bar{height:9px;background:#E4E2DA;border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:#AFA9EC;border-radius:5px;transition:width .2s}
+.rank.top .bar i{background:#E08C63}
+.rank .sc{text-align:right;font-size:12px;color:var(--ink3)}
+.sugg{background:var(--amberbg);border:1px solid #EF9F27;border-radius:8px;
+  padding:11px 14px;margin-top:12px;font-size:13.5px;color:var(--amber)}
+.sugg b{color:#5E370A}
+.evidrow{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
+
 #result .empty{color:var(--ink3);font-size:14px;text-align:center;padding:48px 10px}
 .verdict{border-radius:10px;padding:16px 18px;margin-bottom:14px;border:1px solid}
 .verdict .lab{font-size:12px;font-weight:600;letter-spacing:.04em;opacity:.85}
@@ -81,6 +123,13 @@ button:disabled{opacity:.35;cursor:not-allowed}
 table.m{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:14px}
 table.m th,table.m td{border:1px solid var(--line);padding:6px 9px;text-align:center}
 table.m th{background:var(--graybg);font-weight:500;color:var(--ink2)}
+table.d{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:14px}
+table.d th,table.d td{border:1px solid var(--line);padding:5px 8px;text-align:left}
+table.d th{background:var(--graybg);font-weight:500;color:var(--ink2)}
+table.d td.g{text-align:center;width:64px;font-weight:600}
+table.d td.v{text-align:right;width:88px;color:var(--ink2)}
+table.d th.sec{background:#EAE8E0;font-size:11.5px;letter-spacing:.03em;color:var(--ink3)}
+.g-ok{color:var(--green)}.g-mid{color:var(--amber)}.g-risk{color:var(--red)}.g-na{color:var(--ink3)}
 table.s{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:14px}
 table.s th,table.s td{border:1px solid var(--line);padding:7px 10px;vertical-align:top;text-align:left}
 table.s th{background:var(--graybg);font-weight:500;color:var(--ink2);width:130px;white-space:nowrap}
@@ -108,63 +157,16 @@ table.s th{background:var(--graybg);font-weight:500;color:var(--ink2);width:130p
 .memo{white-space:pre-wrap;font-size:13.5px}
 .sign{display:none}
 .printonly{display:none}
-
-/* ── 판별 도우미 ───────────────────────────── */
-details.helper{border:1px dashed var(--line2);border-radius:8px;padding:0 14px;background:#FCFCFA;margin-bottom:14px}
-details.helper[open]{padding-bottom:14px}
-details.helper>summary{cursor:pointer;list-style:none;padding:11px 0;font-size:13.5px;font-weight:600;color:var(--purple)}
-details.helper>summary::-webkit-details-marker{display:none}
-details.helper>summary::before{content:'▸ ';font-weight:400}
-details.helper[open]>summary::before{content:'▾ '}
-details.helper>summary .hs{font-weight:400;color:var(--ink3);font-size:12.5px}
-.sub2{font-size:12.5px;font-weight:600;color:var(--ink2);margin:14px 0 6px;letter-spacing:.02em}
-.sub2:first-of-type{margin-top:4px}
-.sub2 span{font-weight:400;color:var(--ink3)}
-.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-@media(max-width:700px){.nums{grid-template-columns:repeat(2,1fr)}}
-.nums .lbl{font-size:11.5px;margin-bottom:3px}
-.nums input,.nums select{padding:6px 8px;font-size:13px}
-.grp{font-size:11.5px;font-weight:600;color:var(--purple);margin:10px 0 5px;
-  border-left:3px solid #AFA9EC;padding-left:7px}
-.grade{display:block;font-size:11px;font-weight:600;margin-top:2px;min-height:14px;color:var(--ink3)}
-.grade.g-ok{color:var(--green)}
-.grade.g-warn{color:var(--amber)}
-.grade.g-bad{color:var(--red)}
-.grade.g-hi{color:var(--coral)}
-.chk{display:flex;flex-wrap:wrap;gap:6px}
-.chk label{flex:1 1 47%;display:flex;gap:7px;align-items:flex-start;padding:7px 9px;
-  border:1px solid var(--line);border-radius:6px;font-size:12.8px;line-height:1.45;
-  cursor:pointer;background:#fff}
-.chk label.on{border-color:var(--purple);background:var(--purplebg)}
-.chk input{margin:2px 0 0;flex:none}
-.dxbtn{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
-.dxbtn button{padding:8px 14px;font-size:13.5px}
-.dxbox{display:none;margin-top:13px;border:1px solid #AFA9EC;background:#fff;border-radius:8px;padding:13px 15px}
-.dxbox.show{display:block}
-.rank{display:flex;align-items:baseline;gap:9px;margin-bottom:5px}
-.rank .no{font-size:11px;font-weight:600;color:#fff;background:var(--purple);border-radius:4px;padding:1px 6px}
-.rank .no.n2{background:#AFA9EC}
-.rank .nm{font-weight:600;font-size:15px}
-.rank .sc{font-size:11.5px;color:var(--ink3);margin-left:auto}
-.bar{height:6px;background:var(--graybg);border-radius:3px;overflow:hidden;margin-bottom:8px}
-.bar i{display:block;height:100%;background:var(--purple)}
-.bar.b2 i{background:#AFA9EC}
-ul.ev{font-size:12.3px;color:var(--ink2);margin:0 0 12px;padding-left:16px}
-ul.ev li{margin-bottom:2px}
-.alertx{background:var(--amberbg);border-left:3px solid #EF9F27;color:var(--amber);
-  padding:8px 11px;font-size:12.5px;border-radius:0 6px 6px 0;margin-bottom:11px}
-.alertx.info{background:var(--graybg);border-left-color:var(--line2);color:var(--ink2)}
-
 @media print{
   @page{size:A4;margin:13mm}
   body{background:#fff;font-size:11pt;line-height:1.5;color:#000}
   .wrap{max-width:none;padding:0}
-  .noprint,header,.note{display:none!important}
+  .noprint,header,.note,.credit{display:none!important}
   .printonly{display:block}
   .cols{display:block}
   .card{border:none;padding:0;margin:0;border-radius:0}
   .tabs{display:none}
-  .verdict,.row,.first,.warn,.scard,table.m,table.s{page-break-inside:avoid}
+  .verdict,.row,.first,.warn,.scard,table.m,table.s,table.d{page-break-inside:avoid}
   .sect{page-break-after:avoid}
   .sign{display:block}
   h1{font-size:15pt}
@@ -173,14 +175,15 @@ ul.ev li{margin-bottom:2px}
 
 <div class="wrap">
 <header>
-  <h1>학교영양상담(식생활코칭) 기록 관리</h1>
+  <h1>학교 영양상담 기록 관리</h1>
   <span class="sub">구조화·유형화 모형 · 상담 7단계 · 영양교사 작성용</span>
 </header>
-<div class="credit noprint">
-  <div><b>만든 사람</b> 양시원 영양교사</div>
-  <div><b>피드백 문의</b> <a href="mailto:ysiwon1019@gmail.com">ysiwon1019@gmail.com</a></div>
+<div class="credit">
+  <span>만든사람 · <b>양시원 영양교사</b></span>
+  <span>문의 및 피드백 · <a href="mailto:ysiwon1019@gmail.com">ysiwon1019@gmail.com</a></span>
 </div>
-<p class="note">WHAT → WHY → WHAT FIRST → HOW → CHECK 순으로 작성합니다. 3단계에서는 검사 수치나 관찰 항목을 입력하면 주 원인 유형 1·2순위가 자동으로 제시됩니다. 7단계 CHECK에서 목표 행동에 변화가 있으면 지속 가능 설계가, 변화가 없거나 악화됐으면 재사정 3문항이 이어서 나타납니다.</p>
+<p class="note"><b>교육부 「식생활·생활습관 진단」을 기반으로 한 학교 영양상담 기록 관리 웹앱입니다.</b><br>
+WHAT → WHY → WHAT FIRST → HOW → CHECK 순으로 작성합니다. 2단계는 진단 결과를 그대로 옮겨 적으면 주의·위험 항목이 자동으로 문제 목록이 되고, 3단계는 그 결과로 원인 유형 순위가 자동 계산됩니다.</p>
 
 <div class="cols">
 <div class="noprint">
@@ -189,26 +192,31 @@ ul.ev li{margin-bottom:2px}
     <div class="step">작성 관리</div>
     <h2>기록 정보</h2>
     <div class="field g2">
-      <div><span class="lbl">학교</span><input type="text" id="school" placeholder="전주서일초등학교"></div>
+      <div><span class="lbl">학교</span><input type="text" id="school" placeholder="○○초등학교"></div>
       <div><span class="lbl">작성 영양교사</span><input type="text" id="teacher" placeholder="양시원"></div>
     </div>
     <div class="field g3">
       <div><span class="lbl">작성일</span><input type="date" id="date"></div>
       <div><span class="lbl">상담 회기</span>
-        <select id="session"><option>1차</option><option>2차</option><option>3차</option><option selected>4차</option><option>추가 회기</option></select></div>
+        <select id="session"><option selected>1차</option><option>2차</option><option>3차</option><option>4차</option><option>추가 회기</option></select></div>
       <div><span class="lbl">개인정보 동의서</span>
         <select id="consent"><option>수령 완료</option><option>미수령</option></select></div>
+    </div>
+    <div class="field g2">
+      <div><span class="lbl">진단검사 실시일</span><input type="date" id="dxdate"></div>
+      <div><span class="lbl">진단 도구</span>
+        <select id="dxtool"><option>식생활·생활습관 진단 결과(한국교육환경보호원)</option><option>기타 / 자체 조사</option></select></div>
     </div>
   </div>
 
   <div class="card">
-    <div class="step">대상 확인</div>
+    <div class="step">대상 확인 · 진단 1단계(성장상태)</div>
     <h2>학생 정보 및 신체 계측</h2>
     <div class="field g4">
-      <div><span class="lbl">학년·반</span><input type="text" id="cls" placeholder="4-2"></div>
+      <div><span class="lbl">학년·반</span><input type="text" id="cls" placeholder="6-1"></div>
       <div><span class="lbl">이름</span><input type="text" id="nm" placeholder="김영양"></div>
       <div><span class="lbl">성별</span><select id="sex"><option>남</option><option>여</option></select></div>
-      <div><span class="lbl">만 나이</span><input type="number" id="age" min="5" max="19" placeholder="9"></div>
+      <div><span class="lbl">만 나이</span><input type="number" id="age" min="5" max="19" placeholder="12"></div>
     </div>
     <div class="field g2">
       <div><span class="lbl">형제 동반</span><select id="sib"><option>무</option><option>유</option></select></div>
@@ -216,10 +224,10 @@ ul.ev li{margin-bottom:2px}
     </div>
 
     <div class="field">
-      <span class="lbl" style="font-weight:500;color:var(--ink)">개입 전 (1회기)</span>
+      <span class="lbl" style="font-weight:500;color:var(--ink)">개입 전 (1회기) <span class="hint">— 진단결과지의 신장·체중을 옮겨 적습니다</span></span>
       <div class="g2">
-        <div><span class="lbl">신장 (cm)</span><input type="number" step="0.1" id="h1" class="calc" placeholder="132.4"></div>
-        <div><span class="lbl">체중 (kg)</span><input type="number" step="0.1" id="w1" class="calc" placeholder="28.6"></div>
+        <div><span class="lbl">신장 (cm)</span><input type="number" step="0.1" id="h1" class="calc" placeholder="152.0"></div>
+        <div><span class="lbl">체중 (kg)</span><input type="number" step="0.1" id="w1" class="calc" placeholder="54.0"></div>
       </div>
     </div>
     <div class="field">
@@ -229,15 +237,17 @@ ul.ev li{margin-bottom:2px}
         <div><span class="lbl">체중 (kg)</span><input type="number" step="0.1" id="w2" class="calc"></div>
       </div>
     </div>
-    <div class="field">
-      <span class="lbl">체질량지수 백분위 <span class="hint">— 학생건강검사 결과에서 확인</span></span>
-      <select id="pct" class="calc">
-        <option value="unknown">모름 / 미확인</option>
-        <option value="low">5%ile 미만 (저체중)</option>
-        <option value="normal" selected>5~85%ile (정상)</option>
-        <option value="over">85~95%ile (과체중)</option>
-        <option value="obese">95%ile 이상 (비만)</option>
-      </select>
+    <div class="field g3">
+      <div><span class="lbl">신장 백분위</span><input type="number" id="hp" min="0" max="100" placeholder="50"></div>
+      <div><span class="lbl">체중 백분위</span><input type="number" id="wp" min="0" max="100" placeholder="90"></div>
+      <div><span class="lbl">BMI 백분위 구간</span>
+        <select id="pct" class="calc dx">
+          <option value="unknown">모름 / 미확인</option>
+          <option value="low">5%ile 미만 (저체중)</option>
+          <option value="normal" selected>5~85%ile (정상)</option>
+          <option value="over">85~95%ile (과체중)</option>
+          <option value="obese">95%ile 이상 (비만)</option>
+        </select></div>
     </div>
     <div class="meas" id="meas"></div>
     <div class="flagbox" id="flag"></div>
@@ -248,101 +258,133 @@ ul.ev li{margin-bottom:2px}
     <h2>상담 요구 파악</h2>
     <div class="field">
       <span class="lbl">의뢰 경로</span>
-      <select id="route"><option>자발 신청</option><option>보호자 요청</option><option>담임 의뢰</option><option>급식 잔반 관찰</option><option>보건실 연계</option></select>
+      <select id="route"><option>자발 신청</option><option>보호자 요청</option><option>담임 의뢰</option><option>급식 잔반 관찰</option><option>보건실 연계</option><option>진단검사 결과 위험군 추출</option></select>
     </div>
     <div class="field">
       <span class="lbl">주호소 <span class="hint">— 보호자·학생의 첫 문장 그대로 인용</span></span>
-      <textarea id="chief" placeholder="“이렇게 씩씩하고 겁 없는 아이가 왜 밥은 이렇게 안 먹는지 모르겠어요.”"></textarea>
+      <textarea id="chief" placeholder="“아침은 원래 안 먹고, 밤에만 배가 고프대요.”"></textarea>
     </div>
   </div>
 
+  <!-- ══════════ 2단계 ══════════ -->
   <div class="card">
     <div class="step">2단계 · WHAT</div>
-    <h2>식생활 문제 확인</h2>
-    <details class="helper" id="dstwrap" open>
-      <summary>판별 도우미 — DST 식생활 스크리닝 결과로 문제 유형 찾기 <span class="hint hs">· 결과지의 등급을 그대로 고릅니다</span></summary>
-      <div id="dstbox"></div>
-      <div class="dxbtn">
-        <button type="button" id="dwrun">식생활 문제 유형 자동 판별</button>
-        <button type="button" class="ghost" id="dwclear">도우미 초기화</button>
-      </div>
-      <div class="dxbox" id="dwbox"></div>
-    </details>
+    <h2>식생활 문제 확인 <span class="hint">— 진단결과 옮겨 적기</span></h2>
+    <p class="lead">「식생활·생활습관 진단 결과」의 판정을 항목마다 그대로 선택하십시오. <b>주의·위험</b>으로 표시된 항목이 아래에 자동으로 문제 목록으로 정리되고, 3단계 원인 순위 계산에 그대로 넘어갑니다. 점수 항목은 숫자만 넣으면 판정이 자동 계산됩니다.</p>
 
-    <div class="field">
-      <span class="lbl">문제 유형 <span class="hint">— 해당하는 것 모두</span></span>
-      <div class="opts wrap2">
-        <label class="opt"><input type="checkbox" name="what" value="식품·음식 선택" checked><span>식품·음식 선택</span></label>
-        <label class="opt"><input type="checkbox" name="what" value="식사행동"><span>식사행동</span></label>
-        <label class="opt"><input type="checkbox" name="what" value="간식·음료"><span>간식·음료</span></label>
-        <label class="opt"><input type="checkbox" name="what" value="건강·생활습관"><span>건강·생활습관</span></label>
-        <label class="opt"><input type="checkbox" name="what" value="식생활 환경"><span>식생활 환경</span></label>
-        <label class="opt"><input type="checkbox" name="what" value="기타"><span>기타</span></label>
-      </div>
-      <input type="text" id="whatetc" placeholder="기타 문제 유형을 직접 입력" style="display:none;margin-top:8px">
+    <div class="dgroup first"><span>진단 1단계 · 건강 및 체형 인식</span><span class="src">주관적 응답</span></div>
+    <div class="drow"><div class="dn">주관적 건강상태</div>
+      <select id="d_health" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+    <div class="drow"><div class="dn">체형 이미지 왜곡 인식<em>실제 체형과 주관적 인식의 차이</em></div>
+      <select id="d_body" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+
+    <div class="dgroup"><span>진단 1단계 · 식습관</span><span class="src">4개 항목</span></div>
+    <div class="drow n"><div class="dn">식사빈도<em>하루 몇 끼</em></div>
+      <input type="number" id="v_freq" class="dx" min="0" max="6" placeholder="끼">
+      <select id="d_freq" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+    <div class="drow"><div class="dn">규칙적인 식사 시간</div>
+      <select id="d_reg" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+    <div class="drow n"><div class="dn">식사속도<em>끼니당 20분이 적절</em></div>
+      <input type="number" id="v_speed" class="dx" min="0" max="90" placeholder="분">
+      <select id="d_speed" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+    <div class="drow n"><div class="dn">식사량</div>
+      <select id="v_amt" class="dx"><option value="">—</option><option value="저체중">적음</option><option value="적절">적절</option><option value="과식">많음</option></select>
+      <select id="d_amt" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+
+    <div class="dgroup"><span>진단 2단계 · 영양상태 (영양지수 NQ)</span><span class="src">점수 입력 → 자동 판정</span></div>
+    <div class="drow n"><div class="dn">종합<em>53.3 미만 위험 · 70.7 초과 양호</em></div>
+      <input type="number" step="0.1" id="v_nq" class="dx" placeholder="점"><span class="badge b-na" id="b_nq">미입력</span></div>
+    <div class="drow n"><div class="dn">균형<em>35.1 미만 위험 · 52.6 초과 양호</em></div>
+      <input type="number" step="0.1" id="v_bal" class="dx" placeholder="점"><span class="badge b-na" id="b_bal">미입력</span></div>
+    <div class="drow n"><div class="dn">절제<em>50.0 미만 위험 · 66.8 초과 양호</em></div>
+      <input type="number" step="0.1" id="v_mod" class="dx" placeholder="점"><span class="badge b-na" id="b_mod">미입력</span></div>
+    <div class="drow n"><div class="dn">실천<em>54.5 미만 위험 · 80.0 초과 양호</em></div>
+      <input type="number" step="0.1" id="v_prac" class="dx" placeholder="점"><span class="badge b-na" id="b_prac">미입력</span></div>
+
+    <div class="dgroup"><span>진단 3단계 · 섭식태도 (EAT-26KA)</span><span class="src">점수가 낮을수록 양호</span></div>
+    <div class="drow n"><div class="dn">섭식태도 점수<em>16~19 경향 있음 · 20 이상 문제 있음</em></div>
+      <input type="number" step="1" id="v_eat" class="dx" min="0" max="78" placeholder="점"><span class="badge b-na" id="b_eat">미입력</span></div>
+
+    <div class="dgroup"><span>진단 4단계 · 식품알레르기 및 질환</span><span class="src"></span></div>
+    <div class="drow"><div class="dn">식품 알레르기</div>
+      <select id="d_alg" class="dx"><option value="na">미확인</option><option value="ok" selected>없음</option><option value="risk">있음</option></select></div>
+    <input type="text" id="t_alg" class="dx" placeholder="알레르기 원인 식품 — 있음 선택 시 기재" style="display:none;margin-bottom:7px">
+    <div class="drow"><div class="dn">질환</div>
+      <select id="d_ill" class="dx"><option value="na">미확인</option><option value="ok" selected>없음</option><option value="risk">있음</option></select></div>
+    <input type="text" id="t_ill" class="dx" placeholder="질환명 — 있음 선택 시 기재" style="display:none">
+
+    <div class="dgroup"><span>진단 5단계 · 생활습관</span><span class="src">수면 · 정신건강 · 스마트폰</span></div>
+    <div class="drow n"><div class="dn">수면습관<em>6~13세 적정 9~11시간</em></div>
+      <input type="number" step="0.5" id="v_sleep" class="dx" placeholder="시간"><span class="badge b-na" id="b_sleep">미입력</span></div>
+    <div class="drow"><div class="dn">정신건강<em>스트레스 · 우울감</em></div>
+      <select id="d_mental" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+    <div class="drow n"><div class="dn">스마트폰 사용 습관<em>하루 평균</em></div>
+      <input type="number" step="0.5" id="v_phone" class="dx" placeholder="시간">
+      <select id="d_phone" class="dx"><option value="na">미검사</option><option value="ok" selected>양호</option><option value="mid">주의</option><option value="risk">위험</option></select></div>
+
+    <div class="dgroup"><span>진단결과 외 추가 요청사항</span><span class="src">진단지 마지막 칸</span></div>
+    <input type="text" id="dxreq" placeholder="보호자·학생이 진단지에 적은 추가 요청사항 (없으면 비워 둠)">
+
+    <div class="autobox">
+      <div class="t">자동 정리 · 확인된 식생활 문제</div>
+      <div id="autowhat"></div>
+      <div class="t" style="margin:14px 0 8px">자동 분류 · 문제 유형</div>
+      <div id="autotype"></div>
+    </div>
+
+    <div class="field" style="margin-top:16px">
+      <span class="lbl">문제를 행동으로 서술 <span class="hint">— “편식한다”가 아니라 관찰 가능한 행동으로</span></span>
+      <textarea id="behav" placeholder="아침을 거르고 등교해 2교시부터 엎드려 있으며, 급식은 국물만 먹고 반찬은 남긴다"></textarea>
     </div>
     <div class="field">
-      <span class="lbl">문제를 행동으로 서술 <span class="hint">— “편식한다”가 아니라 관찰 가능한 행동으로</span></span>
-      <textarea id="behav" placeholder="새로 나온 반찬 앞에서 수저를 들지 않고, 식사 도중 자리에서 벗어난다"></textarea>
+      <span class="lbl">진단결과에 잡히지 않은 문제 <span class="hint">— 있을 때만 기재</span></span>
+      <input type="text" id="whatetc" placeholder="예: 하교 후 편의점 이용, 가정 내 조리 여건 부족">
     </div>
   </div>
 
+  <!-- ══════════ 3단계 ══════════ -->
   <div class="card">
     <div class="step">3단계 · WHY</div>
-    <h2>원인 탐색</h2>
-
-    <details class="helper" id="dxwrap" open>
-      <summary>판별 도우미 — 입력자료로 주 원인 유형 찾기 <span class="hint hs">· 아는 것만 입력하셔도 됩니다</span></summary>
-
-      <div class="sub2">A. DBT 식행동 검사 <span>— 결과지의 %ile을 그대로 입력합니다. 실시하지 않은 항목은 비워 둡니다</span></div>
-
-      <div class="grp">아이의 식행동</div>
-      <div class="nums" style="margin-bottom:8px">
-        <div><span class="lbl">접근회피성</span><input type="number" class="dxn gr" data-g="std" id="d_avoid" min="0" max="100" placeholder="90"><span class="grade" id="g_d_avoid"></span></div>
-        <div><span class="lbl">감각예민성</span><input type="number" class="dxn gr" data-g="std" id="d_sens" min="0" max="100" placeholder="99"><span class="grade" id="g_d_sens"></span></div>
-        <div><span class="lbl">과활동성</span><input type="number" class="dxn gr" data-g="std" id="d_hyp" min="0" max="100" placeholder="28"><span class="grade" id="g_d_hyp"></span></div>
-        <div><span class="lbl">불규칙성</span><input type="number" class="dxn gr" data-g="std" id="d_irr" min="0" max="100" placeholder="92"><span class="grade" id="g_d_irr"></span></div>
-      </div>
-
-      <div class="grp">부모(양육자)의 식행동</div>
-      <div class="nums" style="margin-bottom:8px">
-        <div><span class="lbl">불규칙성</span><input type="number" class="dxn gr" data-g="std" id="p_irr" min="0" max="100" placeholder="4"><span class="grade" id="g_p_irr"></span></div>
-        <div><span class="lbl">까다로움</span><input type="number" class="dxn gr" data-g="std" id="p_picky" min="0" max="100" placeholder="27"><span class="grade" id="g_p_picky"></span></div>
-        <div><span class="lbl">자기방임</span><input type="number" class="dxn gr" data-g="std" id="p_negl" min="0" max="100" placeholder="34"><span class="grade" id="g_p_negl"></span></div>
-        <div></div>
-      </div>
-
-      <div class="grp">부모의 식사 지도</div>
-      <div class="nums" style="margin-bottom:8px">
-        <div><span class="lbl">책임 / 관찰 / 염려</span><input type="number" class="dxn gr" data-g="care" id="d_care" min="0" max="100" placeholder="97"><span class="grade" id="g_d_care"></span></div>
-        <div><span class="lbl">규제 / 강요</span><input type="number" class="dxn gr" data-g="std" id="d_ctrl" min="0" max="100" placeholder="85"><span class="grade" id="g_d_ctrl"></span></div>
-        <div style="grid-column:span 2"><span class="lbl">맛감각 검사 <span class="hint">— 실시한 경우</span></span>
-          <select class="dxn" id="d_taste"><option value="">미실시</option><option value="sens">예민</option><option value="mid">보통</option><option value="dull">둔감</option></select></div>
-      </div>
-
-      <div class="sub2">B. 관찰·면담 <span>— 검사를 실시하지 않았어도 이 항목만으로 판별됩니다</span></div>
-      <div id="obsbox"></div>
-
-      <div class="dxbtn">
-        <button type="button" id="dxrun">주 원인 유형 자동 판별</button>
-        <button type="button" class="ghost" id="dxclear">도우미 초기화</button>
-      </div>
-
-      <div class="dxbox" id="dxbox"></div>
-    </details>
+    <h2>원인 탐색 <span class="hint">— 진단결과 기반 자동 추천</span></h2>
+    <p class="lead">2단계 진단 판정에 아래 <b>교사 관찰 보완 문항</b>을 더해 원인 유형별 가중치를 계산합니다. 진단지는 <b>환경(보호자 지도 방식·형제)</b> 요인을 담지 못하므로, 이 문항으로 보완해야 판정이 한쪽으로 기울지 않습니다.</p>
 
     <div class="field">
-      <span class="lbl">주 원인 유형</span>
-      <select id="why"><option>신체·감각</option><option>정서·심리</option><option>환경</option><option>행동·습관</option><option>지식·인식</option><option>기타</option></select>
+      <span class="lbl">교사·보호자 관찰 보완 문항 <span class="hint">— 관찰된 것만 체크</span></span>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" name="obs" value="보호자의 규제·강요적 권유가 관찰됨"><span>보호자의 규제·강요적 권유가 관찰됨 <span class="hint">— “다 먹어야 일어나”</span></span></label>
+        <label class="opt"><input type="checkbox" name="obs" value="형제 간 비교·기질 차이가 식탁에서 드러남"><span>형제 간 비교·기질 차이가 식탁에서 드러남</span></label>
+        <label class="opt"><input type="checkbox" name="obs" value="가정의 규칙적 식사 준비·동반 식사가 어려움"><span>가정의 규칙적 식사 준비·동반 식사가 어려움 <span class="hint">— 맞벌이·조손·혼밥</span></span></label>
+        <label class="opt"><input type="checkbox" name="obs" value="특정 식감·냄새·온도에 일관되게 거부함"><span>특정 식감·냄새·온도에 일관되게 거부함</span></label>
+        <label class="opt"><input type="checkbox" name="obs" value="식사 중 긴장·눈치 보기·불안 표현이 있음"><span>식사 중 긴장·눈치 보기·불안 표현이 있음</span></label>
+        <label class="opt"><input type="checkbox" name="obs" value="식품·영양의 역할을 자기 말로 설명하지 못함"><span>식품·영양의 역할을 자기 말로 설명하지 못함</span></label>
+        <label class="opt"><input type="checkbox" name="obs" value="학교 밖 식품환경 접근성이 높음"><span>학교 밖 식품환경 접근성이 높음 <span class="hint">— 편의점·배달·용돈</span></span></label>
+      </div>
+    </div>
+
+    <div class="autobox">
+      <div class="t">자동 계산 · 원인 유형 가중치</div>
+      <div id="whyrank"></div>
+      <div id="whysugg"></div>
+    </div>
+
+    <div class="field" style="margin-top:16px">
+      <span class="lbl">최종 원인 유형 확정 <span class="hint">— 자동 1순위가 들어갑니다. 교사 판단으로 변경 가능</span></span>
+      <select id="why">
+        <option>신체·감각</option><option>정서·심리</option><option>환경</option>
+        <option>행동·습관</option><option>지식·인식</option><option>기타</option>
+      </select>
       <input type="text" id="whyetc" placeholder="기타 원인 유형을 직접 입력" style="display:none;margin-top:8px">
     </div>
     <div class="field">
-      <span class="lbl">판별 근거 <span class="hint">— 사용한 검사와 결정적 수치</span></span>
-      <textarea id="evid" placeholder="DBT 감각예민성 99(위험) · 접근회피성 90(주의) / 부모 규제·강요 85(주의) · 책임·관찰·염려 97(높은관여)"></textarea>
+      <div class="evidrow">
+        <span class="lbl" style="margin:0">판별 근거 <span class="hint">— 결정적 수치 중심</span></span>
+        <button class="ghost mini" id="fillevid" type="button">자동 근거 다시 채우기</button>
+      </div>
+      <textarea id="evid" placeholder="진단결과의 위험·주의 항목과 수치가 자동으로 채워집니다"></textarea>
     </div>
     <div class="field">
-      <span class="lbl">추가로 실시한 검사 <span class="hint">— TCI·JTCI 기질, 에니어그램, 맛감각, DST 등 위 항목 외의 검사와 결과</span></span>
-      <textarea id="extra" placeholder="TCI 자녀 NS 100 · HA 3 · RD 92 / 보호자 TCI-RS HA 99 · RD 0 — 3개 척도 70%ile 이상 격차&#10;에니어그램 7번 낙천가 · 모자 8번 에너지 최저"></textarea>
+      <span class="lbl">추가 심층검사 <span class="hint">— 실시했을 때만 기재</span></span>
+      <input type="text" id="evid2" placeholder="예: DBT 감각예민 99%ile / TCI 모 HA 99%ile / 맛감각 검사">
     </div>
   </div>
 
@@ -355,24 +397,23 @@ ul.ev li{margin-bottom:2px}
     </div>
     <div class="field">
       <span class="lbl">목표 행동</span>
-      <input type="text" id="goal" placeholder="저녁 식사에 새 반찬을 한 입 맛본다">
+      <input type="text" id="goal" placeholder="아침에 우유 한 컵과 과일 한 조각을 먹고 등교한다">
     </div>
     <div class="field">
       <span class="lbl">운영 프로그램 <span class="hint">— 해당하는 것 모두</span></span>
       <div class="opts wrap2">
-        <label class="opt"><input type="checkbox" name="prog" value="숨은키 워크북" checked><span>숨은키 워크북</span></label>
         <label class="opt"><input type="checkbox" name="prog" value="식사일기장" checked><span>식사일기장</span></label>
-        <label class="opt"><input type="checkbox" name="prog" value="가정연계"><span>가정연계</span></label>
-        <label class="opt"><input type="checkbox" name="prog" value="보호자 코칭"><span>보호자 코칭</span></label>
         <label class="opt"><input type="checkbox" name="prog" value="급식 연계"><span>급식 연계</span></label>
-        <label class="opt"><input type="checkbox" name="prog" value="기타"><span>기타</span></label>
+        <label class="opt"><input type="checkbox" name="prog" value="보호자 코칭"><span>보호자 코칭</span></label>
+        <label class="opt"><input type="checkbox" name="prog" value="영양교육"><span>영양교육</span></label>
+        <label class="opt"><input type="checkbox" name="prog" value="기타" id="progetcbox"><span>기타 <span class="hint">— 직접 입력</span></span></label>
       </div>
-      <input type="text" id="progetc" placeholder="기타 운영 프로그램을 직접 입력 — 예: 채소 챌린지북, 방학 숨은키 프로젝트" style="display:none;margin-top:8px">
+      <input type="text" id="progetc" placeholder="기타 운영 프로그램을 직접 입력" style="display:none;margin-top:8px">
     </div>
-    <div class="field">
-      <span class="lbl">주로 쓴 상담기법 및 전략</span>
-      <select id="mi"><option>없음</option><option selected>OARS 기법 전반</option><option>인지행동치료</option><option>행동치료</option><option>푸드브릿지</option><option>푸드아트테라피</option><option>기타</option></select>
-      <input type="text" id="mietc" placeholder="사용한 상담기법 및 전략을 직접 입력" style="display:none;margin-top:8px">
+    <div class="field g2">
+      <div><span class="lbl">회기 수</span><input type="text" id="cnt" placeholder="4주 4회기, 회기당 40~50분"></div>
+      <div><span class="lbl">주로 쓴 상담기법</span>
+        <select id="mi"><option>없음</option><option selected>MI 동기면담</option><option>인지행동치료</option><option>행동치료</option></select></div>
     </div>
   </div>
 
@@ -380,19 +421,10 @@ ul.ev li{margin-bottom:2px}
     <div class="step">7단계 · CHECK</div>
     <h2>추후 상담 · 결과 확인</h2>
     <div class="field">
-      <label class="q">워크북·식사일기 수행은 어땠습니까?</label>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="adher" value="na"><span>1회차 상담으로 아직 수행하지 않음</span></label>
-        <label class="opt"><input type="radio" name="adher" value="full" checked><span>성실히 완주했다</span></label>
-        <label class="opt"><input type="radio" name="adher" value="part"><span>부분적으로 수행했다</span></label>
-        <label class="opt"><input type="radio" name="adher" value="none"><span>거의 수행하지 못했다</span></label>
-      </div>
-    </div>
-    <div class="field">
       <label class="q">목표 행동에 변화가 있었습니까?</label>
       <div class="opts">
-        <label class="opt"><input type="radio" name="outcome" value="na"><span>1회차 상담으로 아직 수행하지 않음</span></label>
-        <label class="opt"><input type="radio" name="outcome" value="better" checked><span>변화가 있었다 <span class="hint">— 지속 가능 설계로 이어집니다</span></span></label>
+        <label class="opt"><input type="radio" name="outcome" value="na" checked><span>1회차 상담으로 아직 수행하지 않음</span></label>
+        <label class="opt"><input type="radio" name="outcome" value="better"><span>변화가 있었다 <span class="hint">— 지속 가능 설계로 이어집니다</span></span></label>
         <label class="opt"><input type="radio" name="outcome" value="none"><span>변화가 없다</span></label>
         <label class="opt"><input type="radio" name="outcome" value="worse"><span>악화됐다</span></label>
       </div>
@@ -432,7 +464,9 @@ ul.ev li{margin-bottom:2px}
         <label class="opt danger"><input type="checkbox" name="risk" value="고도비만·저체중 또는 급격한 체중 변화"><span>고도비만·저체중 또는 급격한 체중 변화</span></label>
         <label class="opt danger"><input type="checkbox" name="risk" value="섭취 거부·구토·체중 측정 거부"><span>섭취 거부·구토·체중 측정 거부</span></label>
         <label class="opt danger"><input type="checkbox" name="risk" value="알레르기·대사질환·소화기 증상"><span>알레르기·대사질환·소화기 증상</span></label>
+        <label class="opt danger"><input type="checkbox" name="risk" value="섭식태도 20점 이상 또는 정신건강 위험"><span>섭식태도 20점 이상 또는 정신건강 위험</span></label>
       </div>
+      <div class="flagbox" id="dxflag"></div>
     </div>
 
     <div class="field" style="margin-top:16px" id="unmetwrap">
@@ -462,6 +496,98 @@ ul.ev li{margin-bottom:2px}
 </div>
 
 <script>
+/* ══════════════ 진단 항목 정의 ══════════════
+   code: ok / mid / risk / na
+   labs: [양호라벨, 중간라벨, 위험라벨]
+   w   : 원인 유형 가중치 (mid / risk)
+   what: 자동 분류될 문제 유형
+   sec : 진단결과지 단계
+─────────────────────────────────────────── */
+var DX=[
+ {id:'d_health',sec:'1단계 · 건강·체형 인식',n:'주관적 건강상태',type:'sel',labs:['양호','주의','위험'],
+  what:'건강·생활습관',w:{mid:{'정서·심리':1},risk:{'정서·심리':2}},
+  txt:{mid:'주관적 건강상태 주의',risk:'주관적 건강상태 위험 — 스스로 건강하지 않다고 인식'}},
+
+ {id:'d_body',sec:'1단계 · 건강·체형 인식',n:'체형 이미지 왜곡 인식',type:'sel',labs:['양호','주의','위험'],
+  what:'건강·생활습관',w:{mid:{'정서·심리':3},risk:{'정서·심리':5}},
+  txt:{mid:'체형 인식이 실제와 일부 불일치',risk:'체형 이미지 왜곡 — 실제 체형과 주관적 인식의 격차 큼'}},
+
+ {id:'d_freq',sec:'1단계 · 식습관',n:'식사빈도',type:'sel',val:'v_freq',unit:'끼/일',labs:['양호','주의','위험'],
+  what:'식사행동',w:{mid:{'행동·습관':3},risk:{'행동·습관':5}},
+  txt:{mid:'하루 식사 횟수 부족 — 결식 발생',risk:'하루 식사 횟수 심각하게 부족 — 상시 결식'}},
+
+ {id:'d_reg',sec:'1단계 · 식습관',n:'규칙적인 식사 시간',type:'sel',labs:['양호','주의','위험'],
+  what:'식사행동',w:{mid:{'행동·습관':3},risk:{'행동·습관':5}},
+  txt:{mid:'식사 시간이 일정하지 않음',risk:'식사 시간이 매우 불규칙 — 끼니 간격 붕괴'}},
+
+ {id:'d_speed',sec:'1단계 · 식습관',n:'식사속도',type:'sel',val:'v_speed',unit:'분/끼',labs:['양호','주의','위험'],
+  what:'식사행동',w:{mid:{'행동·습관':2,'신체·감각':1},risk:{'행동·습관':3,'신체·감각':2}},
+  txt:{mid:'식사속도가 적정(20분)에서 벗어남',risk:'식사속도 위험 — 지나치게 빠르거나 느림'}},
+
+ {id:'d_amt',sec:'1단계 · 식습관',n:'식사량',type:'sel',val:'v_amt',labs:['양호','주의','위험'],
+  what:'식품·음식 선택',w:{mid:{'신체·감각':2,'지식·인식':1},risk:{'신체·감각':3,'지식·인식':2}},
+  txt:{mid:'식사량이 적정 범위를 벗어남',risk:'식사량 위험 — 성장에 필요한 섭취량 확보 곤란'}},
+
+ {id:'d_nq',sec:'2단계 · 영양상태',n:'영양지수 종합',type:'num',val:'v_nq',badge:'b_nq',
+  cut:[53.3,70.7],labs:['양호','보통','위험'],unit:'점',
+  what:'식품·음식 선택',w:{mid:{'지식·인식':1},risk:{'지식·인식':2,'행동·습관':1}},
+  txt:{mid:'영양지수 종합 보통 — 개선 여지 있음',risk:'영양지수 종합 위험 — 전반적 식생활 시급한 개선 필요'}},
+
+ {id:'d_bal',sec:'2단계 · 영양상태',n:'균형',type:'num',val:'v_bal',badge:'b_bal',
+  cut:[35.1,52.6],labs:['양호','보통','위험'],unit:'점',
+  what:'식품·음식 선택',w:{mid:{'지식·인식':1,'신체·감각':1},risk:{'지식·인식':3,'신체·감각':2}},
+  txt:{mid:'균형 영역 보통 — 곡류·단백질·채소·과일·유제품 섭취 편중',risk:'균형 영역 위험 — 필요 식품군을 골고루 먹지 못함'}},
+
+ {id:'d_mod',sec:'2단계 · 영양상태',n:'절제',type:'num',val:'v_mod',badge:'b_mod',
+  cut:[50,66.8],labs:['양호','보통','위험'],unit:'점',
+  what:'간식·음료',w:{mid:{'행동·습관':1,'지식·인식':1},risk:{'행동·습관':3,'지식·인식':2}},
+  txt:{mid:'절제 영역 보통 — 단 음식·가공식품 섭취 조절 필요',risk:'절제 영역 위험 — 단 음료·기름진 간식·패스트푸드 과다'}},
+
+ {id:'d_prac',sec:'2단계 · 영양상태',n:'실천',type:'num',val:'v_prac',badge:'b_prac',
+  cut:[54.5,80],labs:['양호','보통','위험'],unit:'점',
+  what:'건강·생활습관',w:{mid:{'지식·인식':1,'행동·습관':1},risk:{'지식·인식':3,'행동·습관':2}},
+  txt:{mid:'실천 영역 보통 — 아침 결식·식품표시 미확인 등',risk:'실천 영역 위험 — 건강한 식행동 실천 수준 낮음'}},
+
+ {id:'d_eat',sec:'3단계 · 섭식태도',n:'섭식태도(EAT-26KA)',type:'num',val:'v_eat',badge:'b_eat',
+  cut:[16,20],rev:true,labs:['정상 섭식행동','섭식문제 경향','섭식문제 있음'],unit:'점',
+  what:'식사행동',w:{mid:{'정서·심리':4},risk:{'정서·심리':6}},
+  txt:{mid:'섭식태도 16~19점 — 섭식문제 경향',risk:'섭식태도 20점 이상 — 섭식문제 있음 (전문기관 연계 검토)'}},
+
+ {id:'d_alg',sec:'4단계 · 알레르기·질환',n:'식품 알레르기',type:'yn',labs:['없음','','있음'],
+  what:'식품·음식 선택',w:{risk:{'신체·감각':4}},txt:{risk:'식품 알레르기 있음'},detail:'t_alg'},
+
+ {id:'d_ill',sec:'4단계 · 알레르기·질환',n:'질환',type:'yn',labs:['없음','','있음'],
+  what:'건강·생활습관',w:{risk:{'신체·감각':3}},txt:{risk:'질환 있음'},detail:'t_ill'},
+
+ {id:'d_sleep',sec:'5단계 · 생활습관',n:'수면습관',type:'sleep',val:'v_sleep',badge:'b_sleep',unit:'시간',
+  labs:['양호','주의','위험'],what:'건강·생활습관',
+  w:{mid:{'행동·습관':2,'정서·심리':1},risk:{'행동·습관':4,'정서·심리':2}},
+  txt:{mid:'수면시간이 적정(9~11시간)에서 벗어남',risk:'수면시간 위험 — 성장호르몬 분비·식생활에 직접 영향'}},
+
+ {id:'d_mental',sec:'5단계 · 생활습관',n:'정신건강',type:'sel',labs:['양호','주의','위험'],
+  what:'건강·생활습관',w:{mid:{'정서·심리':4},risk:{'정서·심리':6}},
+  txt:{mid:'스트레스 또는 우울감 있음',risk:'스트레스·우울감 위험 — 정신건강 전문가 연계 필요'}},
+
+ {id:'d_phone',sec:'5단계 · 생활습관',n:'스마트폰 사용 습관',type:'sel',val:'v_phone',unit:'시간/일',
+  labs:['양호','주의','위험'],what:'건강·생활습관',
+  w:{mid:{'행동·습관':2},risk:{'행동·습관':4}},
+  txt:{mid:'스마트폰 사용 시간 다소 과다',risk:'스마트폰 과다 사용 — 수면·식사 리듬 침식'}}
+];
+
+var OBS={
+ "보호자의 규제·강요적 권유가 관찰됨":{w:{'환경':5},what:'식생활 환경'},
+ "형제 간 비교·기질 차이가 식탁에서 드러남":{w:{'환경':4},what:'식생활 환경'},
+ "가정의 규칙적 식사 준비·동반 식사가 어려움":{w:{'환경':4,'행동·습관':1},what:'식생활 환경'},
+ "특정 식감·냄새·온도에 일관되게 거부함":{w:{'신체·감각':5},what:'식품·음식 선택'},
+ "식사 중 긴장·눈치 보기·불안 표현이 있음":{w:{'정서·심리':4},what:'식사행동'},
+ "식품·영양의 역할을 자기 말로 설명하지 못함":{w:{'지식·인식':4},what:'건강·생활습관'},
+ "학교 밖 식품환경 접근성이 높음":{w:{'환경':3,'간식':0},what:'간식·음료'}
+};
+
+var PCTW={low:{'신체·감각':3},obese:{'행동·습관':2,'지식·인식':1},over:{'행동·습관':1}};
+var PCTTXT={low:'BMI 5%ile 미만 — 저체중',over:'BMI 85~95%ile — 과체중',obese:'BMI 95%ile 이상 — 비만'};
+
+/* ══════════════ 7단계 판정 데이터 (기존 유지) ══════════════ */
 var INITIAL={name:"1회기 기록 — 계획 수립 단계",tone:"gray",group:"CHECK 이전",
  desc:"아직 개입 결과를 확인할 단계가 아닙니다. 이 기록지는 2~3단계 판정과 4~6단계 계획을 남기고, 다음 회기 점검 기준을 확정하는 용도로 출력합니다.",
  first:"정한 목표 행동을 보호자와 학생이 같은 문장으로 말할 수 있게 한다",
@@ -482,21 +608,21 @@ var SUSTAIN={name:"반응 확인 — 유지·확산 단계",tone:"green",group:"
  ["기록 부담 축소","매일 → 주 2회 → 주 1회로 줄입니다. 줄이지 않으면 기록이 먼저 무너집니다."],
  ["학교 장치는 유지","급식 식단표 사전 안내와 배식량 선택권은 종료하지 않습니다. 상담이 끝나도 자동으로 남는 유일한 구조입니다."],
  ["가정 루틴으로 전환","특별 과제를 일상 일정에 붙입니다. 주 1회 장보기, 주 1회 새로운 음식의 날."],
- ["또래로 확산","학급 단위 채소 챌린지, 급식 도우미 역할 부여로 개인 과제를 집단 문화로 옮깁니다."],
+ ["또래로 확산","학급 단위 영양교육과 급식 도우미 역할 부여로 개인 과제를 집단 문화로 옮깁니다."],
  ["재발 대비 계획","무너질 시기를 미리 정해 둡니다 — 방학, 명절, 학기 초. “그때는 이것 하나만 지킨다”를 정합니다."],
  ["유지 점검 주기","4주 → 8주 → 3개월. 마지막은 보호자 1문항 문자로 충분합니다."],
- ["종결 문서화","케이스 카드 7단계 CHECK 칸과 달성하지 못한 것을 채우고, 다음 담당자 참고 문장을 남깁니다."]],
+ ["종결 문서화","기록지 7단계 CHECK 칸과 달성하지 못한 것을 채우고, 다음 담당자 참고 문장을 남깁니다."],
+ ["진단검사 재실시","동일 진단도구로 사후 검사를 실시해 영양지수·섭식태도·수면 항목의 정량 변화를 남깁니다."]],
  mi:"유지대화 강화 — “지금까지 뭐가 가장 도움이 됐나요”로 성공 요인을 보호자 입으로 말하게 합니다. 인정하기(A)는 결과가 아니라 4주를 지속한 행위에 붙입니다.",
  check:"섭취량이 아니라 유지 여부. 8주·3개월 시점에 목표 행동이 남아 있는지 1문항으로 확인",
  warn:"성공했을 때 목표를 한꺼번에 올리는 것이 가장 흔한 재발 원인입니다. 한 칸만 올립니다."};
 
 var PROGNEXT={
-"숨은키 워크북":"4주 종료 후에는 키 기록만 남깁니다. 월 1회 측정해 워크북 뒷장에 이어 적고, 방학 프로젝트로 연결합니다.",
 "식사일기장":"매일 → 주 2회 → 주 1회로 줄입니다. 쓰기가 부담이면 저녁 식탁 사진 1장으로 대체합니다.",
-"가정연계":"특별 과제를 일상 일정에 붙입니다. 주 1회 장보기에서 아이가 채소 1가지를 직접 고르고, 고른 것은 그 주에 반드시 식탁에 올립니다.",
-"보호자 코칭":"보호자가 바꾼 문장을 보이는 곳에 붙여 두고, 새 문장 1개를 월 1회만 추가합니다.",
 "급식 연계":"식단 사전 안내와 배식량 선택권은 상담 종료와 무관하게 유지합니다. 학교가 유지하는 구조가 가장 오래 갑니다.",
-"기타":"이번에 통한 방식을 한 문장으로 남기고, 다음 회기에도 같은 형태로 이어갈 수 있는지 확인합니다."};
+"보호자 코칭":"보호자가 바꾼 문장을 보이는 곳에 붙여 두고, 새 문장 1개를 월 1회만 추가합니다.",
+"영양교육":"개인 상담 내용을 학급·학년 단위 수업으로 넓힙니다. 이 학생이 배운 것을 또래에게 설명하는 역할을 맡기면 유지율이 올라갑니다.",
+"기타":"이번에 통했던 방식이 무엇이었는지 한 문장으로 남기고, 다음 담당자가 그대로 이어갈 수 있게 기록합니다."};
 
 var SUSTAIN_BY_WHY={
 "신체·감각":"노출을 멈추면 되돌아갑니다. 주 1회 ‘새로운 음식의 날’만 남겨 노출 빈도를 유지하십시오.",
@@ -520,7 +646,7 @@ overload:{name:"과부하형",tone:"coral",group:"관계·부담 조정",
  desc:"실천은 시작됐으나 중도에 멈췄습니다. 의지가 아니라 과제량과 가정 여건의 불일치, 즉 설계 문제로 봅니다.",
  first:"과제를 늘리지 말고 3분의 1로 줄인다",
  student:["기록 항목을 1개로 축소 — 예: 새 음식 앞에 앉았는지 O/X만"],
- home:["실천 요일을 매일에서 주 2일로 축소","워크북은 여러 종 중 1종만 남긴다","다음 주에 항목을 추가하지 않는다"],
+ home:["실천 요일을 매일에서 주 2일로 축소","운영 프로그램은 여러 종 중 1종만 남긴다","다음 주에 항목을 추가하지 않는다"],
  school:["급식 식단표 사전 안내·배식량 선택권으로 가정 과제 일부를 학교로 이전"],
  mi:"인정하기(A)·요약하기(S) — “멈췄다”가 아니라 “3주를 해냈다”로 재구성합니다.",
  check:"축소한 1개 과제가 주 2회 유지되는지만 확인",
@@ -531,7 +657,7 @@ conflict:{name:"갈등형",tone:"coral",group:"관계·부담 조정",
  first:"아이 과제를 전면 중단하고, 보호자의 문장 하나만 바꾼다",
  student:["4주간 아이 과제 없음","식탁에서 아이에게 아무것도 요구하지 않는다"],
  home:["보호자 단독 회기를 먼저 진행해 자책을 다룬다","“엄마가 속상해” → “이 음식엔 네가 축구할 때 힘 나는 영양소가 있어”","“왜 안 먹어?” → “배가 아픈 거야, 맛이 별로인 거야?”","“오늘 뭐 먹고 싶어?” → “오이랑 브로콜리 중에 뭐 먹어볼까?”"],
- school:["검사 결과는 보호자 것을 먼저 보여드린다","필요 시 전문상담교사 연계 병행"],
+ school:["진단결과는 보호자 것을 먼저 보여드린다","필요 시 전문상담교사 연계 병행"],
  mi:"반영하기(R) 중심 — 보호자의 자책을 먼저 수용합니다. 저항에 맞서지 않고 함께 구릅니다.",
  check:"섭취량이 아니라 식사 중 갈등 발생 횟수와 잔소리 빈도",
  warn:"아이 과제를 조금이라도 남겨두면 그것이 다음 싸움의 소재가 됩니다. 반드시 비웁니다."},
@@ -540,7 +666,7 @@ collapse:{name:"기반붕괴형",tone:"teal",group:"전략 재설계",
  desc:"수면·활동·스크린 등 생활 리듬이 함께 무너져 있습니다. 식사만 손대서는 회복되지 않는 구간입니다.",
  first:"식사를 건드리지 않고, 취침 시각 하나만 고정한다",
  student:["식사일기 대신 취침·기상 시각만 기록"],
- home:["규칙은 한 주에 한 가지만 추가","2주차에 식사 중 영상·장난감 제거를 더한다"],
+ home:["규칙은 한 주에 한 가지만 추가","2주차에 식사 중 영상·스마트폰 제거를 더한다"],
  school:["담임·보건교사와 공동 관리","급식 시간 관찰 기록을 가정과 공유"],
  mi:"열린질문(O)으로 하루 흐름을 함께 재구성하고, 무엇부터 바꿀지는 보호자가 고르게 합니다.",
  check:"취침 시각 편차와 결식 일수 — 섭취량은 이번 주기에 보지 않습니다",
@@ -549,7 +675,7 @@ collapse:{name:"기반붕괴형",tone:"teal",group:"전략 재설계",
 mismatch:{name:"전략오판형",tone:"teal",group:"전략 재설계",
  desc:"성실히 실행했는데 지표가 움직이지 않았습니다. 실행의 문제가 아니라 원인 유형 판정이 틀렸을 가능성이 가장 높습니다.",
  first:"개입을 멈추고 원인 유형을 재판정한다",
- student:["DBT 감각예민성·접근회피 재검사 또는 맛감각 검사","급식 상황을 교사가 직접 관찰"],
+ student:["진단검사 재실시 또는 DBT 감각예민성·접근회피 검사 추가","급식 상황을 교사가 직접 관찰"],
  home:["실패한 4주를 함께 복기 — “어떤 상황에서 특히 안 됐나요”"],
  school:["원인 유형별 전략 카드를 교체한다 — 같은 문제라도 원인이 다르면 카드가 다릅니다"],
  mi:"요약하기(S)로 4주 데이터를 함께 정리합니다. 실패를 평가가 아니라 정보로 다룹니다.",
@@ -560,7 +686,7 @@ refer:{name:"의뢰필요형",tone:"gray",group:"학교 밖 연계",
  desc:"학교 영양상담의 범위를 벗어난 신호가 확인됐습니다. 유형화보다 연계가 우선입니다.",
  first:"학교 개입을 더 얹지 않고, 종결과 동시에 연계한다",
  student:["학교 개입 중단, 급식 관찰 기록만 유지"],
- home:["연계 사유를 수치로 설명한다","보호자의 불안을 먼저 반영한 뒤 정보를 전달한다"],
+ home:["연계 사유를 진단결과 수치로 설명한다","보호자의 불안을 먼저 반영한 뒤 정보를 전달한다"],
  school:["보건교사 경유 → 소아청소년과·정신건강의학과·영양지원팀","의뢰 후 실제 방문 여부와 미방문 사유까지 기록"],
  mi:"정보 제공은 유발–제공–유발(E-P-E) 형식으로. 허락을 구하고 전달한 뒤 반응을 확인합니다.",
  check:"의뢰 접수 여부와 실제 방문 여부",
@@ -569,49 +695,53 @@ refer:{name:"의뢰필요형",tone:"gray",group:"학교 밖 연계",
 
 var CARDS={
 "신체·감각":{n:"카드 ① 원인 = 신체·감각",
- basis:"DBT 감각예민성 또는 접근회피성 85%ile 이상 / 특정 식감·냄새·온도에 일관된 거부",
+ basis:"진단결과 · 균형 영역 위험 / 식사량·식사속도 주의 / 알레르기·질환 있음 · 관찰 — 특정 식감·냄새·온도에 일관된 거부 (보조: DBT 감각예민성·접근회피성 85%ile 이상)",
  first:"섭취량이 아니라 노출의 예측 가능성부터 바꾼다",
  goal:["“내일 급식에 나올 반찬을 하루 전에 확인한다” (예고)","“새 음식을 한 입 맛보고, 별로면 그만둔다” (부담 낮춘 시도)"],
- student:["채소 챌린지북에 만져봄·냄새맡음·한 입까지 단계별 기록"],
+ student:["식사일기장에 만져봄·냄새맡음·한 입까지 단계별로 기록"],
  home:["예고 → 반복 노출 → 두 개 중 선택 3단계 적용"],
- school:["급식 식단표 사전 안내, 배식량 선택권 부여"],
- check:"섭취량이 아니라 노출 횟수와 거부 강도의 변화",
+ school:["급식 식단표 사전 안내, 배식량 선택권 부여","알레르기·질환 있는 경우 대체식 협의를 먼저 확정"],
+ check:"섭취량이 아니라 노출 횟수와 거부 강도의 변화 · 사후 영양지수 균형 영역 점수",
  warn:"“한 번만 더 먹어봐”는 금지 문장입니다. 앉아 있었던 것까지를 성공으로 기록해야 지속됩니다."},
+
 "정서·심리":{n:"카드 ② 원인 = 정서·심리",
- basis:"TCI 위험회피(HA) 또는 예기불안 높음 / 보호자 불안 동반 / 식사 중 긴장",
+ basis:"진단결과 · 정신건강 주의·위험 / 섭식태도 16점 이상 / 체형 이미지 왜곡 인식 · 관찰 — 식사 중 긴장·불안 (보조: TCI 위험회피 HA 높음, 보호자 불안 동반)",
  first:"아이의 섭취보다 식탁의 긴장부터 낮춘다",
  goal:["“식사 중 지켜야 할 규칙을 한 가지만 남긴다”","“오늘은 얼마나 먹을지 아이가 정한다”"],
- student:["스스로 정하는 시각적 기준 — 작은 그릇, ‘오늘은 이만큼’"],
- home:["보호자 단독 회기를 먼저 진행해 자책 다루기"],
- school:["필요 시 전문상담교사 연계 병행"],
- check:"식사 중 갈등 발생 횟수, 보호자의 잔소리 빈도 변화",
+ student:["스스로 정하는 시각적 기준 — 작은 그릇, ‘오늘은 이만큼’","체형·체중 이야기를 상담 중 먼저 꺼내지 않는다"],
+ home:["보호자 단독 회기를 먼저 진행해 자책 다루기","가정에서 체중·외모에 대한 언급을 4주간 중단"],
+ school:["전문상담교사·Wee클래스 연계 병행","섭식태도 20점 이상이면 의료 연계를 우선 검토"],
+ check:"식사 중 갈등 발생 횟수, 보호자의 잔소리 빈도 변화 · 사후 섭식태도 점수",
  warn:"보호자의 자책을 먼저 다루지 않으면 어떤 실천 과제도 “또 하나의 숙제”가 됩니다."},
-"환경":{n:"카드 ③ 원인 = 환경 (보호자 지도 방식·형제)",
- basis:"DBT 부모용 규제·강요 85%ile 이상 / TCI 부모–자녀 사회적 민감성 격차 40%ile 이상 / 형제 간 기질 상반",
+
+"환경":{n:"카드 ③ 원인 = 환경 (보호자 지도 방식·형제·식품환경)",
+ basis:"관찰 — 보호자의 규제·강요적 권유 / 형제 간 비교 / 규칙적 식사 준비 곤란 / 학교 밖 식품환경 접근성 (보조: DBT 부모용 규제·강요 85%ile 이상)",
  first:"보호자의 말 한 문장을 바꾼다 — 아이 행동 변화보다 먼저",
  goal:["“정서 호소 대신 사실 확인으로 묻는다”","“형제를 비교하는 문장을 쓰지 않는다”"],
  student:["형제별로 분리된 개별 미션 부여"],
- home:["“엄마가 속상해” → “이 음식엔 네가 축구할 때 힘 나는 영양소가 있어”","“오늘 뭐 먹고 싶어?” → “오이랑 브로콜리 중에 뭐 먹어볼까?”"],
- school:["TCI 1가정 5인 동시 검사로 형제·부모 프로파일 동시 확보"],
- check:"보호자 발화의 변화, 형제 비교 발화 감소",
- warn:"검사 결과는 보호자 것을 먼저 보여드립니다. 아이 결과를 먼저 보면 “우리 애가 문제라는 거죠?”라는 방어가 올라옵니다."},
+ home:["“엄마가 속상해” → “이 음식엔 네가 축구할 때 힘 나는 영양소가 있어”","“오늘 뭐 먹고 싶어?” → “오이랑 브로콜리 중에 뭐 먹어볼까?”","혼밥이 불가피하면 ‘차려두는 한 접시’를 고정 메뉴로 정한다"],
+ school:["진단결과를 활용한 보호자 코칭 자료 제공","1가정 동시 검사로 형제·부모 프로파일 동시 확보"],
+ check:"보호자 발화의 변화, 형제 비교 발화 감소 · 가정 식사 준비 횟수",
+ warn:"진단결과는 보호자 것을 먼저 보여드립니다. 아이 결과를 먼저 보면 “우리 애가 문제라는 거죠?”라는 방어가 올라옵니다."},
+
 "행동·습관":{n:"카드 ④ 원인 = 행동·습관",
- basis:"DST 식습관 진단에서 불규칙성·식사시간 이탈 / 오래된 식습관, 자기조절 어려움",
- first:"식사 시간과 자리를 고정하는 것 하나만 먼저",
- goal:["“식사는 정해진 자리에서 시작하고 끝낸다”","“식사 중 영상·장난감을 두지 않는다”"],
+ basis:"진단결과 · 식사빈도·규칙적 식사 시간 주의·위험 / 수면습관 위험 / 스마트폰 사용 과다 / 절제 영역 낮음",
+ first:"식사 시간과 자리를 고정하는 것 하나만 먼저 — 수면이 무너져 있으면 취침 시각부터",
+ goal:["“식사는 정해진 자리에서 시작하고 끝낸다”","“식사 중 영상·스마트폰을 두지 않는다”","“매일 같은 시각에 잔다”"],
  student:["식사일기장으로 취침·기상·식사 시각 기록"],
- home:["규칙은 한 주에 한 가지만 추가"],
- school:["급식 시간 관찰 기록을 가정과 공유"],
- check:"식사 소요 시간, 자리 이탈 횟수, 결식 일수",
+ home:["규칙은 한 주에 한 가지만 추가","취침 1시간 전 스마트폰 거치대에 두기"],
+ school:["급식 시간 관찰 기록을 가정과 공유","아침 결식 학생 대상 등교 후 간단 보충 운영 검토"],
+ check:"식사 소요 시간, 결식 일수, 취침 시각 편차 · 사후 수면시간",
  warn:"습관 교정은 성과가 늦게 나타납니다. 4주 안에 변화를 요구하지 않습니다."},
+
 "지식·인식":{n:"카드 ⑤ 원인 = 지식·인식",
- basis:"건강한 식사의 중요성·식품 역할에 대한 이해 부족",
+ basis:"진단결과 · 실천 영역 위험 / 균형·절제 영역 낮음 · 관찰 — 식품·영양의 역할을 자기 말로 설명하지 못함",
  first:"지식이 아니라 지식과 행동을 잇는 경험부터",
- goal:["“먹은 음식이 몸에서 하는 일을 한 가지 설명한다”"],
- student:["개념기반 탐구수업(호기심 → 탐구 → 확장) 연계"],
- home:["함께 장보기·조리 등 직접 경험"],
- school:["급식 방송·식단 게시로 반복 노출"],
- check:"식품 역할 설명 가능 여부, 선택 행동의 변화",
+ goal:["“먹은 음식이 몸에서 하는 일을 한 가지 설명한다”","“가공식품을 살 때 영양성분표를 확인한다”"],
+ student:["개념기반 탐구수업(관계맺기 → 집중하기 → 조사하기 → 조직및정리 → 일반화 → 전이 → 성찰) 연계","진단결과의 자기 점수를 스스로 해석해 보게 한다"],
+ home:["함께 장보기·조리 등 직접 경험","가정에서 식품표시 함께 읽기"],
+ school:["급식 방송·식단 게시로 반복 노출","학생이 급식 도우미로 설명하는 역할 부여"],
+ check:"식품 역할 설명 가능 여부, 선택 행동의 변화 · 사후 영양지수 실천 영역 점수",
  warn:"이 유형이 아닌 학생에게 지식 전달 전략을 쓰면 반드시 실패합니다. 판별을 먼저 하십시오."}
 };
 
@@ -623,335 +753,156 @@ var RECHECK={
 "지식·인식":{txt:"지식 전달 전략이 실패했다면 애초에 이 유형이 아니었을 가능성이 큽니다. 신체·감각부터 다시 보십시오.",to:"신체·감각"}};
 
 var ORDER=["신체·감각","정서·심리","환경","행동·습관","지식·인식"];
-var state={card:null,rec:null};
+var WHATORDER=["식품·음식 선택","식사행동","간식·음료","건강·생활습관","식생활 환경"];
+var state={card:null,rec:null,whyTouched:false,evidTouched:false};
 
-/* ══ DST 식생활 스크리닝 검사 ═══════════════════════════
-   결과지의 8개 영역 19개 지표를 그대로 옮기고, 식생활 문제 유형 5종에 매핑합니다.
-   등급 환산 : 위험 2 · 주의 1 · 양호 0 → 지표별 가중치와 곱해 합산 */
-var DST=[
- ["성장",[["g_curve","성장곡선"],["g_bmi","체질량지수(BMI)"]]],
- ["생활리듬",[["r_bed","취침시각"],["r_sleep","수면시간"],["r_mtime","식사시간"],["r_exer","운동"]]],
- ["식사의 질",[["q_bal","식품섭취 균형"],["q_reg","식사의 규칙성"],["q_snack","간식의 건전성"]]],
- ["섭식발달",[["e_swal","삼키기"],["e_chew","씹기"]]],
- ["섭식조절",[["c_app","식욕조절"],["c_sel","식품선택조절"]]],
- ["식사 기질 특성",[["t_picky","까다로움"],["t_irr","불규칙성"],["t_hyp","과활동성"]]],
- ["식사 습관 특성",[["h_lead","주도적 식사"],["h_ref","식사거부"],["h_media","매체 조기노출"]]],
- ["동반식사",[["s_comp","동반식사"]]]
-];
-var DSTNAME={};
-DST.forEach(function(g){g[1].forEach(function(x){DSTNAME[x[0]]=x[1];});});
-
-var WORDER=["식품·음식 선택","식사행동","간식·음료","건강·생활습관","식생활 환경"];
-var WHATMAP={
-"식품·음식 선택":[["q_bal",3],["c_sel",3],["t_picky",2],["h_ref",2]],
-"식사행동":[["q_reg",3],["r_mtime",2],["e_chew",2],["e_swal",2],["t_irr",2],["t_hyp",2],["h_lead",2],["h_ref",1]],
-"간식·음료":[["q_snack",3],["c_app",3]],
-"건강·생활습관":[["g_curve",3],["g_bmi",3],["r_exer",2],["r_bed",2],["r_sleep",2]],
-"식생활 환경":[["s_comp",3],["h_media",3],["h_lead",1]]
-};
-/* DST 지표 → 원인 유형(3단계) 교차 반영 */
-var DSTCAUSE={
- t_picky:["신체·감각",3], e_chew:["신체·감각",2], e_swal:["신체·감각",2],
- h_ref:["정서·심리",3],
- h_media:["환경",3], s_comp:["환경",3], h_lead:["환경",2],
- t_irr:["행동·습관",3], t_hyp:["행동·습관",3]
-};
-var LVW={risk:2,warn:1,ok:0};
-var LVN={risk:"위험",warn:"주의",ok:"양호"};
-
-var WMAXS={};
-WORDER.forEach(function(k){var s=0;WHATMAP[k].forEach(function(x){s+=x[1]*2;});WMAXS[k]=s;});
-
-function buildDst(){
-  var h='';
-  DST.forEach(function(g){
-    h+='<div class="grp">'+g[0]+'</div><div class="nums">';
-    g[1].forEach(function(x){
-      h+='<div><span class="lbl">'+x[1]+'</span><select class="dst" id="s_'+x[0]+'">'+
-         '<option value="">미실시</option><option value="ok">양호</option>'+
-         '<option value="warn">주의</option><option value="risk">위험</option></select></div>';
-    });
-    if(g[1].length%4)for(var i=g[1].length%4;i<4;i++)h+='<div></div>';
-    h+='</div>';
-  });
-  $('dstbox').innerHTML=h;
-}
-function dv(id){var e=$('s_'+id);return e?e.value:'';}
-
-function diagWhat(){
-  var S={},E={};
-  WORDER.forEach(function(k){S[k]=0;E[k]=[];});
-  WORDER.forEach(function(k){
-    WHATMAP[k].forEach(function(x){
-      var v=dv(x[0]);if(!v||v==='ok')return;
-      S[k]+=x[1]*LVW[v];
-      E[k].push(DSTNAME[x[0]]+' '+LVN[v]);
-    });
-  });
-  var alerts=[];
-  if(dv('g_curve')==='risk')alerts.push('성장곡선 위험 — 7단계 의료 연계 신호(성장 3%ile 미만·성장 속도 급감)를 반드시 확인하십시오.');
-  if(dv('g_bmi')==='risk')alerts.push('체질량지수 위험 — 고도비만·저체중 여부를 확인하고 의료 연계 신호 항목에 반영하십시오.');
-  if(dv('s_comp')==='warn'||dv('s_comp')==='risk')alerts.push('동반식사에 문제가 있습니다. 어떤 문제 유형으로 확정하든 ‘식생활 환경’을 함께 체크하십시오.');
-  var rank=WORDER.map(function(k){return {k:k,s:S[k],e:E[k]};})
-    .sort(function(a,b){return b.s-a.s || WORDER.indexOf(a.k)-WORDER.indexOf(b.k);});
-  return {rank:rank,alerts:alerts,any:rank[0].s>0};
-}
-
-function dstLine(){
-  var out=[];
-  DST.forEach(function(g){g[1].forEach(function(x){
-    var v=dv(x[0]);if(v==='warn'||v==='risk')out.push(x[1]+' '+LVN[v]);});});
-  return out.length?('DST 스크리닝 주의·위험 항목 — '+out.join(' · ')):'';
-}
-
-function paintWhat(){
-  var d=diagWhat(),b=$('dwbox');
-  if(!d.any){
-    b.className='dxbox show';
-    b.innerHTML='<div class="alertx info">주의·위험 등급으로 표시된 항목이 없습니다. DST 결과지의 등급을 입력하시거나, 문제 유형을 직접 선택해 주십시오.'+
-      (d.alerts.length?'<br>'+d.alerts.map(esc).join('<br>'):'')+'</div>';
-    return;
-  }
-  var top=d.rank.filter(function(r){return r.s>0;}).slice(0,3),h='';
-  d.alerts.forEach(function(a){h+='<div class="alertx">'+esc(a)+'</div>';});
-  top.forEach(function(r,i){
-    var pct=Math.max(4,Math.round(r.s/WMAXS[r.k]*100));
-    h+='<div class="rank"><span class="no'+(i?' n2':'')+'">'+(i+1)+'순위</span>'+
-       '<span class="nm">'+esc(r.k)+'</span><span class="sc">근거점수 '+r.s+'점</span></div>'+
-       '<div class="bar'+(i?' b2':'')+'"><i style="width:'+pct+'%"></i></div>'+
-       '<ul class="ev">'+r.e.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
-  });
-  h+='<div class="alertx info">DST 결과는 주 유형을 좁혀 주는 자료입니다. 문제 유형은 복수 선택이므로, 실제로 관찰되는 것을 모두 체크하십시오.</div>';
-  h+='<div class="dxbtn">'+
-     top.map(function(r,i){return '<button type="button" class="'+(i?'ghost ':'')+'wpick" data-k="'+esc(r.k)+'">‘'+esc(r.k)+'’ 체크</button>';}).join('')+
-     (top.length>1?'<button type="button" class="ghost" id="wall">'+top.length+'개 모두 체크</button>':'')+'</div>';
-  b.className='dxbox show';b.innerHTML=h;
-
-  function check(k){
-    var el=document.querySelector('input[name=what][value="'+k+'"]');
-    if(el){el.checked=true;paint();}
-  }
-  [].slice.call(b.querySelectorAll('.wpick')).forEach(function(btn){
-    btn.addEventListener('click',function(){check(btn.dataset.k);btn.textContent='✓ 체크됨 — '+btn.dataset.k;});
-  });
-  if($('wall'))$('wall').addEventListener('click',function(){
-    top.forEach(function(r){check(r.k);});$('wall').textContent='✓ 모두 체크됨';});
-}
-
-function clearWhat(){
-  [].slice.call(document.querySelectorAll('.dst')).forEach(function(e){e.value='';});
-  $('dwbox').className='dxbox';$('dwbox').innerHTML='';
-}
-/* ══ DST 끝 ═══════════════════════════════════════════ */
-
+/* ══════════════ 유틸 ══════════════ */
 function $(i){return document.getElementById(i);}
 function val(n){var e=document.querySelector('input[name="'+n+'"]:checked');return e?e.value:null;}
 function multi(n){return [].slice.call(document.querySelectorAll('input[name='+n+']:checked')).map(function(e){return e.value;});}
-function num(i){var v=parseFloat($(i).value);return isNaN(v)?null:v;}
+function num(i){var e=$(i);if(!e)return null;var v=parseFloat(e.value);return isNaN(v)?null:v;}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 function f1(x){return x==null?'—':(Math.round(x*10)/10).toFixed(1);}
 function bmi(h,w){return (h&&w)?(w/Math.pow(h/100,2)):null;}
-function tx(i,d){var v=$(i).value.trim();return v?esc(v):(d||'—');}
+function tx(i,d){var e=$(i);if(!e)return d||'—';var v=e.value.trim();return v?esc(v):(d||'—');}
 
-/* ══ 판별 도우미 ═══════════════════════════════════════
-   원인 유형 = 검사 수치 규칙 + 관찰·면담 항목의 가중 합산.
-   검사를 실시하지 않았어도 관찰 항목만으로 판정이 나옵니다. */
-
-var OBS={
-"신체·감각":[
- ["특정 식감·냄새·온도에 일관되게 거부한다",3],
- ["새 음식은 냄새만 맡고 수저를 들지 않는다",2],
- ["익숙한 음식은 양껏 잘 먹는다",2],
- ["집과 학교 모두에서 같은 음식을 거부한다",2],
- ["씹다가 뱉거나 헛구역질을 한다",2]],
-"정서·심리":[
- ["식사 시간에 표정이 굳고 눈치를 본다",3],
- ["먹기 전부터 “못 먹을 것 같다”고 미리 걱정한다",3],
- ["보호자가 불안·자책을 자주 호소한다",3],
- ["혼나거나 다툰 뒤 섭취량이 눈에 띄게 준다",2],
- ["편한 사람과 먹을 때는 잘 먹는다",2]],
-"환경":[
- ["보호자가 “왜 안 먹어”, “한 입만 더”를 반복한다",3],
- ["형제와 비교하는 말이 오간다",3],
- ["학교 급식은 괜찮은데 집에서만 문제가 된다",3],
- ["형제 간 기질이 뚜렷이 상반된다",2],
- ["보호자마다 지도 방식이 달라 기준이 흔들린다",2],
- ["식탁에 지켜야 할 규칙이 세 가지 이상이다",2]],
-"행동·습관":[
- ["식사 시각이 매일 다르거나 결식이 잦다",3],
- ["식사 도중 자리에서 벗어난다",3],
- ["식사 중 영상·장난감을 사용한다",2],
- ["취침·기상 시각이 불규칙하다",2],
- ["식사 시간이 40분 이상 걸린다",2]],
-"지식·인식":[
- ["먹은 음식이 몸에서 하는 일을 설명하지 못한다",3],
- ["보호자가 아이 식사에 관심이 낮거나 정보가 없다",3],
- ["잘못된 식품 정보를 사실로 믿고 있다",2],
- ["급식·식단에 대해 궁금해한 적이 없다",2]]
-};
-
-var MAXS={};
-ORDER.forEach(function(k){
-  var s=0;OBS[k].forEach(function(o){s+=o[1];});
-  MAXS[k]=s+({"신체·감각":20,"정서·심리":10,"환경":20,"행동·습관":16,"지식·인식":6}[k]);
-});
-
-/* DBT 결과지 등급 표기 : 양호 <85 · 주의 85~94 · 위험 95 이상
-   책임/관찰/염려는 관여도 척도 : 낮은관여 ≤10 · 적당한관여 · 높은관여 ≥90 */
-function gradeOf(v,kind){
-  if(v==null)return ['',''];
-  if(kind==='care')return v>=90?['높은관여','g-hi']:(v<=10?['낮은관여','g-warn']:['적당한관여','g-ok']);
-  return v>=95?['위험','g-bad']:(v>=85?['주의','g-warn']:['양호','g-ok']);
+/* ══════════════ 진단결과 판정 ══════════════ */
+function gradeOf(d){
+  if(d.type==='sel'||d.type==='yn')return $(d.id).value;
+  var v=num(d.val);
+  if(v==null)return 'na';
+  if(d.type==='sleep')  return (v>=9&&v<=11)?'ok':((v>=8&&v<9)||(v>11&&v<=12))?'mid':'risk';
+  if(d.rev)             return v<d.cut[0]?'ok':(v<d.cut[1]?'mid':'risk');
+  return v<d.cut[0]?'risk':(v<=d.cut[1]?'mid':'ok');
 }
-function paintGrades(){
-  [].slice.call(document.querySelectorAll('.gr')).forEach(function(inp){
-    var v=parseFloat(inp.value),g=gradeOf(isNaN(v)?null:v,inp.dataset.g),el=$('g_'+inp.id);
-    if(el){el.textContent=g[0];el.className='grade '+g[1];}
+function gLabel(d,g){
+  if(g==='na')return d.type==='num'||d.type==='sleep'?'미입력':'미검사';
+  return g==='ok'?d.labs[0]:g==='mid'?(d.labs[1]||'주의'):d.labs[2];
+}
+function gClass(g){return g==='ok'?'b-ok':g==='mid'?'b-mid':g==='risk'?'b-risk':'b-na';}
+
+function readDx(){
+  var out=[],score={},whats={};
+  ORDER.forEach(function(k){score[k]=0;});
+  DX.forEach(function(d){
+    var g=gradeOf(d), v=d.val?num(d.val):null;
+    if(d.val&&d.type==='sel'&&$(d.val)&&$(d.val).tagName==='SELECT')v=$(d.val).value||null;
+    var row={id:d.id,sec:d.sec,n:d.n,g:g,lab:gLabel(d,g),v:v,unit:d.unit||''};
+    if(d.detail&&$(d.detail))row.detail=$(d.detail).value.trim();
+    out.push(row);
+    if(g==='mid'||g==='risk'){
+      row.txt=d.txt[g]||d.n;
+      var w=d.w[g]||{};
+      for(var k in w)score[k]=(score[k]||0)+w[k];
+      whats[d.what]=true;
+    }
   });
+  /* BMI 백분위 */
+  var p=$('pct').value;
+  if(PCTW[p]){for(var k2 in PCTW[p])score[k2]=(score[k2]||0)+PCTW[p][k2];}
+  /* 교사 관찰 */
+  var obs=multi('obs');
+  obs.forEach(function(o){
+    var e=OBS[o];if(!e)return;
+    for(var k3 in e.w){if(score[k3]!==undefined)score[k3]+=e.w[k3];}
+    whats[e.what]=true;
+  });
+  /* 추가 식생활 문제 직접 입력 */
+  if($('whatetc').value.trim())whats['기타']=true;
+  return {rows:out,score:score,obs:obs,pct:p,
+    whats:WHATORDER.filter(function(x){return whats[x];}).concat(whats['기타']?['기타']:[])};
 }
 
-function buildObs(){
-  var h='';
-  ORDER.forEach(function(k,ki){
-    h+='<div class="sub2" style="margin-top:'+(ki?12:8)+'px">'+k+'</div><div class="chk">';
-    OBS[k].forEach(function(o,i){
-      h+='<label><input type="checkbox" class="dxo" data-k="'+k+'" data-w="'+o[1]+'" data-t="'+o[0].replace(/"/g,'')+'"><span>'+o[0]+'</span></label>';
-    });
-    h+='</div>';
-  });
-  $('obsbox').innerHTML=h;
-}
-
-function dnum(i){var e=$(i);if(!e)return null;var v=parseFloat(e.value);return isNaN(v)?null:v;}
-
-function diagnose(){
-  var S={},E={};
-  ORDER.forEach(function(k){S[k]=0;E[k]=[];});
-  function add(k,pt,txt){S[k]+=pt;if(txt)E[k].push(txt);}
-
-  var avoid=dnum('d_avoid'),sens=dnum('d_sens'),hyp=dnum('d_hyp'),irr=dnum('d_irr'),
-      pirr=dnum('p_irr'),ppick=dnum('p_picky'),pnegl=dnum('p_negl'),
-      care=dnum('d_care'),ctrl=dnum('d_ctrl'),taste=$('d_taste').value;
-  function lv(v){return v>=95?'위험':'주의';}
-
-  /* 신체·감각 — 아이의 식행동 */
-  if(sens!=null&&sens>=85)add("신체·감각",sens>=95?5:4,"DBT 감각예민성 "+sens+"%ile("+lv(sens)+")");
-  if(avoid!=null&&avoid>=85)
-    add("신체·감각",(sens!=null&&sens<85)?2:(avoid>=95?5:4),
-        "DBT 접근회피성 "+avoid+"%ile("+lv(avoid)+")"+((sens!=null&&sens<85)?" — 감각예민성 양호로 가중치 축소":""));
-  if(taste==='sens')add("신체·감각",3,"맛감각 검사 예민형");
-  /* 정서·심리 — 감각 정상인데 회피만 높음 / 보호자 염려 과다 */
-  if(avoid!=null&&avoid>=85&&sens!=null&&sens<85)
-    add("정서·심리",4,"접근회피성 "+avoid+"%ile인데 감각예민성 "+sens+"%ile(양호) — 감각보다 불안·긴장 요인");
-  if(care!=null&&care>=90)add("정서·심리",2,"부모 책임·관찰·염려 "+care+"%ile(높은관여) — 보호자 불안 동반");
-  if(taste==='dull'&&avoid!=null&&avoid>=85)
-    add("정서·심리",2,"맛감각 둔감형인데 접근회피성 "+avoid+"%ile — 감각 원인 배제");
-  /* 환경 — 부모의 식사 지도·식행동 */
-  if(ctrl!=null&&ctrl>=85)add("환경",ctrl>=95?5:4,"DBT 부모 규제·강요 "+ctrl+"%ile("+lv(ctrl)+")");
-  if(care!=null&&care>=90)add("환경",3,"부모 책임·관찰·염려 "+care+"%ile(높은관여)");
-  if(ppick!=null&&ppick>=85)add("환경",2,"부모 까다로움 "+ppick+"%ile — 보호자 기호가 식탁을 좁힘");
-  if(pnegl!=null&&pnegl>=85)add("환경",2,"부모 자기방임 "+pnegl+"%ile");
-  /* 행동·습관 */
-  if(irr!=null&&irr>=85)add("행동·습관",irr>=95?5:4,"DBT 아이 불규칙성 "+irr+"%ile("+lv(irr)+")");
-  if(hyp!=null&&hyp>=85)add("행동·습관",3,"DBT 과활동성 "+hyp+"%ile("+lv(hyp)+")");
-  if(pirr!=null&&pirr>=85)add("행동·습관",2,"부모 불규칙성 "+pirr+"%ile — 가정 식사 리듬 자체가 불규칙");
-  /* 지식·인식 */
-  if(care!=null&&care<=10)add("지식·인식",4,"부모 책임·관찰·염려 "+care+"%ile(낮은관여) — 관심·정보 부족 가능");
-  if(pnegl!=null&&pnegl>=85)add("지식·인식",2,"부모 자기방임 "+pnegl+"%ile");
-
-  /* DST 식생활 스크리닝 교차 반영 — 2단계에 입력된 등급을 원인 판별에도 씁니다 */
-  Object.keys(DSTCAUSE).forEach(function(id){
-    var v=dv(id);if(!v||v==='ok')return;
-    var m=DSTCAUSE[id];
-    add(m[0],(v==='risk')?m[1]:Math.max(1,m[1]-1),"DST "+DSTNAME[id]+" "+LVN[v]);
-  });
-
-  /* 관찰·면담 */
-  [].slice.call(document.querySelectorAll('.dxo:checked')).forEach(function(e){
-    add(e.dataset.k,parseInt(e.dataset.w,10),"관찰: "+e.dataset.t);
-  });
-
-  /* 보정 : 보호자 염려가 최상위면 지식 전달형이 아님 (9가정 0사례의 근거) */
-  var adj=null;
-  if(care!=null&&care>=85){S["지식·인식"]-=4;
-    adj="부모 책임·관찰·염려 "+care+"%ile — 관심이 부족한 것이 아니므로 지식·인식 가능성을 낮춥니다. 관심이 규제·강요로 표현되고 있는지 확인하십시오.";}
-
-  var rank=ORDER.map(function(k){return {k:k,s:S[k],e:E[k]};})
-    .sort(function(a,b){return b.s-a.s || ORDER.indexOf(a.k)-ORDER.indexOf(b.k);});
-  return {rank:rank,adj:adj,any:rank[0].s>0};
-}
-
-function evidSentence(d){
-  var parts=[];
-  d.rank.slice(0,3).forEach(function(r){
-    if(r.s<=0||!r.e.length)return;
-    parts.push(r.k+" — "+r.e.join(' · '));
-  });
-  return parts.join(' / ');
-}
-
+/* ══════════════ 2단계 라이브 렌더 ══════════════ */
 function paintDx(){
-  var d=diagnose(),b=$('dxbox');
-  if(!d.any){
-    b.className='dxbox show';
-    b.innerHTML='<div class="alertx info">아직 판정할 자료가 없습니다. 검사 수치를 하나라도 입력하시거나 관찰 항목을 체크해 주십시오.</div>';
-    return;
+  /* 숫자형 배지 */
+  DX.forEach(function(d){
+    if(!d.badge)return;
+    var g=gradeOf(d),b=$(d.badge);
+    b.className='badge '+gClass(g);
+    b.textContent=gLabel(d,g);
+  });
+  /* 알레르기·질환 상세 */
+  $('t_alg').style.display=($('d_alg').value==='risk')?'block':'none';
+  $('t_ill').style.display=($('d_ill').value==='risk')?'block':'none';
+
+  var D=readDx();
+  var risks=D.rows.filter(function(r){return r.g==='risk';});
+  var mids =D.rows.filter(function(r){return r.g==='mid';});
+  var h='';
+  if(!risks.length&&!mids.length&&!PCTTXT[D.pct]){
+    h='<div class="none">주의·위험으로 판정된 항목이 없습니다. 진단결과를 위에 입력하십시오.</div>';
+  }else{
+    h='<div class="chips">';
+    risks.forEach(function(r){h+='<span class="chip r">위험 · '+esc(r.n)+(r.v!=null?' '+r.v+esc(r.unit):'')+'</span>';});
+    if(PCTTXT[D.pct])h+='<span class="chip '+(D.pct==='over'?'m':'r')+'">계측 · '+esc(PCTTXT[D.pct])+'</span>';
+    mids.forEach(function(r){h+='<span class="chip m">주의 · '+esc(r.n)+(r.v!=null?' '+r.v+esc(r.unit):'')+'</span>';});
+    D.obs.forEach(function(o){h+='<span class="chip w">관찰 · '+esc(o)+'</span>';});
+    h+='</div>';
   }
-  var top=d.rank.filter(function(r){return r.s>0;}).slice(0,3);
-  var r1=top[0],r2=d.rank[1],h='';
-  var tie=d.rank.filter(function(r){return r.s===r1.s;}).length;
+  $('autowhat').innerHTML=h;
+  $('autotype').innerHTML=D.whats.length
+    ? '<div class="chips">'+D.whats.map(function(w){return '<span class="chip w">'+esc(w)+'</span>';}).join('')+'</div>'
+    : '<div class="none">—</div>';
+  return D;
+}
 
-  if(d.adj)h+='<div class="alertx">'+esc(d.adj)+'</div>';
-  if(tie>1)h+='<div class="alertx">'+tie+'개 유형이 '+r1.s+'점 동점입니다. 원인이 여러 층에 걸친 사례일 수 있습니다 — 카드를 함께 검토하고 주 원인은 면담으로 확정하십시오.</div>';
-  else if(r2&&r2.s>0&&(r1.s-r2.s)<=2)h+='<div class="alertx">1·2순위 점수 차가 '+(r1.s-r2.s)+'점으로 작습니다. 한쪽으로 확정하기 전에 두 카드를 함께 검토하십시오.</div>';
+/* ══════════════ 3단계 원인 자동 추천 ══════════════ */
+function evidText(D,top){
+  var parts=[];
+  var risks=D.rows.filter(function(r){return r.g==='risk';});
+  var mids =D.rows.filter(function(r){return r.g==='mid';});
+  if(risks.length)parts.push('위험 — '+risks.map(function(r){return r.n+(r.v!=null?'('+r.v+r.unit+')':'');}).join(', '));
+  if(mids.length) parts.push('주의 — '+mids.map(function(r){return r.n+(r.v!=null?'('+r.v+r.unit+')':'');}).join(', '));
+  if(PCTTXT[D.pct])parts.push('계측 — '+PCTTXT[D.pct]);
+  if(D.obs.length)parts.push('관찰 — '+D.obs.join(', '));
+  if(top&&top.length)parts.push('가중치 — '+top.map(function(t){return t[0]+' '+t[1];}).join(' / '));
+  return parts.join('\n');
+}
 
-  top.forEach(function(r,i){
-    var pct=Math.max(4,Math.round(r.s/MAXS[r.k]*100));
-    h+='<div class="rank"><span class="no'+(i?' n2':'')+'">'+(i+1)+'순위</span>'+
-       '<span class="nm">'+esc(r.k)+'</span><span class="sc">근거점수 '+r.s+'점</span></div>'+
-       '<div class="bar'+(i?' b2':'')+'"><i style="width:'+pct+'%"></i></div>'+
-       (r.e.length?'<ul class="ev">'+r.e.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':
-        '<ul class="ev"><li>직접 근거 없음 — 상대적 순위입니다</li></ul>');
+function paintWhy(D){
+  var arr=ORDER.map(function(k){return [k,D.score[k]||0];}).sort(function(a,b){return b[1]-a[1];});
+  var max=Math.max(1,arr[0][1]);
+  var h='';
+  arr.forEach(function(p,i){
+    h+='<div class="rank'+(i===0&&p[1]>0?' top':'')+'"><span class="nmm">'+esc(p[0])+
+       '</span><span class="bar"><i style="width:'+(p[1]/max*100)+'%"></i></span><span class="sc">'+p[1]+'</span></div>';
   });
+  $('whyrank').innerHTML=h;
 
-  h+='<div class="alertx info">‘환경(보호자 지도 방식)’은 대부분의 사례에서 동반 원인으로 확인됩니다. 주 원인이 아니어도 가정 개입은 함께 설계하십시오.</div>';
-  h+='<div class="dxbtn">'+
-     top.map(function(r,i){return '<button type="button" class="'+(i?'ghost ':'')+'dxpick" data-k="'+esc(r.k)+'">‘'+esc(r.k)+'’으로 확정</button>';}).join('')+
-     '<button type="button" class="ghost" id="dxfill">판별 근거 칸에 자동 기재</button></div>';
-  b.className='dxbox show';
-  b.innerHTML=h;
+  var s='';
+  if(arr[0][1]===0){
+    s='<div class="sugg">진단결과와 관찰 문항이 아직 입력되지 않아 원인을 추정할 수 없습니다. 2단계를 먼저 채우십시오.</div>';
+  }else{
+    var tie=(arr[1][1]>0&&arr[0][1]-arr[1][1]<=2);
+    s='<div class="sugg"><b>1순위 '+esc(arr[0][0])+'</b>'+
+      (arr[1][1]>0?' · 2순위 '+esc(arr[1][0]):'')+
+      (tie?' — 두 유형의 점수 차가 작습니다. <b>2순위를 배제하지 말고</b> 1순위 전략이 2주 내 반응 없으면 즉시 교체하십시오.'
+          :' — 1순위 전략 카드부터 적용하십시오.')+'</div>';
+    if(!state.whyTouched){$('why').value=arr[0][0];}
+  }
+  $('whysugg').innerHTML=s;
 
-  [].slice.call(b.querySelectorAll('.dxpick')).forEach(function(btn){
-    btn.addEventListener('click',function(){
-      $('why').value=btn.dataset.k;toggleEtc();
-      btn.textContent='✓ 확정됨 — '+btn.dataset.k;
-    });
-  });
-  $('dxfill').addEventListener('click',function(){
-    var s=evidSentence(d);if(!s)return;
-    var cur=$('evid').value.trim();
-    $('evid').value=cur?cur+'\n'+s:s;
-    $('dxfill').textContent='✓ 기재됨';
-  });
+  if(!state.evidTouched){
+    $('evid').value=evidText(D,arr.filter(function(p){return p[1]>0;}).slice(0,3));
+  }
+  /* 의료 연계 자동 경고 */
+  var sig=[];
+  var eat=num('v_eat'); if(eat!=null&&eat>=20)sig.push('섭식태도 '+eat+'점(20점 이상)');
+  if($('d_mental').value==='risk')sig.push('정신건강 위험');
+  if($('pct').value==='low')sig.push('BMI 5%ile 미만');
+  if($('pct').value==='obese')sig.push('BMI 95%ile 이상');
+  if($('d_alg').value==='risk'||$('d_ill').value==='risk')sig.push('알레르기·질환 있음');
+  var fb=$('dxflag');
+  if(sig.length){fb.style.display='block';
+    fb.innerHTML='<b>진단결과 기반 연계 신호</b> · '+esc(sig.join(' / '))+' — 위 의료 연계 신호 항목을 확인하십시오.';}
+  else fb.style.display='none';
+  return arr;
 }
 
-function clearDx(){
-  [].slice.call(document.querySelectorAll('.dxn')).forEach(function(e){e.value='';});
-  [].slice.call(document.querySelectorAll('.dxo')).forEach(function(e){e.checked=false;});
-  paintChk();paintGrades();$('dxbox').className='dxbox';$('dxbox').innerHTML='';
-}
+function refresh(){var D=paintDx();paintWhy(D);return D;}
 
-function paintChk(){
-  [].slice.call(document.querySelectorAll('.chk label')).forEach(function(l){
-    l.classList.toggle('on',l.querySelector('input').checked);});
-}
-/* ══ 판별 도우미 끝 ═════════════════════════════════ */
-
-function gate(){
-  var oc=val('outcome');
-  $('gate').classList.toggle('show',oc==='none'||oc==='worse');
-}
-
+/* ══════════════ 계측 ══════════════ */
 function measure(){
   var h1=num('h1'),w1=num('w1'),h2=num('h2'),w2=num('w2');
   var b1=bmi(h1,w1),b2=bmi(h2,w2),t='';
@@ -974,17 +925,19 @@ function measure(){
   return {h1:h1,w1:w1,h2:h2,w2:w2,b1:b1,b2:b2,flags:fl};
 }
 
+function gate(){
+  var oc=val('outcome');
+  $('gate').classList.toggle('show',oc==='none'||oc==='worse');
+}
+
+/* ══════════════ 7단계 판정 ══════════════ */
 function decide(){
-  var risks=multi('risk'),oc=val('outcome'),ad=val('adher');
+  var risks=multi('risk'),oc=val('outcome');
   var basis=[],also=[],key;
-  var adL={na:'1회차 — 미수행',full:'프로그램 성실 완주',part:'프로그램 부분 수행',none:'프로그램 거의 미수행'};
   if(risks.length){key='refer';basis.push('의료 연계 신호 '+risks.length+'건: '+risks.join(' / '));}
-  else if(oc==='na'){key='initial';basis.push('1회차 상담 — 결과 확인 이전');basis.push(adL[ad]);}
+  else if(oc==='na'){key='initial';basis.push('1회차 상담 — 결과 확인 이전');}
   else if(oc==='better'){
     key='sustain';basis.push('목표 행동 변화 확인');
-    basis.push(adL[ad]);
-    if(ad==='none')also.push('수행 없이 개선 — 다른 요인 확인 필요');
-    if(ad==='part')also.push('부분 수행 — 유지 장치 보강 필요');
   } else {
     var q1=val('q1'),q2=val('q2'),q3=val('q3');
     basis.push(oc==='worse'?'목표 행동 악화':'목표 행동 변화 없음');
@@ -1020,23 +973,37 @@ function paintCard(){
   [].slice.call(document.querySelectorAll('.tab')).forEach(function(b){b.classList.toggle('on',b.dataset.k===state.card);});
 }
 
+function dxTable(D){
+  var cur='',h='<table class="d">';
+  D.rows.forEach(function(r){
+    if(r.sec!==cur){cur=r.sec;h+='<tr><th class="sec" colspan="3">진단 '+esc(cur)+'</th></tr>';}
+    var v=(r.v!=null&&r.v!=='')?esc(String(r.v))+esc(r.unit):'';
+    if(r.detail)v=esc(r.detail);
+    h+='<tr><td>'+esc(r.n)+'</td><td class="v">'+v+'</td><td class="g g-'+r.g+'">'+esc(r.lab)+'</td></tr>';
+  });
+  h+='</table>';
+  return h;
+}
+
+/* ══════════════ 결과 렌더 ══════════════ */
 function render(){
+  var D=refresh();
   var r=decide(),t=r.t,m=measure(),why=$('why').value;
-  var whats=multi('what'),progs=multi('prog');
+  var progs=multi('prog').map(function(p){
+    return (p==='기타')?('기타 — '+($('progetc').value.trim()||'미기재')):p;});
   var whyEtc=(why==='기타'),whyLab=whyEtc?('기타 — '+($('whyetc').value.trim()||'미기재')):why;
-  whats=whats.map(function(x){return (x==='기타')?('기타 — '+($('whatetc').value.trim()||'미기재')):x;});
-  var progLab=progs.map(function(x){return (x==='기타')?('기타 — '+($('progetc').value.trim()||'미기재')):x;});
-  var miLab=($('mi').value==='기타')?('기타 — '+($('mietc').value.trim()||'미기재')):$('mi').value;
+  var whats=D.whats.slice();
+  if($('whatetc').value.trim())whats=whats.filter(function(x){return x!=='기타';}).concat(['기타 — '+$('whatetc').value.trim()]);
+  var rank=ORDER.map(function(k){return [k,D.score[k]||0];}).sort(function(a,b){return b[1]-a[1];});
   var d=$('date').value?$('date').value.replace(/-/g,'. ')+'.':new Date().toLocaleDateString('ko-KR');
+  var dxd=$('dxdate').value?$('dxdate').value.replace(/-/g,'. ')+'.':'미기재';
   var who=[$('cls').value.trim(),$('nm').value.trim(),$('sex').value,($('age').value?'만 '+$('age').value+'세':'')].filter(Boolean).join(' · ')||'대상 미기재';
   var admin=[$('school').value.trim(),$('teacher').value.trim(),$('session').value,d].filter(Boolean).join(' · ');
 
-  var dx=diagnose();
-
   state.rec=(r.key==='mismatch'&&RECHECK[why])?RECHECK[why].to:null;
-  state.card=state.rec||(CARDS[why]?why:'신체·감각');
+  state.card=state.rec||(CARDS[why]?why:rank[0][0]);
 
-  var h='<div class="printonly" style="margin-bottom:14px"><h1>학교영양상담(식생활코칭) 기록지</h1>'+
+  var h='<div class="printonly" style="margin-bottom:14px"><h1>학교영양상담기록지</h1>'+
     '<div style="font-size:10.5pt;color:#5F5E5A">'+esc(admin)+'</div>'+
     '<div style="font-size:10.5pt;color:#5F5E5A">'+esc(who)+' · 형제 '+esc($('sib').value)+
     ' · 참여 보호자 '+esc($('guard').value)+' · 개인정보 동의서 '+esc($('consent').value)+'</div></div>';
@@ -1044,30 +1011,20 @@ function render(){
   h+='<div class="sect">상담 요약 · 1~6단계</div>';
   h+='<table class="s">'+
    '<tr><th>1 · 상담 요구</th><td>'+esc($('route').value)+' / '+tx('chief')+'</td></tr>'+
-   '<tr><th>2 · WHAT</th><td>'+esc(whats.join(' · ')||'미선택')+'<br>'+tx('behav')+
-     (dstLine()?'<br><span style="color:#5F5E5A">'+esc(dstLine())+'</span>':'')+'</td></tr>'+
-   '<tr><th>3 · WHY</th><td><b>'+esc(whyLab)+'</b> / '+tx('evid')+
-     ($('extra').value.trim()?'<br><span style="color:#5F5E5A">추가 실시 검사 · '+esc($('extra').value.trim())+'</span>':'')+'</td></tr>'+
+   '<tr><th>2 · WHAT</th><td>'+esc(whats.join(' · ')||'진단결과상 주의·위험 항목 없음')+'<br>'+tx('behav')+'</td></tr>'+
+   '<tr><th>3 · WHY</th><td><b>'+esc(whyLab)+'</b>'+
+     (rank[0][1]>0?' <span style="color:#888780">(자동 1순위 '+esc(rank[0][0])+' '+rank[0][1]+'점'+
+      (rank[1][1]>0?' · 2순위 '+esc(rank[1][0])+' '+rank[1][1]+'점':'')+')</span>':'')+
+     '<br>'+tx('evid')+($('evid2').value.trim()?'<br>추가검사 · '+tx('evid2'):'')+'</td></tr>'+
    '<tr><th>4 · WHAT FIRST</th><td>'+tx('first')+'</td></tr>'+
    '<tr><th>5 · 목표 행동</th><td>'+tx('goal')+'</td></tr>'+
-   '<tr><th>6 · HOW</th><td>'+esc(progLab.join(' · ')||'미선택')+
-     '<br>상담기법 및 전략 · '+esc(miLab)+' / 상담 회기 '+esc($('session').value)+'</td></tr>'+
+   '<tr><th>6 · HOW</th><td>'+esc(progs.join(' · ')||'미선택')+'<br>'+tx('cnt')+' · 상담기법 '+esc($('mi').value)+'</td></tr>'+
    '</table>';
 
-  var dw=diagWhat();
-  if(dw.any){
-    var w1=dw.rank[0],w2=dw.rank[1];
-    h+='<div class="basis"><b>DST 문제 유형 판별</b> · 1순위 '+esc(w1.k)+' ('+w1.s+'점)'+
-       (w2.s>0?' · 2순위 '+esc(w2.k)+' ('+w2.s+'점)':'')+'</div>';
-  }
-
-  if(dx.any){
-    var r1=dx.rank[0],r2=dx.rank[1];
-    h+='<div class="basis"><b>원인 유형 판별 도우미 결과</b> · 1순위 '+esc(r1.k)+' ('+r1.s+'점)'+
-       (r2.s>0?' · 2순위 '+esc(r2.k)+' ('+r2.s+'점)':'')+
-       (r1.k!==why&&!whyEtc?' — 기록된 주 원인 유형(<b>'+esc(why)+'</b>)과 다릅니다. 교사 판단을 우선합니다.':'')+
-       '</div>';
-  }
+  h+='<div class="sect">2단계 근거 · 식생활·생활습관 진단 결과 <span style="font-weight:400;letter-spacing:0">('+esc(dxd)+' 실시)</span></div>';
+  h+=dxTable(D);
+  if(D.obs.length)h+='<div class="basis"><b>교사 관찰 보완</b> · '+esc(D.obs.join(' / '))+'</div>';
+  if($('dxreq').value.trim())h+='<div class="basis"><b>진단지 추가 요청사항</b> · '+tx('dxreq')+'</div>';
 
   h+='<table class="m"><tr><th></th><th>신장 (cm)</th><th>체중 (kg)</th><th>BMI</th></tr>'+
    '<tr><th>개입 전</th><td>'+f1(m.h1)+'</td><td>'+f1(m.w1)+'</td><td>'+f1(m.b1)+'</td></tr>'+
@@ -1075,6 +1032,11 @@ function render(){
    '<tr><th>변화</th><td>'+(m.h1&&m.h2?f1(m.h2-m.h1):'—')+'</td><td>'+(m.w1&&m.w2?f1(m.w2-m.w1):'—')+
    '</td><td>'+(m.b1&&m.b2?f1(m.b2-m.b1):'—')+'</td></tr></table>';
   if(m.flags.length)h+='<div class="warn" style="margin-top:-6px;margin-bottom:14px"><b>계측 경고</b> · '+esc(m.flags.join(' / '))+'</div>';
+
+  h+='<div class="sect">3단계 근거 · 원인 유형 가중치</div>';
+  h+='<table class="m"><tr>'+rank.map(function(p){return '<th>'+esc(p[0])+'</th>';}).join('')+'</tr><tr>'+
+     rank.map(function(p,i){return '<td'+(i===0&&p[1]>0?' style="font-weight:600;color:#993C1D"':'')+'>'+p[1]+'</td>';}).join('')+
+     '</tr></table>';
 
   h+='<div class="sect">7단계 CHECK · 판정</div>';
   h+='<div class="verdict v-'+t.tone+'"><div class="lab">'+esc(t.group)+'</div><div class="name">'+esc(t.name)+
@@ -1085,11 +1047,12 @@ function render(){
   h+='<div class="first"><div class="k">WHAT FIRST · 먼저 할 것 한 가지</div><div class="v">'+esc(t.first)+'</div></div>';
 
   if(r.key==='sustain'){
-    h+='<div class="sect">지속 가능 설계 · 10가지</div>';
+    h+='<div class="sect">지속 가능 설계</div>';
     t.items.forEach(function(p){h+='<div class="row"><div class="k">'+esc(p[0])+'</div><div class="v">'+esc(p[1])+'</div></div>';});
-    if(progs.length){
+    var rawp=multi('prog');
+    if(rawp.length){
       h+='<div class="sect">운영 프로그램 이어가기</div>';
-      progs.forEach(function(p){if(PROGNEXT[p])h+='<div class="row"><div class="k">'+esc(p)+'</div><div class="v">'+esc(PROGNEXT[p])+'</div></div>';});
+      rawp.forEach(function(p,i){if(PROGNEXT[p])h+='<div class="row"><div class="k">'+esc(progs[i])+'</div><div class="v">'+esc(PROGNEXT[p])+'</div></div>';});
     }
     h+='<div class="sect">원인 유형별 유지 포인트</div>'+
        '<div class="row top"><div class="k">'+esc(whyLab)+'</div><div class="v">'+
@@ -1112,7 +1075,7 @@ function render(){
   if($('memo').value.trim())h+='<div class="sect">메모 및 기타사항</div><div class="memo">'+esc($('memo').value.trim())+'</div>';
 
   h+='<div class="sign" style="margin-top:26px;font-size:10.5pt;color:#5F5E5A">'+
-     (r.key==='sustain'?'다음 점검 : 8주 → 3개월 시점에 목표 행동 유지 여부를 1문항으로 확인합니다.'
+     (r.key==='sustain'?'다음 점검 : 8주 → 3개월 시점에 목표 행동 유지 여부를 1문항으로 확인하고, 동일 진단도구로 사후 검사를 실시합니다.'
       :r.key==='initial'?'다음 점검 : 2주 후 실행 여부만 확인 → 4주 후 지표 재측정.'
       :'다음 점검 : 2주 후 실행 여부 재확인 → 4주 후 지표 재측정 · 유형이 바뀌면 카드도 교체합니다.')+
      '<div style="margin-top:18px">작성 영양교사 '+esc($('teacher').value.trim()||'____________')+' (서명) ______________</div></div>';
@@ -1123,14 +1086,13 @@ function render(){
   $('print').disabled=false;
 }
 
+/* ══════════════ 이벤트 ══════════════ */
 function paint(){[].slice.call(document.querySelectorAll('.opt')).forEach(function(o){
   o.classList.toggle('on',o.querySelector('input').checked);});}
 
 function toggleEtc(){
-  $('whatetc').style.display=document.querySelector('input[name=what][value=기타]').checked?'block':'none';
   $('whyetc').style.display=($('why').value==='기타')?'block':'none';
-  $('progetc').style.display=document.querySelector('input[name=prog][value=기타]').checked?'block':'none';
-  $('mietc').style.display=($('mi').value==='기타')?'block':'none';
+  $('progetc').style.display=$('progetcbox').checked?'block':'none';
   $('unmetwrap').style.display=($('session').value==='1차')?'none':'block';
 }
 function syncRisk(e){
@@ -1140,54 +1102,47 @@ function syncRisk(e){
 }
 function syncSession(){
   var first=$('session').value==='1차';
-  var oc=val('outcome'),ad=val('adher');
-  if(first){
-    document.querySelector('input[name=outcome][value=na]').checked=true;
-    document.querySelector('input[name=adher][value=na]').checked=true;
-  } else {
-    if(oc==='na')document.querySelector('input[name=outcome][value=better]').checked=true;
-    if(ad==='na')document.querySelector('input[name=adher][value=full]').checked=true;
-  }
+  var oc=val('outcome');
+  if(first)document.querySelector('input[name=outcome][value=na]').checked=true;
+  else if(oc==='na')document.querySelector('input[name=outcome][value=better]').checked=true;
 }
+
 document.addEventListener('change',function(e){
   if(e.target.id==='session')syncSession();
+  if(e.target.id==='why')state.whyTouched=true;
   syncRisk(e);toggleEtc();paint();gate();
   if(e.target.classList.contains('calc'))measure();
-  if(e.target.classList.contains('dxo')){paintChk();if($('dxbox').classList.contains('show'))paintDx();}
-  if(e.target.classList.contains('dxn')){paintGrades();if($('dxbox').classList.contains('show'))paintDx();}
-  if(e.target.classList.contains('dst')){
-    if($('dwbox').classList.contains('show'))paintWhat();
-    if($('dxbox').classList.contains('show'))paintDx();
-  }
+  refresh();
 });
 document.addEventListener('input',function(e){
+  if(e.target.id==='evid')state.evidTouched=true;
   if(e.target.classList.contains('calc'))measure();
-  if(e.target.classList.contains('gr'))paintGrades();
+  if(e.target.classList.contains('dx')||e.target.id==='whatetc')refresh();
+});
+$('fillevid').addEventListener('click',function(){
+  state.evidTouched=false;var D=refresh();state.evidTouched=false;
 });
 $('run').addEventListener('click',render);
-$('dxrun').addEventListener('click',paintDx);
-$('dxclear').addEventListener('click',clearDx);
-$('dwrun').addEventListener('click',paintWhat);
-$('dwclear').addEventListener('click',clearWhat);
 $('print').addEventListener('click',function(){window.print();});
 $('reset').addEventListener('click',function(){
-  ['cls','nm','age','h1','w1','h2','w2','chief','behav','evid','extra','first','goal','progetc','mietc','unmet','memo'].forEach(function(i){$(i).value='';});
+  ['cls','nm','age','h1','w1','h2','w2','hp','wp','chief','behav','evid','evid2','first','goal','cnt','unmet','memo',
+   'whatetc','whyetc','progetc','dxreq','t_alg','t_ill',
+   'v_freq','v_speed','v_nq','v_bal','v_mod','v_prac','v_eat','v_sleep','v_phone'].forEach(function(i){$(i).value='';});
+  $('v_amt').value='';
   [].slice.call(document.querySelectorAll('input[type=checkbox]')).forEach(function(e){e.checked=false;});
-  document.querySelector('input[name=what][value="식품·음식 선택"]').checked=true;
-  document.querySelector('input[name=prog][value="숨은키 워크북"]').checked=true;
+  ['d_health','d_body','d_freq','d_reg','d_speed','d_amt','d_mental','d_phone'].forEach(function(i){$(i).value='ok';});
+  $('d_alg').value='ok';$('d_ill').value='ok';
   document.querySelector('input[name=prog][value="식사일기장"]').checked=true;
-  document.querySelector('input[name=outcome][value=better]').checked=true;
-  document.querySelector('input[name=adher][value=full]').checked=true;
+  document.querySelector('input[name=outcome][value=na]').checked=true;
   document.querySelector('input[name=q1][value=full]').checked=true;
   document.querySelector('input[name=q2][value=n]').checked=true;
   document.querySelector('input[name=q3][value=n]').checked=true;
-  $('why').value='신체·감각';$('whatetc').value='';$('whyetc').value='';$('norisk').checked=false;
-  $('mi').value='OARS 기법 전반';$('pct').value='normal';$('print').disabled=true;
-  clearDx();clearWhat();
+  $('why').value='신체·감각';$('norisk').checked=false;
+  $('pct').value='normal';$('session').value='1차';$('print').disabled=true;
+  state.whyTouched=false;state.evidTouched=false;
   $('result').innerHTML='<div class="empty">왼쪽 항목을 작성한 뒤 <b>기록지 생성</b>을 누르시면<br>상담 요약과 결과 전략이 한 장으로 정리됩니다.</div>';
-  measure();paint();gate();toggleEtc();
+  measure();paint();gate();toggleEtc();refresh();
 });
 $('date').valueAsDate=new Date();
-buildDst();buildObs();
-measure();paint();gate();toggleEtc();paintChk();paintGrades();
+measure();paint();gate();toggleEtc();refresh();
 </script>

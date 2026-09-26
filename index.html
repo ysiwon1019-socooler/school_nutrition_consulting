@@ -23,10 +23,7 @@ h2{font-size:16px;font-weight:600;margin:0 0 12px}
 .wrap{max-width:1180px;margin:0 auto;padding:24px 16px 60px}
 header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
 header .sub{color:var(--ink2);font-size:13px}
-.credit{display:inline-flex;flex-wrap:wrap;gap:6px 20px;background:var(--paper);
-  border:1px solid var(--line);border-radius:8px;padding:9px 15px;margin-bottom:14px;
-  font-size:12.5px;color:var(--ink2)}
-.credit b{color:var(--ink);font-weight:600}
+.credit{margin:0 0 12px;font-size:12.5px;color:var(--ink2)}
 .credit a{color:var(--purple);text-decoration:none}
 .credit a:hover{text-decoration:underline}
 .note{color:var(--ink3);font-size:13px;margin:0 0 18px;line-height:1.65}
@@ -153,13 +150,9 @@ table.log th{background:var(--graybg);font-weight:500;color:var(--ink2)}
 <div class="wrap">
 <header>
   <h1>우리 아이 식생활 유형 진단</h1>
-  <span class="sub">영양캠프 일일 영양상담 · 4가지 유형(감각예민형·정서형·환경형·생활습관형)</span>
 </header>
-<div class="credit">
-  <span>만든사람 · <b>양시원 영양교사</b></span>
-  <span>문의 및 피드백 · <a href="mailto:ysiwon1019@gmail.com">ysiwon1019@gmail.com</a></span>
-</div>
-<p class="note"><b>영양캠프 현장에서 5분 안에 끝나는 식생활 유형 진단 검사입니다.</b><br>
+<p class="credit">의견 보내실 곳 · <a href="mailto:ysiwon1019@gmail.com">ysiwon1019@gmail.com</a></p>
+<p class="note"><b>일일 영양상담 현장에서 5분 안에 끝나는 식생활 유형 진단 검사입니다.</b><br>
 보호자(또는 상담자가 아이와 함께)가 20문항에 답하면 <b>감각예민형 · 정서형 · 환경형 · 생활습관형</b> 중 우리 아이의 식생활 유형이 자동으로 나오고,
 유형별 상담 포인트와 가정에서 바로 실천할 수 있는 작은 약속을 제안합니다. 결과지는 인쇄해 가정에 보낼 수 있습니다.</p>
 
@@ -210,9 +203,9 @@ table.log th{background:var(--graybg);font-weight:500;color:var(--ink2)}
   </div>
 
   <div class="card noprint">
-    <div class="step">캠프 운영</div>
+    <div class="step">상담 운영</div>
     <h2>오늘의 상담 현황</h2>
-    <p class="lead">결과를 저장하면 이 기기에만 기록됩니다(이름은 저장하지 않으려면 비워 두세요). 캠프 종료 후 CSV로 내려받아 유형별 분포를 확인할 수 있습니다.</p>
+    <p class="lead">결과를 저장하면 이 기기에만 기록됩니다(이름은 저장하지 않으려면 비워 두세요). 상담 종료 후 CSV로 내려받아 유형별 분포를 확인할 수 있습니다.</p>
     <div class="counts" id="counts"></div>
     <div id="logwrap"></div>
     <div class="btnrow">
@@ -352,7 +345,7 @@ function render(r){
   var nm=$('nm').value.trim(),grade=$('grade').value,resp=$('resp').value,concern=$('concern').value.trim();
   var today=new Date();var ds=today.getFullYear()+'.'+(today.getMonth()+1)+'.'+today.getDate();
   var h='<div class="printonly" style="margin-bottom:10px"><h1>우리 아이 식생활 유형 진단 결과지</h1>'
-       +'<div style="font-size:10pt;color:#444">영양캠프 일일 영양상담 · '+ds+'</div></div>';
+       +'<div style="font-size:10pt;color:#444">일일 영양상담 · '+ds+'</div></div>';
   h+='<div class="step">진단 결과'+(nm?' · '+esc(nm):'')+(grade?' ('+esc(grade)+')':'')+' · 응답: '+esc(resp)+'</div>';
 
   if(!r.main.length){
@@ -398,7 +391,7 @@ function render(r){
   h+='<div class="row"><div class="k">상담 메모</div><textarea id="memo" class="noprint" placeholder="상담 중 나눈 이야기, 아이의 반응 등을 적어 주세요."></textarea><div class="printonly memo" id="memoPrint"></div></div>';
 
   h+='<div class="sign" style="margin-top:18px;font-size:10pt">상담자: ____________ &nbsp;&nbsp; 보호자 확인: ____________</div>';
-  h+='<div class="warn">이 검사는 영양캠프 상담을 위한 간이 선별 도구이며 의학적 진단이 아닙니다. 체중 변화가 크거나, 먹는 양이 극단적으로 적거나, 삼킴 곤란·심한 구역이 지속되면 소아청소년과 등 전문가 상담을 권합니다.</div>';
+  h+='<div class="warn">이 검사는 일일 영양상담을 위한 간이 선별 도구이며 의학적 진단이 아닙니다. 체중 변화가 크거나, 먹는 양이 극단적으로 적거나, 삼킴 곤란·심한 구역이 지속되면 소아청소년과 등 전문가 상담을 권합니다.</div>';
 
   h+='<div class="btnrow noprint"><button id="print">결과지 인쇄</button><button class="ghost" id="save">오늘 현황에 저장</button><button class="ghost" id="toTop">문항 다시 보기</button></div>';
   $('result').innerHTML=h;
@@ -423,7 +416,7 @@ function panel(k,soft){
   h+='<div class="row"><div class="k">상담 포인트 (상담자용)</div><ul>'+t.counsel.map(li).join('')+'</ul></div>';
   h+='<div class="row"><div class="k">가정에서 이렇게 해 보세요</div><ul>'+t.home.map(li).join('')+'</ul></div>';
   h+='<div class="row"><div class="k">이렇게 말해 주세요</div><div class="say"><div class="no"><b>✕ 이런 말 대신</b>'+esc(t.no)+'</div><div class="yes"><b>○ 이렇게</b>'+esc(t.yes)+'</div></div></div>';
-  h+='<div class="row"><div class="k">영양캠프 추천 활동</div><ul>'+t.camp.map(li).join('')+'</ul></div>';
+  h+='<div class="row"><div class="k">일일 영양상담 추천 활동</div><ul>'+t.camp.map(li).join('')+'</ul></div>';
   return h;
 }
 function li(s){return '<li>'+esc(s)+'</li>';}
@@ -458,7 +451,7 @@ $('csv').onclick=function(){
   var rows=[['일시','이름','학년','유형','감각예민형','정서형','환경형','생활습관형','실천약속']].concat(
     l.map(function(o){return [o.t,o.nm,o.grade,o.type,o.S,o.E,o.V,o.L,o.promise];}));
   var blob=new Blob(['﻿'+rows.map(function(r){return r.map(q).join(',');}).join('\r\n')],{type:'text/csv;charset=utf-8'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='영양캠프_식생활유형_'+new Date().toISOString().slice(0,10)+'.csv';
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='일일영양상담_식생활유형_'+new Date().toISOString().slice(0,10)+'.csv';
   document.body.appendChild(a);a.click();a.remove();
 };
 $('clearlog').onclick=function(){if(confirm('이 기기에 저장된 상담 기록을 모두 지울까요?')){setLog([]);drawLog();}};

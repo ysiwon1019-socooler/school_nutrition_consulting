@@ -483,7 +483,7 @@ function li(s){return '<li>'+esc(s)+'</li>';}
    구글 시트(Apps Script 웹 앱)를 연결하면 어느 기기에서든 기록을 확인할 수 있고,
    연결하지 않았거나 전송에 실패하면 이 기기(localStorage)에 보관합니다. */
 var LKEY='nutri-camp-log-v1',CKEY='nutri-sheet-cfg-v1';
-var DEFAULT_URL=''; // 웹 앱 URL을 여기에 넣어 두면 새 기기에서는 접근 코드만 입력하면 됩니다.
+var DEFAULT_URL='https://script.google.com/macros/s/AKfycbw09KAk9bpE6oMN9M8HJ2UbuyaSWKKBmaT56eD-8e727-XeuRXdix4W6R8GGmBYRZXq/exec'; // 웹 앱 URL을 여기에 넣어 두면 새 기기에서는 접근 코드만 입력하면 됩니다.
 function lsGet(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function getCfg(){var c=lsGet(CKEY,{});return {url:c.url||DEFAULT_URL,code:c.code||''};}
@@ -542,8 +542,11 @@ function drawConn(){
   $('conn').className='conn '+(online()?'on':'off');
   $('conn').innerHTML=online()
     ?'☁ 구글 시트에 저장 중 — 어느 기기에서든 확인할 수 있습니다.'
-    :'📱 이 기기에만 저장 중입니다. 다른 기기에서도 보려면 <a id="opencfg">구글 시트 연결</a>을 설정해 주세요.';
-  if($('opencfg'))$('opencfg').onclick=function(){$('setup').open=true;$('setup').scrollIntoView({behavior:'smooth'});};
+    :getCfg().url
+      ?'🔑 이 기기에만 저장 중입니다. <a id="opencfg">접근 코드를 입력</a>하면 구글 시트에 저장되어 어느 기기에서든 확인할 수 있습니다.'
+      :'📱 이 기기에만 저장 중입니다. 다른 기기에서도 보려면 <a id="opencfg">구글 시트 연결</a>을 설정해 주세요.';
+  if($('opencfg'))$('opencfg').onclick=function(){$('setup').open=true;$('setup').scrollIntoView({behavior:'smooth'});
+    if(getCfg().url)$('cfgcode').focus();};
   var sy=$('sync');
   sy.style.display=online()&&n?'':'none';sy.textContent='이 기기 기록 '+n+'건 시트로 보내기';
 }

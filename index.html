@@ -130,6 +130,28 @@ table.log th{background:var(--graybg);font-weight:500;color:var(--ink2)}
 .counts div{border-radius:8px;padding:8px 4px;text-align:center;font-size:12px;border:1px solid}
 .counts b{display:block;font-size:20px;line-height:1.2}
 @media(max-width:520px){.counts{grid-template-columns:repeat(3,1fr)}}
+.conn{font-size:12.5px;border-radius:8px;padding:8px 12px;margin:-2px 0 12px;border:1px solid}
+.conn.on{background:var(--greenbg);border-color:#97C459;color:var(--green)}
+.conn.off{background:var(--graybg);border-color:var(--line2);color:var(--ink2)}
+.conn a{color:inherit;font-weight:600;cursor:pointer;text-decoration:underline}
+.filters{display:grid;grid-template-columns:110px 1fr auto;gap:8px;margin-bottom:12px}
+.filters select,.filters input{font-size:13px;padding:6px 8px}
+table.log tr.rec{cursor:pointer}
+table.log tr.rec:hover td{background:#F7F9F3}
+table.log tr.cur td{background:var(--purplebg)}
+table.log td.x{width:28px;padding:0}
+table.log td.x button{background:none;border:none;color:var(--ink3);padding:4px 8px;font-size:13px}
+table.log td.x button:hover{color:var(--red)}
+.setup{border-top:1px solid var(--line);margin-top:16px;padding-top:12px}
+.setup summary{cursor:pointer;font-size:13.5px;font-weight:600;color:var(--ink2)}
+.cfgmsg{font-size:12.5px;margin-top:8px;min-height:1em}
+.cfgmsg.err{color:var(--red)}.cfgmsg.okm{color:var(--green)}
+.guide{font-size:12.5px;color:var(--ink2);padding-left:18px;margin:14px 0 8px;line-height:1.7}
+.guide a{color:var(--purple)}
+.guide code{background:var(--graybg);padding:1px 5px;border-radius:4px;font-size:12px}
+.muted{font-size:12.5px;color:var(--ink3)}
+.hint2{font-size:12px;color:var(--ink3);margin:0}
+.savedbadge{display:inline-block;font-size:12px;color:var(--purple);background:var(--purplebg);border:1px solid #AFA9EC;border-radius:20px;padding:2px 10px;margin-bottom:8px}
 .sign{display:none}
 .printonly{display:none}
 @media print{
@@ -202,16 +224,42 @@ table.log th{background:var(--graybg);font-weight:500;color:var(--ink2)}
     <div class="empty">왼쪽 20문항에 모두 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>
   </div>
 
-  <div class="card noprint">
+  <div class="card noprint" id="records">
     <div class="step">상담 운영</div>
-    <h2>오늘의 상담 현황</h2>
-    <p class="lead">결과를 저장하면 이 기기에만 기록됩니다(이름은 저장하지 않으려면 비워 두세요). 상담 종료 후 CSV로 내려받아 유형별 분포를 확인할 수 있습니다.</p>
+    <h2>저장된 진단 기록</h2>
+    <div class="conn" id="conn"></div>
+    <div class="filters">
+      <select id="fperiod"><option value="today">오늘</option><option value="7">최근 7일</option><option value="all" selected>전체</option></select>
+      <input type="text" id="fname" placeholder="이름·유형 검색">
+      <button class="ghost mini" id="reload">새로고침</button>
+    </div>
     <div class="counts" id="counts"></div>
     <div id="logwrap"></div>
     <div class="btnrow">
       <button class="ghost mini" id="csv">CSV 내려받기</button>
-      <button class="ghost mini" id="clearlog">기록 모두 지우기</button>
+      <button class="ghost mini" id="sync" style="display:none"></button>
     </div>
+
+    <details class="setup" id="setup">
+      <summary>저장 설정 · 구글 시트 연결</summary>
+      <p class="lead" style="margin-top:10px">구글 시트를 연결하면 진단 기록이 <b>내 구글 드라이브의 시트</b>에 저장되어, 휴대폰·태블릿·PC 어디서든 이 웹앱(또는 구글 시트 앱)으로 확인할 수 있습니다. 연결하지 않으면 지금 쓰는 기기에만 저장됩니다.</p>
+      <div class="field"><span class="lbl">웹 앱 URL (https://script.google.com/macros/s/…/exec)</span><input type="text" id="cfgurl" placeholder="https://script.google.com/macros/s/.../exec"></div>
+      <div class="field"><span class="lbl">접근 코드 (Apps Script에 적은 코드와 같게)</span><input type="password" id="cfgcode" placeholder="접근 코드"></div>
+      <div class="btnrow" style="margin-top:0">
+        <button class="mini" id="cfgsave">연결 확인 후 저장</button>
+        <button class="ghost mini" id="cfgclear">연결 해제</button>
+      </div>
+      <div id="cfgmsg" class="cfgmsg"></div>
+      <ol class="guide">
+        <li>구글 드라이브에서 <b>새 구글 시트</b>를 만듭니다(예: “식생활 유형 진단 기록”).</li>
+        <li>시트 메뉴 <b>[확장 프로그램] → [Apps Script]</b>를 엽니다.</li>
+        <li>기본 코드를 지우고 <a href="https://github.com/ysiwon1019-socooler/school_nutrition_consulting/blob/main/apps-script/Code.gs" target="_blank" rel="noopener">Code.gs 코드</a>를 복사해 붙여 넣습니다.</li>
+        <li>맨 위 <code>ACCESS_CODE</code>를 나만 아는 코드로 바꾸고 저장합니다.</li>
+        <li><b>[배포] → [새 배포] → 웹 앱</b>, 실행 사용자 “나”, 액세스 “모든 사용자”로 배포하고 권한을 승인합니다.</li>
+        <li>표시된 <b>웹 앱 URL</b>과 접근 코드를 위 칸에 넣고 [연결 확인 후 저장]을 누릅니다. 다른 기기에서도 같은 값을 한 번만 입력하면 됩니다.</li>
+      </ol>
+      <p class="hint2">개인정보 보호를 위해 아이 이름은 별칭·이니셜 사용을 권장합니다. 접근 코드를 모르는 사람은 기록을 보거나 저장할 수 없습니다.</p>
+    </details>
   </div>
 </div>
 </div>
@@ -341,11 +389,12 @@ function score(){
 }
 
 /* ── 결과 렌더 ───────────────────────────── */
-function render(r){
+function render(r,saved){
   var nm=$('nm').value.trim(),grade=$('grade').value,resp=$('resp').value,concern=$('concern').value.trim();
-  var today=new Date();var ds=today.getFullYear()+'.'+(today.getMonth()+1)+'.'+today.getDate();
+  var today=new Date();var ds=saved?saved.t.slice(0,10).replace(/-/g,'.'):today.getFullYear()+'.'+(today.getMonth()+1)+'.'+today.getDate();
   var h='<div class="printonly" style="margin-bottom:10px"><h1>우리 아이 식생활 유형 진단 결과지</h1>'
        +'<div style="font-size:10pt;color:#444">일일 영양상담 · '+ds+'</div></div>';
+  if(saved)h+='<div class="savedbadge noprint">저장된 기록 · '+esc(saved.t)+'</div>';
   h+='<div class="step">진단 결과'+(nm?' · '+esc(nm):'')+(grade?' ('+esc(grade)+')':'')+' · 응답: '+esc(resp)+'</div>';
 
   if(!r.main.length){
@@ -393,7 +442,7 @@ function render(r){
   h+='<div class="sign" style="margin-top:18px;font-size:10pt">상담자: ____________ &nbsp;&nbsp; 보호자 확인: ____________</div>';
   h+='<div class="warn">이 검사는 일일 영양상담을 위한 간이 선별 도구이며 의학적 진단이 아닙니다. 체중 변화가 크거나, 먹는 양이 극단적으로 적거나, 삼킴 곤란·심한 구역이 지속되면 소아청소년과 등 전문가 상담을 권합니다.</div>';
 
-  h+='<div class="btnrow noprint"><button id="print">결과지 인쇄</button><button class="ghost" id="save">오늘 현황에 저장</button><button class="ghost" id="toTop">문항 다시 보기</button></div>';
+  h+='<div class="btnrow noprint"><button id="print">결과지 인쇄</button><button class="ghost" id="save">'+(saved?'저장된 기록입니다':'진단 기록 저장')+'</button><button class="ghost" id="toTop">문항 다시 보기</button></div>';
   $('result').innerHTML=h;
 
   if($('rtabs'))$('rtabs').addEventListener('click',function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;
@@ -403,7 +452,16 @@ function render(r){
   $('memo').addEventListener('input',function(){$('memoPrint').textContent=this.value;});
   $('print').onclick=function(){document.querySelectorAll('.tpanel').forEach(function(p){p.dataset.prev=p.style.display;p.style.display='';});
     window.print();document.querySelectorAll('.tpanel').forEach(function(p){p.style.display=p.dataset.prev;});};
-  $('save').onclick=function(){saveLog(r);this.textContent='저장 완료 ✓';this.disabled=true;};
+  if(saved){
+    $('memo').value=saved.memo||'';$('memoPrint').textContent=saved.memo||'';
+    var ps=(saved.promise||'').split(' / ');
+    document.querySelectorAll('#promise input').forEach(function(x){x.checked=ps.indexOf(x.value)>=0;x.parentNode.classList.toggle('on',x.checked);});
+    $('save').disabled=true;
+  }else{
+    $('save').onclick=function(){var btn=this;btn.disabled=true;btn.textContent='저장 중…';
+      saveRecord(r).then(function(where){btn.textContent=where==='sheet'?'구글 시트에 저장 완료 ✓':'이 기기에 저장 완료 ✓';})
+        .catch(function(){btn.disabled=false;btn.textContent='진단 기록 저장';});};
+  }
   $('toTop').onclick=function(){$('qlist').scrollIntoView({behavior:'smooth'});};
   if(window.innerWidth<=980)$('result').scrollIntoView({behavior:'smooth'});
 }
@@ -421,52 +479,164 @@ function panel(k,soft){
 }
 function li(s){return '<li>'+esc(s)+'</li>';}
 
-/* ── 오늘의 상담 현황 (이 기기에만 저장) ───────── */
-var LKEY='nutri-camp-log-v1';
-function getLog(){try{return JSON.parse(localStorage.getItem(LKEY))||[];}catch(e){return [];}}
-function setLog(l){try{localStorage.setItem(LKEY,JSON.stringify(l));}catch(e){}}
-function saveLog(r){
-  var l=getLog(),d=new Date();
-  l.push({t:d.toISOString(),nm:$('nm').value.trim(),grade:$('grade').value,
+/* ── 진단 기록 저장 · 조회 ───────────────────
+   구글 시트(Apps Script 웹 앱)를 연결하면 어느 기기에서든 기록을 확인할 수 있고,
+   연결하지 않았거나 전송에 실패하면 이 기기(localStorage)에 보관합니다. */
+var LKEY='nutri-camp-log-v1',CKEY='nutri-sheet-cfg-v1';
+var DEFAULT_URL=''; // 웹 앱 URL을 여기에 넣어 두면 새 기기에서는 접근 코드만 입력하면 됩니다.
+function lsGet(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v;}catch(e){return d;}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function getCfg(){var c=lsGet(CKEY,{});return {url:c.url||DEFAULT_URL,code:c.code||''};}
+function online(){var c=getCfg();return !!(c.url&&c.code);}
+function pad(n){return ('0'+n).slice(-2);}
+function stamp(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+' '+pad(d.getHours())+':'+pad(d.getMinutes());}
+function getLocal(){ // 예전 형식(ISO 시각) 기록도 함께 읽습니다.
+  return lsGet(LKEY,[]).map(function(o,i){
+    if(o.t&&o.t.indexOf('T')>0)o.t=stamp(new Date(o.t));
+    if(!o.id)o.id='L'+i+'-'+o.t;return o;});
+}
+function setLocal(l){lsSet(LKEY,l);}
+
+function api(method,payload){
+  var c=getCfg();
+  var req=method==='GET'
+    ? fetch(c.url+(c.url.indexOf('?')<0?'?':'&')+'code='+encodeURIComponent(c.code)+'&action='+(payload||'list'))
+    : fetch(c.url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify(Object.assign({code:c.code},payload))});
+  return req.then(function(res){return res.json();}).then(function(j){
+    if(!j.ok)throw new Error(j.error||'요청 실패');return j;});
+}
+
+function currentRecord(r){
+  return {nm:$('nm').value.trim(),grade:$('grade').value,resp:$('resp').value,concern:$('concern').value.trim(),
     type:r.main.length?r.main.map(function(k){return TYPES[k].n;}).join('+'):'균형',
     S:r.sc.S,E:r.sc.E,V:r.sc.V,L:r.sc.L,
-    promise:[].map.call(document.querySelectorAll('#promise input:checked'),function(x){return x.value;}).join(' / ')});
-  setLog(l);drawLog();
+    promise:[].map.call(document.querySelectorAll('#promise input:checked'),function(x){return x.value;}).join(' / '),
+    memo:($('memo')||{}).value||'',ans:ans.join('')};
+}
+function saveLocal(rec){
+  var l=getLocal();rec.t=stamp(new Date());rec.id='L'+Date.now();l.push(rec);setLocal(l);
+}
+function saveRecord(r){
+  var rec=currentRecord(r);
+  if(!online()){saveLocal(rec);loadRecords();return Promise.resolve('local');}
+  return api('POST',{record:rec}).then(function(){loadRecords();return 'sheet';})
+    .catch(function(e){
+      if(confirm('구글 시트 저장에 실패했습니다('+e.message+').\n이 기기에 임시 저장해 두고, 나중에 [시트로 보내기]로 옮길까요?')){
+        saveLocal(rec);loadRecords();return 'local';}
+      throw e;});
+}
+
+var RECS=[],SRC='local',CUR=null;
+function loadRecords(){
+  drawConn();
+  if(!online()){RECS=getLocal();SRC='local';drawLog();return;}
+  $('logwrap').innerHTML='<div class="muted">구글 시트에서 기록을 불러오는 중…</div>';
+  api('GET','list').then(function(j){RECS=j.records;SRC='sheet';drawLog();})
+    .catch(function(e){RECS=getLocal();SRC='local';drawLog();
+      $('conn').className='conn off';$('conn').innerHTML='⚠ 구글 시트에 연결하지 못했습니다('+esc(e.message)+'). 이 기기 기록만 표시합니다. <a id="retry">다시 시도</a>';
+      $('retry').onclick=loadRecords;});
+}
+function drawConn(){
+  var n=getLocal().length;
+  $('conn').className='conn '+(online()?'on':'off');
+  $('conn').innerHTML=online()
+    ?'☁ 구글 시트에 저장 중 — 어느 기기에서든 확인할 수 있습니다.'
+    :'📱 이 기기에만 저장 중입니다. 다른 기기에서도 보려면 <a id="opencfg">구글 시트 연결</a>을 설정해 주세요.';
+  if($('opencfg'))$('opencfg').onclick=function(){$('setup').open=true;$('setup').scrollIntoView({behavior:'smooth'});};
+  var sy=$('sync');
+  sy.style.display=online()&&n?'':'none';sy.textContent='이 기기 기록 '+n+'건 시트로 보내기';
+}
+function filtered(){
+  var per=$('fperiod').value,q=$('fname').value.trim().toLowerCase(),now=new Date();
+  var from=per==='today'?stamp(now).slice(0,10):per==='7'?stamp(new Date(now-6*864e5)).slice(0,10):'';
+  return RECS.filter(function(o){
+    if(from&&String(o.t).slice(0,10)<from)return false;
+    if(q&&(String(o.nm)+' '+o.type+' '+o.grade).toLowerCase().indexOf(q)<0)return false;
+    return true;});
 }
 function drawLog(){
-  var l=getLog();
+  var l=filtered();
   var c={감각예민형:0,정서형:0,환경형:0,생활습관형:0,균형:0};
-  l.forEach(function(o){o.type.split('+').forEach(function(t){if(t in c)c[t]++;});});
+  l.forEach(function(o){String(o.type).split('+').forEach(function(t){if(t in c)c[t]++;});});
   var col={감각예민형:'coral',정서형:'purple',환경형:'teal',생활습관형:'amber',균형:'green'};
   $('counts').innerHTML=Object.keys(c).map(function(k){return '<div class="v-'+col[k]+'"><b>'+c[k]+'</b>'+k+'</div>';}).join('');
-  if(!l.length){$('logwrap').innerHTML='<div style="font-size:13px;color:var(--ink3)">아직 저장된 상담이 없습니다. (총 0명)</div>';return;}
-  $('logwrap').innerHTML='<div style="font-size:12.5px;color:var(--ink2);margin-bottom:6px">총 '+l.length+'명 · 복합 유형은 각 유형에 모두 집계</div>'
-   +'<div style="overflow-x:auto"><table class="log"><tr><th>#</th><th>시각</th><th>이름</th><th>학년</th><th>유형</th><th>감각</th><th>정서</th><th>환경</th><th>습관</th></tr>'
-   +l.map(function(o,i){var d=new Date(o.t);return '<tr><td>'+(i+1)+'</td><td>'+(d.getMonth()+1)+'/'+d.getDate()+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+'</td><td>'+esc(o.nm||'-')+'</td><td>'+esc(o.grade||'-')+'</td><td>'+esc(o.type)+'</td><td>'+o.S+'</td><td>'+o.E+'</td><td>'+o.V+'</td><td>'+o.L+'</td></tr>';}).join('')
+  if(!l.length){$('logwrap').innerHTML='<div class="muted">'+(RECS.length?'조건에 맞는 기록이 없습니다.':'아직 저장된 진단 기록이 없습니다.')+'</div>';return;}
+  var rows=l.slice().reverse();
+  $('logwrap').innerHTML='<div class="muted" style="margin-bottom:6px">'+l.length+'명 · 행을 누르면 결과를 다시 볼 수 있습니다 · 복합 유형은 각 유형에 모두 집계</div>'
+   +'<div style="overflow-x:auto"><table class="log"><tr><th>일시</th><th>이름</th><th>학년</th><th>유형</th><th>감각</th><th>정서</th><th>환경</th><th>습관</th><th></th></tr>'
+   +rows.map(function(o){return '<tr class="rec'+(CUR===o.id?' cur':'')+'" data-id="'+esc(o.id)+'"><td>'+esc(String(o.t).slice(5))+'</td><td>'+esc(o.nm||'-')+'</td><td>'+esc(o.grade||'-')+'</td><td>'+esc(o.type)+'</td><td>'+o.S+'</td><td>'+o.E+'</td><td>'+o.V+'</td><td>'+o.L+'</td><td class="x"><button title="삭제" data-del="'+esc(o.id)+'">✕</button></td></tr>';}).join('')
    +'</table></div>';
 }
+function findRec(id){for(var i=0;i<RECS.length;i++)if(String(RECS[i].id)===String(id))return RECS[i];return null;}
+function openRecord(o){
+  var a=String(o.ans||'');
+  if(a.length!==QS.length){alert('이 기록에는 문항 응답이 없어 결과를 다시 볼 수 없습니다.');return;}
+  for(var i=0;i<QS.length;i++){ans[i]=+a.charAt(i);paint(i);$('q'+i).classList.remove('missing');}
+  progress();
+  $('nm').value=o.nm||'';$('grade').value=o.grade||'';$('resp').value=o.resp||'보호자';$('concern').value=o.concern||'';
+  CUR=o.id;drawLog();
+  render(score(),o);
+  $('result').scrollIntoView({behavior:'smooth'});
+}
+$('logwrap').addEventListener('click',function(e){
+  var del=e.target.getAttribute&&e.target.getAttribute('data-del');
+  if(del){
+    var o=findRec(del);if(!o||!confirm((o.nm||'이름 없음')+' ('+o.t+') 기록을 삭제할까요?'))return;
+    if(SRC==='sheet'){api('POST',{action:'delete',id:del}).then(loadRecords).catch(function(err){alert('삭제 실패: '+err.message);});}
+    else{setLocal(getLocal().filter(function(x){return x.id!==del;}));loadRecords();}
+    return;
+  }
+  var tr=e.target.closest&&e.target.closest('tr.rec');if(tr){var r=findRec(tr.dataset.id);if(r)openRecord(r);}
+});
+$('fperiod').onchange=drawLog;$('fname').oninput=drawLog;$('reload').onclick=loadRecords;
+$('sync').onclick=function(){
+  var l=getLocal(),btn=this,left=[];if(!l.length)return;
+  btn.disabled=true;btn.textContent='보내는 중…';
+  l.reduce(function(p,o){return p.then(function(){
+      var rec=Object.assign({},o);rec.memo=(rec.memo?rec.memo+'\n':'')+'(기기 저장 '+o.t+')';
+      return api('POST',{record:rec}).catch(function(){left.push(o);});});},Promise.resolve())
+   .then(function(){setLocal(left);btn.disabled=false;
+     if(left.length)alert(left.length+'건은 보내지 못했습니다. 잠시 후 다시 시도해 주세요.');loadRecords();});
+};
 $('csv').onclick=function(){
-  var l=getLog();if(!l.length){alert('저장된 기록이 없습니다.');return;}
+  var l=filtered();if(!l.length){alert('내려받을 기록이 없습니다.');return;}
   var q=function(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';};
-  var rows=[['일시','이름','학년','유형','감각예민형','정서형','환경형','생활습관형','실천약속']].concat(
-    l.map(function(o){return [o.t,o.nm,o.grade,o.type,o.S,o.E,o.V,o.L,o.promise];}));
+  var rows=[['일시','이름','학년','응답자','보호자 걱정','유형','감각예민형','정서형','환경형','생활습관형','실천약속','상담메모','문항응답']].concat(
+    l.map(function(o){return [o.t,o.nm,o.grade,o.resp,o.concern,o.type,o.S,o.E,o.V,o.L,o.promise,o.memo,"'"+(o.ans||'')];}));
   var blob=new Blob(['﻿'+rows.map(function(r){return r.map(q).join(',');}).join('\r\n')],{type:'text/csv;charset=utf-8'});
   var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='일일영양상담_식생활유형_'+new Date().toISOString().slice(0,10)+'.csv';
   document.body.appendChild(a);a.click();a.remove();
 };
-$('clearlog').onclick=function(){if(confirm('이 기기에 저장된 상담 기록을 모두 지울까요?')){setLog([]);drawLog();}};
+
+/* 저장 설정 */
+function cfgMsg(t,cls){$('cfgmsg').className='cfgmsg '+(cls||'');$('cfgmsg').textContent=t;}
+$('cfgsave').onclick=function(){
+  var url=$('cfgurl').value.trim(),code=$('cfgcode').value.trim();
+  if(!/^https:\/\/script\.google\.com\/macros\/s\/.+\/exec$/.test(url)){cfgMsg('웹 앱 URL은 https://script.google.com/macros/s/…/exec 형식이어야 합니다.','err');return;}
+  if(!code){cfgMsg('접근 코드를 입력해 주세요.','err');return;}
+  var prev=lsGet(CKEY,{});lsSet(CKEY,{url:url,code:code});cfgMsg('연결 확인 중…');
+  api('GET','ping').then(function(){cfgMsg('연결되었습니다. 이제 진단 기록이 구글 시트에 저장됩니다.','okm');loadRecords();})
+    .catch(function(e){lsSet(CKEY,prev);cfgMsg('연결 실패: '+e.message+' (URL·접근 코드·배포 권한 “모든 사용자”를 확인해 주세요)','err');});
+};
+$('cfgclear').onclick=function(){
+  if(!confirm('이 기기에서 구글 시트 연결을 해제할까요? (시트의 기록은 지워지지 않습니다)'))return;
+  lsSet(CKEY,{});$('cfgurl').value=DEFAULT_URL;$('cfgcode').value='';cfgMsg('연결을 해제했습니다.');loadRecords();
+};
+(function(){var c=getCfg();$('cfgurl').value=c.url;$('cfgcode').value=c.code;})();
 
 /* ── 버튼 ─────────────────────────────── */
 $('go').onclick=function(){
   var miss=[];ans.forEach(function(a,i){if(a==null)miss.push(i);});
   miss.forEach(function(i){$('q'+i).classList.add('missing');});
   if(miss.length){alert('아직 답하지 않은 문항이 '+miss.length+'개 있습니다. (빨간색 문항)');$('q'+miss[0]).scrollIntoView({behavior:'smooth',block:'center'});return;}
-  render(score());
+  CUR=null;drawLog();render(score());
 };
 $('reset').onclick=function(){
   ans.fill(null);ans.forEach(function(_,i){paint(i);$('q'+i).classList.remove('missing');});progress();
   ['nm','concern'].forEach(function(id){$(id).value='';});$('grade').value='';$('resp').selectedIndex=0;
   $('result').innerHTML='<div class="empty">왼쪽 20문항에 모두 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>';
+  CUR=null;drawLog();
   window.scrollTo({top:0,behavior:'smooth'});
 };
 $('demo').onclick=function(){
@@ -477,5 +647,5 @@ $('demo').onclick=function(){
   $('grade').value='초2';
 };
 
-buildQuestions();buildTypeGrid();progress();drawLog();
+buildQuestions();buildTypeGrid();progress();loadRecords();
 </script>

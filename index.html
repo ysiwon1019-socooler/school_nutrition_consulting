@@ -198,6 +198,79 @@ table.log td.x button:hover{color:var(--red)}
   table.log th,table.log td{padding:8px 9px}
   .warn{margin-top:22px;padding:13px 16px}
 }
+/* ── 부모의 식탁 ─────────────────────── */
+.topen{border-style:dashed;border-color:var(--line2);background:#FBFCF9}
+.tnote{font-size:13px;color:var(--ink2);background:var(--graybg);border-radius:8px;padding:10px 13px;margin:-2px 0 16px;line-height:1.6}
+.tgroup{border-radius:10px;padding:12px 14px 6px;margin-bottom:12px}
+.tg-A{background:#FDF0EC}.tg-B{background:#EEF6EA}
+.tgh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:9px;flex-wrap:wrap}
+.tgh b{font-size:14.5px}.tgh span{font-size:12px;color:var(--ink3)}
+.tchk{display:flex;gap:9px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:8px;
+  padding:9px 12px;margin-bottom:7px;cursor:pointer;font-size:14px;line-height:1.5}
+.tchk input{margin-top:3px;flex:none;width:16px;height:16px}
+.tchk.on{border-color:var(--ink2);background:#FFFDF6}
+.tchk.sm{font-size:13px}
+.sitgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+@media(max-width:520px){.sitgrid{grid-template-columns:1fr}}
+.tverdict{border-radius:10px;padding:16px 18px;margin-bottom:14px;border:1px solid}
+.tverdict .lab{font-size:12px;font-weight:600;letter-spacing:.04em;opacity:.85}
+.tverdict .name{font-size:22px;font-weight:600;margin:2px 0 0}
+.tverdict .tsub{font-size:13.5px;font-weight:600;margin-bottom:6px;opacity:.9}
+.tverdict .desc{font-size:14px;line-height:1.65;color:var(--ink)}
+.t-solid{--tc:#0F7A65;--tb:#E3F4EF;--tl:#79C9B5}
+.t-neat{--tc:#3E4FA8;--tb:#E9ECFA;--tl:#9EA9E3}
+.t-warm{--tc:#B34A14;--tb:#FCEDE4;--tl:#EFA77F}
+.t-busy{--tc:#555;--tb:#EEEEEC;--tl:#B9B9B4}
+.tverdict.t-solid,.tverdict.t-neat,.tverdict.t-warm,.tverdict.t-busy{background:var(--tb);border-color:var(--tl);color:var(--tc)}
+.quadwrap{display:grid;grid-template-columns:22px 1fr;grid-template-rows:auto auto;gap:4px 6px;max-width:420px;margin:4px 0 10px}
+.qy{writing-mode:vertical-rl;font-size:11.5px;color:var(--ink3);text-align:center}
+.qx{grid-column:2;font-size:11.5px;color:var(--ink3);text-align:right}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.qc{border-radius:8px;padding:12px 6px;text-align:center;font-size:13.5px;font-weight:600;color:var(--tc);background:var(--tb);opacity:.45;position:relative}
+.qc.here{opacity:1;border:2px solid var(--tc);box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.qc i{display:block;font-style:normal;font-size:11px;font-weight:600;margin-bottom:1px}
+.tscore{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink2);margin-bottom:12px}
+.tscore b{color:var(--ink);font-size:15px}
+.tlens{font-size:13px;color:var(--ink2);background:var(--graybg);border-left:3px solid var(--line2);padding:10px 13px;border-radius:0 8px 8px 0;line-height:1.65}
+.hv{display:grid;grid-template-columns:1fr 1.4fr;gap:12px}
+@media(max-width:620px){.hv{grid-template-columns:1fr}}
+.hv>div{border-radius:8px;padding:12px 14px}
+.hv .k{font-size:12px;font-weight:600;letter-spacing:.03em;margin-bottom:6px}
+.hv-have{background:var(--greenbg)}.hv-have .k{color:var(--green)}
+.hv-have ul{margin:0;padding-left:18px;font-size:13.5px}
+.hv-add{background:var(--amberbg)}.hv-add .k{color:var(--amber)}
+.addi{font-size:13px;line-height:1.6;margin-bottom:9px;color:var(--ink2)}
+.addi b{display:block;color:var(--ink);font-size:13.5px}
+.tph{font-size:15px;font-weight:600;color:var(--tc);margin:4px 0 8px}
+.tph span{font-size:12.5px;font-weight:500;opacity:.85;margin-left:4px}
+.ttpanel .say{margin-bottom:6px}
+.combo,.sit{border:1px solid var(--line);border-radius:8px;padding:11px 14px;margin-bottom:8px}
+.combo{border-color:#AFA9EC;background:#FAFAFF}
+.combo .k,.sit .k{font-size:12.5px;font-weight:600;color:var(--purple);margin-bottom:3px}
+.sit .k{color:var(--teal)}
+.combo .v,.sit .v{font-size:14px;line-height:1.65}
+.dor{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.dor>div{border-radius:8px;padding:11px 14px;font-size:13.5px}
+.dor b{font-size:14px}.dor ul{margin:4px 0 0;padding-left:18px}
+.dor-p{background:#FCEDE4;color:#7A3410}.dor-c{background:#EEF6EA;color:#2A4F0B}
+.rules{font-size:13.5px;line-height:1.7}
+.rules>div{margin-bottom:4px}
+.rules .avoid{color:#791F1F;background:var(--redbg);border-radius:8px;padding:8px 12px;margin-top:6px}
+.coach{background:var(--purplebg);border-radius:8px;padding:12px 15px;margin-top:18px;font-size:13.5px;color:#3A3380}
+.coach .k{font-size:12px;font-weight:600;letter-spacing:.03em;margin-bottom:4px}
+.coach ul{margin:0;padding-left:18px}
+table.week{width:100%;border-collapse:collapse;font-size:13px}
+table.week th,table.week td{border:1px solid var(--line2);padding:8px 6px;text-align:center;height:34px}
+table.week th{background:#3F6E4F;color:#fff;font-weight:500}
+table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
+@media(min-width:1100px){
+  .tgroup{padding:16px 18px 10px}
+  .tchk{padding:11px 14px;margin-bottom:9px}
+  .tverdict{padding:22px 26px;margin-bottom:22px}
+  .tverdict .name{font-size:25px}
+  .hv{gap:16px}.hv>div{padding:15px 18px}
+  .combo,.sit{padding:14px 18px;margin-bottom:10px}
+}
 .sign{display:none}
 .printonly{display:none}
 @media print{
@@ -208,7 +281,9 @@ table.log td.x button:hover{color:var(--red)}
   .printonly{display:block}
   .cols{display:block}
   .card{border:none;padding:0;margin:0;border-radius:0}
-  .verdict,.row,.first,.promise{page-break-inside:avoid}
+  .verdict,.row,.first,.promise,.tverdict,.combo,.sit,.dor,.rules,.hv>div,table.week{page-break-inside:avoid}
+  .tres{page-break-before:always}
+  .qc{opacity:1}
   .sect{page-break-after:avoid}
   .sign{display:block}
   h1{font-size:15pt}
@@ -222,7 +297,7 @@ table.log td.x button:hover{color:var(--red)}
 <p class="credit">의견 보내실 곳 · <a href="mailto:ysiwon1019@gmail.com">ysiwon1019@gmail.com</a></p>
 <p class="note"><b>일일 영양상담 현장에서 5분 안에 끝나는 식생활 유형 진단 검사입니다.</b><br>
 보호자(또는 상담자가 아이와 함께)가 20문항에 답하면 <b>감각예민형 · 정서형 · 환경형 · 생활습관형</b> 중 우리 아이의 식생활 유형이 자동으로 나오고,
-유형별 상담 포인트와 가정에서 바로 실천할 수 있는 작은 약속을 제안합니다. 결과지는 인쇄해 가정에 보낼 수 있습니다.</p>
+유형별 상담 포인트와 가정에서 바로 실천할 수 있는 작은 약속을 제안합니다. 결과지는 인쇄해 가정에 보낼 수 있습니다. 원하는 가정은 <b>부모의 식탁 유형</b>(선택, 6문항)도 함께 살펴볼 수 있습니다.</p>
 
 <div class="cols">
 <div class="noprint">
@@ -257,6 +332,26 @@ table.log td.x button:hover{color:var(--red)}
     </div>
   </div>
 
+  <div class="card topen" id="tOpenCard">
+    <div class="step">STEP 3 · 선택</div>
+    <h2>부모의 식탁 유형도 함께 살펴볼까요?</h2>
+    <p class="lead">아이 진단과 별도로, <b>원하는 가정만</b> 하는 1분 체크(6문항)입니다. 부모님을 평가하는 것이 아니라 우리 집 식탁의 분위기와 틀을 있는 그대로 살펴보고, 이번 주에 해 볼 한 가지를 고르기 위한 것이에요.</p>
+    <button class="ghost" id="tOpen">🍽 부모의 식탁 유형 진단 열기</button>
+  </div>
+
+  <div class="card" id="tCard" style="display:none">
+    <div class="step">STEP 3 · 선택 · 보호자가 체크해요</div>
+    <h2>우리 집 식탁은 어떤 분위기일까요?</h2>
+    <div class="tnote">최근 일주일의 식탁을 떠올리며 <b>해당하는 항목에만 ✓</b> 하세요. 맞고 틀린 답은 없고, 체크가 적어도 괜찮습니다. 바쁜 시기에는 어느 가정이나 그렇습니다.</div>
+    <div id="tlist"></div>
+    <div class="tgh" style="margin-top:18px"><b>우리 집 상황</b><span>해당하는 것 모두 · 선택 — 상황에 맞춘 팁을 드려요</span></div>
+    <div id="tsit" class="sitgrid"></div>
+    <div class="btnrow">
+      <button id="tGo">식탁 유형 보기</button>
+      <button class="ghost" id="tClose">식탁 진단 닫기</button>
+    </div>
+  </div>
+
   <div class="card">
     <div class="step">참고</div>
     <h2>4가지 식생활 유형</h2>
@@ -269,6 +364,8 @@ table.log td.x button:hover{color:var(--red)}
   <div class="card" id="result">
     <div class="empty">왼쪽 20문항에 모두 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>
   </div>
+
+  <div class="card tres" id="tResult" style="display:none"></div>
 
   <div class="card noprint" id="records">
     <div class="step">상담 운영</div>
@@ -488,26 +585,26 @@ function render(r,saved){
   h+='<div class="sign" style="margin-top:18px;font-size:10pt">상담자: ____________ &nbsp;&nbsp; 보호자 확인: ____________</div>';
   h+='<div class="warn">이 검사는 일일 영양상담을 위한 간이 선별 도구이며 의학적 진단이 아닙니다. 체중 변화가 크거나, 먹는 양이 극단적으로 적거나, 삼킴 곤란·심한 구역이 지속되면 소아청소년과 등 전문가 상담을 권합니다.</div>';
 
-  h+='<div class="btnrow noprint"><button id="print">결과지 인쇄</button><button class="ghost" id="save">'+(saved?'저장된 기록입니다':'진단 기록 저장')+'</button><button class="ghost" id="toTop">문항 다시 보기</button></div>';
+  h+='<div class="btnrow noprint"><button id="print">결과지 인쇄</button><button class="ghost" id="save">'+(saved?'저장됨 ✓':'진단 기록 저장')+'</button><button class="ghost" id="toTop">문항 다시 보기</button></div>';
   $('result').innerHTML=h;
 
   if($('rtabs'))$('rtabs').addEventListener('click',function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;
     document.querySelectorAll('#rtabs .tab').forEach(function(b){b.classList.toggle('on',b.dataset.k===k);});
     document.querySelectorAll('.tpanel').forEach(function(p){p.style.display=p.dataset.k===k?'':'none';});});
-  $('promise').addEventListener('change',function(e){e.target.parentNode.classList.toggle('on',e.target.checked);});
-  $('memo').addEventListener('input',function(){$('memoPrint').textContent=this.value;});
-  $('print').onclick=function(){document.querySelectorAll('.tpanel').forEach(function(p){p.dataset.prev=p.style.display;p.style.display='';});
-    window.print();document.querySelectorAll('.tpanel').forEach(function(p){p.style.display=p.dataset.prev;});};
+  $('promise').addEventListener('change',function(e){e.target.parentNode.classList.toggle('on',e.target.checked);markDirty();});
+  $('memo').addEventListener('input',function(){$('memoPrint').textContent=this.value;markDirty();});
+  $('print').onclick=printAll;
+  SAVED_ID=saved?saved.id:null;
   if(saved){
     $('memo').value=saved.memo||'';$('memoPrint').textContent=saved.memo||'';
     var ps=(saved.promise||'').split(' / ');
     document.querySelectorAll('#promise input').forEach(function(x){x.checked=ps.indexOf(x.value)>=0;x.parentNode.classList.toggle('on',x.checked);});
     $('save').disabled=true;
-  }else{
-    $('save').onclick=function(){var btn=this;btn.disabled=true;btn.textContent='저장 중…';
-      saveRecord(r).then(function(where){btn.textContent=where==='sheet'?'구글 시트에 저장 완료 ✓':'이 기기에 저장 완료 ✓';})
-        .catch(function(){btn.disabled=false;btn.textContent='진단 기록 저장';});};
   }
+  $('save').onclick=function(){var btn=this,upd=!!SAVED_ID;btn.disabled=true;btn.textContent='저장 중…';
+    saveRecord(r).then(function(where){btn.textContent=(where==='sheet'?'구글 시트에 ':'이 기기에 ')+(upd?'수정 저장 ✓':'저장 완료 ✓');})
+      .catch(function(){btn.disabled=false;btn.textContent=upd?'수정 내용 저장':'진단 기록 저장';});};
+  if(tDone&&!saved)renderTable();
   $('toTop').onclick=function(){$('qlist').scrollIntoView({behavior:'smooth'});};
   if(window.innerWidth<=980)$('result').scrollIntoView({behavior:'smooth'});
 }
@@ -524,6 +621,231 @@ function panel(k,soft){
   return h;
 }
 function li(s){return '<li>'+esc(s)+'</li>';}
+
+/* ── 부모의 식탁 유형 (선택) ─────────────────
+   리플렛 「우리 가족 식탁 코칭」 STEP 2 기준: 따뜻함(A) 3문항 · 틀·규칙(B) 3문항, 각 2개 이상이면 '높음'.
+   부모를 평가하는 도구가 아니라, 우리 집 식탁의 지금 모습을 살펴보고 이번 주 '한 가지'를 고르기 위한 도구입니다. */
+var TITEMS=[
+ {ax:'A',q:'식사 중 아이의 하루 이야기를 들어줘요',
+  tip:'식탁 위에 ‘오늘의 질문 카드’를 두고 한 장씩 뽑아 보세요. (예: 오늘 제일 웃겼던 일은? 내일 기대되는 건?) 먹는 이야기가 아닌 대화가 식탁을 편안하게 만듭니다.'},
+ {ax:'A',q:'“배불러”라고 하면 더 권하지 않아요',
+  tip:'아이가 “배불러”라고 하면 “그래, 배 속이 말해 줬구나” 하고 접시를 치워 주세요. 다음 식사까지 간식으로 채우지 않으면 배고픔 신호가 다시 자리 잡습니다.'},
+ {ax:'A',q:'새 음식을 거부해도 혼내지 않고 다음에 다시 준비해요',
+  tip:'거부한 음식은 1~2주 뒤 조리법만 바꿔 다시 올려 보세요(생→구이→볶음). 먹지 않아도 식탁에서 8~15번 만나면 점점 익숙해집니다.'},
+ {ax:'B',q:'식사·간식 시간이 대체로 정해져 있어요',
+  tip:'식사·간식 시간표를 아이와 함께 써서 냉장고에 붙여 보세요. 간식은 식사 2시간 전까지만 — 금지보다 시간 조정이 더 잘 지켜집니다.'},
+ {ax:'B',q:'메뉴는 부모가 정하고, 따로 만들어 주지 않아요',
+  tip:'따로 만드는 대신 가족 메뉴에 아이가 먹을 수 있는 ‘안전한 반찬 하나’(밥·김·달걀 등)를 늘 함께 올려 주세요. 메뉴는 그대로, 부담은 줄어듭니다.'},
+ {ax:'B',q:'식사 중에는 TV·스마트폰을 꺼요',
+  tip:'식사 전 가족 모두의 휴대폰을 ‘휴대폰 바구니’에 넣어 보세요. 한 번에 어렵다면 ‘첫 5분만 화면 없이’부터 시작해도 충분합니다.'}
+];
+var TSIT=[
+ {k:'work',q:'평일에 함께 식사하기 어려워요 (맞벌이·교대근무 등)',
+  tip:'‘함께 먹는 끼니’를 꼭 저녁으로 정하지 않아도 됩니다. 아침 10분, 주말 점심처럼 가능한 한 끼를 ‘우리 가족 식사’로 정해 달력에 표시해 보세요. 함께 못 먹는 날은 영상통화나 메시지로 “오늘 반찬 중에 뭐가 제일 맛있었어?” 한 마디면 충분합니다.'},
+ {k:'care',q:'조부모님·돌봄 선생님이 식사를 챙길 때가 많아요',
+  tip:'집집마다 식사 방식이 달라도 괜찮습니다. 꼭 같이 지키고 싶은 약속 한두 가지(예: 식사 중 화면 끄기, “더 먹어” 대신 “배불러?” 묻기)만 메모로 써서 냉장고에 붙이고 함께 나눠 보세요. 감사 인사와 함께 전하면 더 잘 이어집니다.'},
+ {k:'sib',q:'형제자매가 함께 식사해요',
+  tip:'“언니는 잘 먹는데” 같은 비교 대신 아이마다 ‘이번 주 도전 반찬’ 하나씩을 정해 보세요. 메뉴 선택권(반찬 하나)은 요일을 나눠 돌아가며 주면 다툼이 줄어듭니다.'},
+ {k:'snack',q:'아이가 간식을 스스로 꺼내 먹을 수 있어요',
+  tip:'간식을 숨기거나 금지하기보다 ‘간식 바구니’를 하나 정해 두세요. 바구니는 정해진 간식 시간에만 열고, 식사 2시간 전에는 닫습니다. 과일·우유는 눈높이에, 과자는 찬장 안으로 옮기는 것만으로도 선택이 달라집니다.'},
+ {k:'morning',q:'아침 시간이 늘 바빠요',
+  tip:'전날 밤 ‘아침 바구니’(바나나·우유·삶은 달걀·주먹밥 등)를 준비해 두세요. 메뉴보다 ‘앉아서 먹는 5분’이 더 중요합니다. 보호자도 커피 한 잔 들고 옆에 앉아 주면 충분합니다.'},
+ {k:'delivery',q:'외식·배달 음식을 자주 먹어요',
+  tip:'배달하는 날에도 ‘우리 집 한 접시’를 더해 보세요(방울토마토, 오이·파프리카 스틱, 김치 등). 메뉴를 고를 때 아이에게 채소가 들어간 메뉴 두 가지 중 하나를 고르게 하면 선택의 즐거움도 함께 줄 수 있습니다.'},
+ {k:'separate',q:'아이 반찬을 따로 만들 때가 많아요',
+  tip:'따로 만드는 것을 갑자기 멈추기보다 ‘가족 메뉴 + 안전한 반찬 하나’로 천천히 바꿔 보세요. 처음 2주는 가족 메뉴를 아이 접시에 아주 조금(한 숟가락)만 담고, 먹지 않아도 그대로 둡니다.'},
+ {k:'screen',q:'영상이 없으면 아이가 식탁에 앉아 있기 힘들어해요',
+  tip:'한 번에 끄면 실랑이가 커집니다. 첫 주는 ‘첫 5분만 화면 없이’, 둘째 주는 ‘반찬 다 담을 때까지’처럼 조금씩 늘려 보세요. 화면 대신 아이가 좋아하는 음악을 틀거나 질문 카드를 쓰면 빈자리가 채워집니다.'}
+];
+var TTYPES={
+ SOLID:{n:'든든한 식탁',icon:'🌳',cls:'t-solid',sub:'지금처럼, 한 단계 더',
+  desc:'아이 마음을 읽어 주는 대화(따뜻함)와 일정한 식사 틀(구조)이 함께 있는 식탁입니다. 아이가 안심하고 새로운 음식에 다가갈 수 있는 바탕이 이미 마련되어 있어요.',
+  strong:['식탁에서 대화가 오가고 아이가 편안함을 느껴요','식사 시간과 메뉴의 기준이 분명해 아이가 예측할 수 있어요','먹는 양을 아이가 스스로 정할 수 있어요'],
+  next:['칭찬이 ‘다 먹은 것(양)’에 머물러 있지 않은지 살펴보기 — 시도와 표현을 칭찬하면 다음 도전이 쉬워집니다','아이에게 식사 준비의 작은 역할(씻기·담기·수저 놓기)을 맡겨 ‘함께 차리는 식탁’으로 넓히기'],
+  say:[['“다 먹었네, 착하다.”','“새로운 맛에 도전했구나!”'],['“몸에 좋은 거니까 먹어.”','“이건 어떤 맛이 날 것 같아? 아삭할까, 부드러울까?”'],['“오늘도 남겼네.”','“오늘은 여기까지 먹었구나. 다음에 또 나올 거야.”']],
+  mission:['장보기에서 채소 하나, 아이가 고르게 하기','주 1회 아이가 ‘오늘의 반찬’ 담당하기(씻기·담기)','식탁에서 맛 표현 놀이하기(아삭·쫄깃·새콤 등)','한 달에 한 번 ‘처음 먹어 보는 과일·채소의 날’ 정하기'],
+  ask:['식탁에서 가장 잘 되고 있다고 느끼시는 점은 무엇인가요?','최근 아이가 새로 시도한 음식이 있었나요? 그때 어떤 말을 해 주셨나요?']},
+ NEAT:{n:'꼼꼼한 식탁',icon:'📐',cls:'t-neat',sub:'압박은 내려놓고, 틀은 그대로',
+  desc:'식사 시간·메뉴·화면 규칙처럼 식탁의 틀이 잘 잡혀 있는 식탁입니다. 아이의 건강을 세심하게 챙기는 마음이 규칙으로 나타나 있어요. 여기에 ‘얼마나 먹을지’는 아이에게 맡기고 대화를 조금 더하면 식탁이 한결 가벼워집니다.',
+  strong:['식사·간식 시간이 일정해 생활 리듬이 안정적이에요','가족 메뉴 원칙이 있어 아이가 다양한 음식을 만날 기회가 많아요','식사 중 화면 없이 식사에 집중할 수 있어요'],
+  next:['먹는 양은 아이에게 맡겨 보기 — 부모는 ‘무엇을·언제·어디서’, 아이는 ‘먹을지·얼마나’','식탁 대화를 ‘먹는 이야기’ 밖으로 넓히기 — 하루 이야기를 나누면 식탁의 긴장이 줄어듭니다'],
+  say:[['“다 먹어야 일어나.”','“배부르면 ‘잘 먹었습니다’ 하고 일어나도 돼.”'],['“한 입만 더 먹어.”','“배 속에 물어볼까? 더 먹고 싶어, 그만 먹고 싶어?”'],['“편식하면 키 안 커.”','“오늘 학교에서 제일 재밌었던 건 뭐야?”']],
+  mission:['한 끼는 “먹어”라는 말 0번 도전하기','식사 첫 1분은 ‘오늘 좋았던 일’ 나누기','큰 접시에서 아이가 먹을 만큼 스스로 덜어 먹게 하기','새 음식은 ‘맛보기 접시’에 한 조각만 올리고 권하지 않기'],
+  ask:['식탁 규칙 중 꼭 지키고 싶은 것 하나와, 조금 내려놓아도 괜찮을 것 하나는 무엇일까요?','식사 시간에 아이와 가장 편안했던 순간은 언제였나요?']},
+ WARM:{n:'다정한 식탁',icon:'🧡',cls:'t-warm',sub:'따뜻함은 그대로, 틀 세우기',
+  desc:'아이 마음을 잘 읽고 존중하는 따뜻한 식탁입니다. 아이가 식탁을 편안한 곳으로 느끼고 있어요. 다만 아이의 요구에 맞추다 보면 메뉴와 시간이 아이 중심으로 흘러, 새로운 음식을 만날 기회가 줄어들 수 있어요. 따뜻함은 그대로 두고 ‘틀’ 하나만 더해 보세요.',
+  strong:['아이의 하루 이야기를 들어주는 대화가 있어요','“배불러”를 존중해 아이가 배고픔·배부름 신호를 믿을 수 있어요','새 음식을 거부해도 혼내지 않아 식탁이 안전한 곳이에요'],
+  next:['메뉴와 식사 시간은 부모가 정하기 — 아이에게는 ‘고를 수 있는 작은 선택’만','따로 만들어 주는 대신 가족 메뉴 + 아이가 먹을 수 있는 ‘안전한 반찬 하나’'],
+  say:[['“뭐 먹고 싶어? 따로 해 줄게.”','“오늘은 카레야. 당근은 네가 썰어 볼래?”'],['“밥 안 먹으면 과자라도 먹을래?”','“다음 간식 시간은 4시야. 그때 같이 먹자.”'],['“먹기 싫으면 라면 끓여 줄까?”','“이건 안 먹어도 괜찮아. 밥이랑 달걀은 여기 있어.”']],
+  mission:['메뉴 선택권은 주 1회, 반찬 하나만 주기','간식 시간을 정해 아이와 함께 냉장고에 붙이기','가족 메뉴 + ‘안전한 반찬 하나’로 상 차리기','식사 시간 20분 정하고 타이머가 울리면 조용히 치우기'],
+  ask:['아이가 원하는 음식을 따로 만들어 줄 때 어떤 마음이 드시나요?','지금 가족 메뉴 중 아이가 늘 먹을 수 있는 ‘안전한 반찬’은 무엇인가요?']},
+ BUSY:{n:'바쁜 식탁',icon:'⏳',cls:'t-busy',sub:'작게, 꾸준히 다시 차리기',
+  desc:'일·돌봄·학원 일정 등으로 가족이 함께 앉아 먹기 어려운 시기의 식탁입니다. 많은 가정이 이런 시기를 지나갑니다. 지금 필요한 것은 완벽한 식탁이 아니라, 할 수 있는 작은 한 가지를 꾸준히 다시 차리는 것이에요.',
+  strong:['바쁜 중에도 아이의 식생활을 살펴보려는 마음이 있어요(지금 이 체크를 하고 계신 것처럼요)','작은 변화 하나가 바로 눈에 띄는 효과로 이어지기 쉬운 시기예요'],
+  next:['일주일에 한두 끼, ‘함께 앉아 먹는 시간’을 정해 지키기','함께 먹지 못하는 날에도 아이가 먹을 수 있는 ‘준비된 식사’ 남겨 두기'],
+  say:[['“알아서 챙겨 먹어.”','“냉장고 첫 칸에 달걀이랑 과일 있어. 먹고 사진 보내 줘~”'],['“빨리 먹고 학원 가.”','“10분만 앉아서 먹고 가자. 나도 옆에 앉을게.”'],['“대충 먹어.”','“오늘은 간단히 먹지만, 토요일 점심은 같이 먹자.”']],
+  mission:['주말 한 끼, 휴대폰 없이 함께 먹기','냉장고 ‘첫 칸’을 아이 전용 간식·반찬 칸으로 정하기','함께 못 먹는 날 영상통화·메시지로 5분 식탁 대화','일요일 저녁, 다음 주 아침 메뉴 3가지 아이와 함께 정하기'],
+  ask:['지금 일정에서 가족이 함께 앉을 수 있는 가장 현실적인 한 끼는 언제인가요?','아이가 혼자 먹는 날, 무엇이 준비되어 있으면 가장 도움이 될까요?']}
+};
+var TORDER=['NEAT','SOLID','BUSY','WARM']; // 2×2 배치: 위(틀 높음) 꼼꼼·든든 / 아래 바쁜·다정
+var COMBO={
+ S:{SOLID:'편안한 식탁 분위기는 감각이 예민한 아이에게 가장 좋은 출발점이에요. 새 음식은 ‘맛보기 접시’에 완두콩만큼 올리고, 먹지 않아도 8~15번 꾸준히 식탁에서 만나게 해 주세요.',
+    NEAT:'분명한 규칙은 큰 힘이에요. 다만 감각이 예민한 아이에게 ‘한 입 규칙’은 거부를 키울 수 있어요. 규칙을 ‘한 입 먹기’에서 ‘보기·냄새 맡기까지’로 바꿔 보세요.',
+    WARM:'아이 마음을 잘 읽어 주고 계세요. 따로 만들어 주는 대신 가족 반찬 옆에 ‘안전한 반찬 하나’를 두고, 거부한 재료는 조리법만 바꿔 다시 올려 보세요.',
+    BUSY:'간단한 식사라도 괜찮아요. 오이·파프리카 스틱처럼 식감이 늘 같은 음식을 ‘늘 있는 반찬’으로 정해 두면 감각이 예민한 아이도 편하게 집어 먹을 수 있어요.'},
+ E:{SOLID:'따뜻한 대화가 이미 있어요. 간식을 칭찬·위로의 도구로 쓰지 않는 것만 더해 보세요. “속상했구나” 다음에는 음식 대신 안아 주기나 산책을 함께해요.',
+    NEAT:'정서형 아이는 식탁의 긴장을 크게 느껴요. 틀은 그대로 두고 “먹어”라는 말을 줄이고, 식사 첫 1분을 ‘오늘 좋았던 일’ 나누기로 시작해 보세요.',
+    WARM:'마음을 잘 받아 주고 계세요. 기분이 안 좋을 때 간식으로 달래기보다 정해진 간식 시간은 지키고, 감정은 말로 받아 주세요. “지금 속상하구나. 간식은 4시에 같이 먹자.”',
+    BUSY:'함께 먹지 못하는 날이 많으면 ‘간식 = 위로’가 되기 쉬워요. 주 1회 함께 먹는 시간을 정하고, 짧은 메시지로 아이 마음을 먼저 챙겨 주세요.'},
+ V:{SOLID:'환경의 힘을 이미 잘 쓰고 계세요. 장보기와 상차림에 아이 역할 하나를 주면 효과가 더 커져요.',
+    NEAT:'틀이 잘 잡혀 있어요. 아이가 직접 고르는 기회(채소 두 가지 중 하나)를 더하면 ‘해야 하는 식사’가 ‘함께하는 식사’로 바뀝니다.',
+    WARM:'분위기는 충분히 따뜻해요. 시간·장소·화면 중 한 가지만 고정해도 아이 식습관이 빠르게 달라지는 유형이에요. 가장 쉬운 하나부터 골라 보세요.',
+    BUSY:'환경형 아이는 환경이 바뀌면 가장 빨리 달라져요. 과일은 눈높이에, 과자는 찬장 안으로 — 오늘 바로 할 수 있는 가장 작은 변화부터 시작해 보세요.'},
+ L:{SOLID:'식탁 분위기가 좋아요. 여기에 하루 시간표를 더해 보세요. 기상·식사·간식·취침 시각을 아이와 함께 정해 냉장고에 붙이면 리듬이 잡힙니다.',
+    NEAT:'정해진 시간은 생활습관형 아이에게 큰 도움이 돼요. 시간은 지키되 “빨리 먹어” 대신 20분 타이머로 조용히 마무리해 보세요.',
+    WARM:'아이 요구에 맞추다 보면 식사·간식 시간이 흐트러지기 쉬워요. ‘간식은 식사 2시간 전까지’ 이 한 가지부터 함께 정해 보세요.',
+    BUSY:'바쁜 아침이 아이의 하루 리듬을 흔들 수 있어요. 전날 밤 ‘아침 바구니’를 준비해 앉아서 먹는 5분을 만들어 주세요.'}
+};
+
+var tAns=[0,0,0,0,0,0],tSit=[],tMission='',tDone=false;
+function buildTable(){
+  var h='';
+  [['A','A. 따뜻함','아이 마음 읽기'],['B','B. 틀 · 규칙','식탁의 구조']].forEach(function(g){
+    h+='<div class="tgroup tg-'+g[0]+'"><div class="tgh"><b>'+g[1]+'</b><span>'+g[2]+'</span></div>';
+    TITEMS.forEach(function(it,i){if(it.ax!==g[0])return;
+      h+='<label class="tchk" id="tc'+i+'"><input type="checkbox" data-t="'+i+'"><span>'+esc(it.q)+'</span></label>';});
+    h+='</div>';
+  });
+  $('tlist').innerHTML=h;
+  $('tsit').innerHTML=TSIT.map(function(s){return '<label class="tchk sm" id="ts-'+s.k+'"><input type="checkbox" data-s="'+s.k+'"><span>'+esc(s.q)+'</span></label>';}).join('');
+  $('tlist').addEventListener('change',function(e){var i=e.target.dataset.t;if(i==null)return;tAns[+i]=e.target.checked?1:0;paintTable();});
+  $('tsit').addEventListener('change',function(e){var k=e.target.dataset.s;if(!k)return;
+    tSit=TSIT.map(function(s){return s.k;}).filter(function(x){return x===k?e.target.checked:tSit.indexOf(x)>=0;});paintTable();});
+}
+function paintTable(){
+  TITEMS.forEach(function(_,i){var l=$('tc'+i);l.querySelector('input').checked=!!tAns[i];l.classList.toggle('on',!!tAns[i]);});
+  TSIT.forEach(function(s){var l=$('ts-'+s.k),on=tSit.indexOf(s.k)>=0;l.querySelector('input').checked=on;l.classList.toggle('on',on);});
+}
+function tScore(){
+  var A=tAns[0]+tAns[1]+tAns[2],B=tAns[3]+tAns[4]+tAns[5];
+  return {A:A,B:B,key:A>=2&&B>=2?'SOLID':B>=2?'NEAT':A>=2?'WARM':'BUSY'};
+}
+function openTable(show){
+  $('tCard').style.display=show?'':'none';$('tOpenCard').style.display=show?'none':'';
+  if(show)$('tCard').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function closeTable(){
+  tAns=[0,0,0,0,0,0];tSit=[];tMission='';tDone=false;paintTable();openTable(false);
+  $('tResult').style.display='none';$('tResult').innerHTML='';
+}
+function childResult(){return ans.every(function(a){return a!=null;})?score():null;}
+
+function renderTable(){
+  var s=tScore(),t=TTYPES[s.key];tDone=true;
+  if(!tMission||(t.mission.indexOf(tMission)<0&&tMission.indexOf('직접:')!==0))tMission=t.mission[0];
+  var nm=$('nm').value.trim();
+  var h='<div class="printonly" style="margin-bottom:8px"><h1>우리 집 식탁 살펴보기</h1><div style="font-size:10pt;color:#444">일일 영양상담 · 부모의 식탁 유형'+(nm?' · '+esc(nm)+' 가족':'')+'</div></div>';
+  h+='<div class="step">부모의 식탁 유형 · 우리 집 식탁의 지금 모습</div>';
+  h+='<div class="tverdict '+t.cls+'"><div class="lab">우리 집 식탁</div><div class="name">'+t.icon+' '+t.n+'</div><div class="tsub">'+esc(t.sub)+'</div><div class="desc">'+esc(t.desc)+'</div></div>';
+
+  // 2×2 위치
+  h+='<div class="quadwrap"><div class="qy">↑ 틀 · 구조</div><div class="quad">'+TORDER.map(function(k){var x=TTYPES[k];
+      return '<div class="qc '+x.cls+(k===s.key?' here':'')+'">'+(k===s.key?'<i>우리 집</i>':'')+x.n+'</div>';}).join('')
+    +'</div><div class="qx">따뜻함 →</div></div>';
+  h+='<div class="tscore"><span>따뜻함(아이 마음 읽기) <b>'+s.A+'</b>/3</span><span>틀·규칙(식탁의 구조) <b>'+s.B+'</b>/3</span><span class="muted">각 2개 이상이면 ‘높음’</span></div>';
+  h+='<div class="tlens">이 결과는 <b>부모님을 평가하는 점수가 아닙니다.</b> 최근 일주일 우리 집 식탁의 분위기와 틀을 있는 그대로 비춰 본 것이에요. 상황이 바뀌면 식탁도 언제든 달라지고, 두 유형에 걸치는 것이 오히려 보통입니다. 다른 식탁 유형의 이야기도 함께 읽어 보시고, 우리 집에 맞는 것을 골라 쓰세요.</div>';
+
+  // 이미 있는 것 / 더해 볼 것
+  var have=[],add=[];TITEMS.forEach(function(it,i){(tAns[i]?have:add).push(it);});
+  h+='<div class="sect">우리 식탁 체크 돌아보기</div><div class="hv">';
+  h+='<div class="hv-have"><div class="k">이미 우리 식탁에 있어요 ✓</div>'+(have.length?'<ul>'+have.map(function(it){return li(it.q);}).join('')+'</ul>':'<div class="muted">아직 체크한 항목이 없어요. 괜찮습니다 — 오른쪽에서 가장 쉬워 보이는 하나만 골라 보세요.</div>')+'</div>';
+  h+='<div class="hv-add"><div class="k">하나 골라 더해 볼 수 있어요</div>'+(add.length?add.map(function(it){return '<div class="addi"><b>'+esc(it.q)+'</b>'+esc(it.tip)+'</div>';}).join(''):'<div class="muted">여섯 가지가 모두 있어요! 지금의 식탁을 꾸준히 이어 가시면 됩니다.</div>')+'</div></div>';
+
+  // 유형별 이야기 (탭)
+  h+='<div class="sect">식탁 유형별 이야기</div><div class="tabs noprint" id="ttabs">'+TORDER.map(function(k){
+    return '<button class="tab'+(k===s.key?' on':'')+'" data-k="'+k+'">'+TTYPES[k].icon+' '+TTYPES[k].n+(k===s.key?' (우리 집)':'')+'</button>';}).join('')+'</div>';
+  TORDER.forEach(function(k){h+='<div class="ttpanel" data-k="'+k+'"'+(k===s.key?'':' style="display:none"')+'>'+tPanel(k)+'</div>';});
+
+  // 아이 유형과 함께
+  var cr=childResult();
+  if(cr){
+    var ks=cr.main.length?cr.main:[cr.sorted[0]];
+    h+='<div class="sect">우리 아이 유형과 함께 보기</div>';
+    ks.forEach(function(k){h+='<div class="combo"><div class="k">'+TYPES[k].icon+' '+TYPES[k].n+' 아이 × '+t.icon+' '+t.n+'</div><div class="v">'+esc(COMBO[k][s.key])+'</div></div>';});
+  }else{
+    h+='<div class="sect">우리 아이 유형과 함께 보기</div><div class="muted">아이 식생활 진단(STEP 2)을 마치면, 아이 유형에 맞춘 식탁 팁이 여기에 함께 나옵니다.</div>';
+  }
+
+  // 상황별 맞춤 팁
+  h+='<div class="sect">우리 집 상황에 맞춘 팁</div>';
+  var sits=TSIT.filter(function(x){return tSit.indexOf(x.k)>=0;});
+  h+=sits.length?sits.map(function(x){return '<div class="sit"><div class="k">'+esc(x.q)+'</div><div class="v">'+esc(x.tip)+'</div></div>';}).join('')
+    :'<div class="muted">STEP 3의 ‘우리 집 상황’에서 해당하는 것을 고르면, 상황에 맞춘 구체적인 방법이 여기에 나옵니다.</div>';
+
+  // 이번 주 미션
+  h+='<div class="sect">이번 주, 딱 한 가지만 골라요</div><p class="lead" style="margin:0 0 10px">여러 방법 중 <b>하나만</b> 고르세요. 우리 가족이 가장 쉽게 할 수 있어 보이는 것이 정답입니다.</p><div class="promise" id="tmission">';
+  var opts=t.mission;
+  opts.forEach(function(m){h+='<label'+(m===tMission?' class="on"':'')+'><input type="radio" name="tm" value="'+esc(m)+'"'+(m===tMission?' checked':'')+'><span>'+esc(m)+'</span></label>';});
+  var custom=tMission.indexOf('직접:')===0?tMission.slice(3):'';
+  h+='<label'+(custom?' class="on"':'')+'><input type="radio" name="tm" value="__custom"'+(custom?' checked':'')+'><span style="flex:1">우리 가족이 직접 정하기 <input type="text" id="tcustom" value="'+esc(custom)+'" placeholder="예: 토요일 아침은 같이 팬케이크 만들기" style="margin-top:6px"></span></label></div>';
+
+  // 원칙
+  h+='<div class="sect">모든 솔루션의 목표 — ‘식사 책임 나누기’</div>'
+   +'<div class="dor"><div class="dor-p"><b>부모의 몫</b><ul><li>무엇을 먹을지</li><li>언제 먹을지</li><li>어디서 먹을지</li></ul></div><div class="dor-c"><b>아이의 몫</b><ul><li>먹을지 말지</li><li>얼마나 먹을지</li></ul></div></div>'
+   +'<div class="rules"><div><b>칭찬은 ‘양’ 말고 ‘시도’에</b> → “한 입 먹어 본 거, 대단한데?”</div><div><b>3일은 지켜보기</b> → 말을 줄이는 것만으로도 분위기가 달라져요</div><div class="avoid"><b>피할 것</b> “한 번만 먹어 봐” 밀어붙이기 · 밥을 안 먹었는데 배고플까 봐 간식 챙겨 주기 · 식탁에서 훈육하기</div></div>'
+   +'<div class="muted" style="margin-top:6px">미국 영양사·가족치료사 엘린 새터(Ellyn Satter)의 ‘식사 책임 나누기’ 원칙</div>';
+
+  // 상담자 대화 가이드 (인쇄 제외)
+  h+='<div class="coach noprint"><div class="k">상담자 대화 가이드 — 지도하기보다 함께 살펴보기</div><ul>'
+   +t.ask.map(li).join('')
+   +li('“왜 안 하셨어요?” 대신 “어떤 점이 가장 어려우세요?”로 물어 주세요.')
+   +li('잘하고 있는 점(이미 우리 식탁에 있는 것)을 먼저 함께 읽어 주세요.')
+   +li('미션은 보호자가 직접 고르도록 기다려 주세요. 고른 미션이 작을수록 오래 갑니다.')
+   +'</ul></div>';
+
+  // 일주일 실천표
+  h+='<div class="sect">우리 집 일주일 식탁 실천표</div><div style="overflow-x:auto"><table class="week"><tr><th>실천 약속</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th><th>일</th></tr>'
+   +['하루 한 끼 함께 앉아 먹기','식사 중 화면 끄기','우리 가족 미션: <span id="wkm"></span>'].map(function(r){return '<tr><td class="wl">'+r+'</td>'+'<td></td>'.repeat(7)+'</tr>';}).join('')
+   +'</table></div><div class="muted" style="margin-top:6px">식습관은 3일 만에 바뀌지 않지만, 식탁의 분위기는 오늘 저녁부터 바뀔 수 있습니다.</div>';
+
+  h+='<div class="btnrow noprint"><button id="tprint">결과지 인쇄</button><button class="ghost" id="tedit">식탁 체크 다시 보기</button></div>'
+   +'<div class="muted noprint" style="margin-top:8px">식탁 결과는 아이 진단 결과의 <b>[진단 기록 저장]</b>을 누를 때 함께 저장됩니다.</div>';
+
+  var box=$('tResult');box.innerHTML=h;box.style.display='';
+  $('wkm').textContent=missionText();
+  $('ttabs').addEventListener('click',function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;
+    document.querySelectorAll('#ttabs .tab').forEach(function(b){b.classList.toggle('on',b.dataset.k===k);});
+    document.querySelectorAll('.ttpanel').forEach(function(p){p.style.display=p.dataset.k===k?'':'none';});});
+  $('tmission').addEventListener('change',function(e){
+    if(e.target.name==='tm'){tMission=e.target.value==='__custom'?'직접:'+$('tcustom').value.trim():e.target.value;
+      document.querySelectorAll('#tmission label').forEach(function(l){l.classList.toggle('on',l.querySelector('input[name=tm]').checked);});}
+    $('wkm').textContent=missionText();markDirty();});
+  $('tcustom').addEventListener('input',function(){var rb=document.querySelector('#tmission input[value="__custom"]');
+    if(!rb.checked){rb.checked=true;document.querySelectorAll('#tmission label').forEach(function(l){l.classList.toggle('on',l.querySelector('input[name=tm]').checked);});}
+    tMission='직접:'+this.value.trim();$('wkm').textContent=missionText();markDirty();});
+  $('tprint').onclick=printAll;
+  $('tedit').onclick=function(){openTable(true);};
+  markDirty();
+}
+function missionText(){return tMission.indexOf('직접:')===0?tMission.slice(3):tMission;}
+function tPanel(k){
+  var t=TTYPES[k];
+  return '<div class="tph '+t.cls+'">'+t.icon+' '+t.n+' <span>'+esc(t.sub)+'</span></div>'
+   +(k!==tScore().key?'<div class="v" style="margin-bottom:8px">'+esc(t.desc)+'</div>':'')
+   +'<div class="row top"><div class="k">이 식탁의 힘</div><ul>'+t.strong.map(li).join('')+'</ul></div>'
+   +'<div class="row"><div class="k">한 단계 더</div><ul>'+t.next.map(li).join('')+'</ul></div>'
+   +'<div class="row"><div class="k">오늘 저녁, 한 마디만 바꿔요</div>'+t.say.map(function(p){return '<div class="say"><div class="no"><b>✕ 이런 말 대신</b>'+esc(p[0])+'</div><div class="yes"><b>→ 이렇게</b>'+esc(p[1])+'</div></div>';}).join('')+'</div>'
+   +'<div class="row"><div class="k">해 볼 수 있는 미션</div><ul>'+t.mission.map(li).join('')+'</ul></div>';
+}
+function printAll(){
+  var ps=document.querySelectorAll('.tpanel');ps.forEach(function(p){p.dataset.prev=p.style.display;p.style.display='';});
+  window.print();ps.forEach(function(p){p.style.display=p.dataset.prev;});
+}
+$('tOpen').onclick=function(){openTable(true);};
+$('tClose').onclick=function(){
+  if(tDone&&!confirm('부모의 식탁 진단을 닫을까요? 체크한 내용과 식탁 결과가 지워집니다.'))return;
+  closeTable();markDirty();};
+$('tGo').onclick=function(){renderTable();$('tResult').scrollIntoView({behavior:'smooth',block:'start'});};
 
 /* ── 진단 기록 저장 · 조회 ───────────────────
    구글 시트(Apps Script 웹 앱)를 연결하면 어느 기기에서든 기록을 확인할 수 있고,
@@ -558,18 +880,26 @@ function currentRecord(r){
     type:r.main.length?r.main.map(function(k){return TYPES[k].n;}).join('+'):'균형',
     S:r.sc.S,E:r.sc.E,V:r.sc.V,L:r.sc.L,
     promise:[].map.call(document.querySelectorAll('#promise input:checked'),function(x){return x.value;}).join(' / '),
-    memo:($('memo')||{}).value||'',ans:ans.join('')};
+    memo:($('memo')||{}).value||'',ans:ans.join(''),
+    tType:tDone?TTYPES[tScore().key].n:'',tA:tDone?tScore().A:'',tB:tDone?tScore().B:'',
+    tAns:tDone?tAns.join(''):'',tSit:tDone?tSit.join(','):'',tMission:tDone?tMission:''};
 }
-function saveLocal(rec){
-  var l=getLocal();rec.t=stamp(new Date());rec.id='L'+Date.now();l.push(rec);setLocal(l);
+var SAVED_ID=null;
+function markDirty(){var b=$('save');if(b&&SAVED_ID){b.disabled=false;b.textContent='수정 내용 저장';}}
+function saveLocal(rec,id){
+  var l=getLocal();
+  for(var i=0;id&&i<l.length;i++)if(l[i].id===id){rec.t=l[i].t;rec.id=id;l[i]=rec;setLocal(l);return id;}
+  rec.t=stamp(new Date());rec.id='L'+Date.now();l.push(rec);setLocal(l);return rec.id;
 }
 function saveRecord(r){
-  var rec=currentRecord(r);
-  if(!online()){saveLocal(rec);loadRecords();return Promise.resolve('local');}
-  return api('POST',{record:rec}).then(function(){loadRecords();return 'sheet';})
+  var rec=currentRecord(r),id=SAVED_ID,cur;
+  var localId=id&&String(id).charAt(0)==='L';
+  if(!online()||localId){SAVED_ID=CUR=saveLocal(rec,id);loadRecords();return Promise.resolve('local');}
+  var req=id?api('POST',{action:'update',id:id,record:rec}):api('POST',{record:rec});
+  return req.then(function(j){if(j.id)SAVED_ID=j.id;CUR=SAVED_ID;loadRecords();return 'sheet';})
     .catch(function(e){
       if(confirm('구글 시트 저장에 실패했습니다('+e.message+').\n이 기기에 임시 저장해 두고, 나중에 [시트로 보내기]로 옮길까요?')){
-        saveLocal(rec);loadRecords();return 'local';}
+        SAVED_ID=CUR=saveLocal(rec);loadRecords();return 'local';}
       throw e;});
 }
 
@@ -601,7 +931,7 @@ function filtered(){
   var from=per==='today'?stamp(now).slice(0,10):per==='7'?stamp(new Date(now-6*864e5)).slice(0,10):'';
   return RECS.filter(function(o){
     if(from&&String(o.t).slice(0,10)<from)return false;
-    if(q&&(String(o.nm)+' '+o.type+' '+o.grade).toLowerCase().indexOf(q)<0)return false;
+    if(q&&(String(o.nm)+' '+o.type+' '+o.grade+' '+(o.tType||'')).toLowerCase().indexOf(q)<0)return false;
     return true;});
 }
 function drawLog(){
@@ -613,8 +943,8 @@ function drawLog(){
   if(!l.length){$('logwrap').innerHTML='<div class="muted">'+(RECS.length?'조건에 맞는 기록이 없습니다.':'아직 저장된 진단 기록이 없습니다.')+'</div>';return;}
   var rows=l.slice().reverse();
   $('logwrap').innerHTML='<div class="muted" style="margin-bottom:6px">'+l.length+'명 · 행을 누르면 결과를 다시 볼 수 있습니다 · 복합 유형은 각 유형에 모두 집계</div>'
-   +'<div style="overflow-x:auto"><table class="log"><tr><th>일시</th><th>이름</th><th>학년</th><th>유형</th><th>감각</th><th>정서</th><th>환경</th><th>습관</th><th></th></tr>'
-   +rows.map(function(o){return '<tr class="rec'+(CUR===o.id?' cur':'')+'" data-id="'+esc(o.id)+'"><td>'+esc(String(o.t).slice(5))+'</td><td>'+esc(o.nm||'-')+'</td><td>'+esc(o.grade||'-')+'</td><td>'+esc(o.type)+'</td><td>'+o.S+'</td><td>'+o.E+'</td><td>'+o.V+'</td><td>'+o.L+'</td><td class="x"><button title="삭제" data-del="'+esc(o.id)+'">✕</button></td></tr>';}).join('')
+   +'<div style="overflow-x:auto"><table class="log"><tr><th>일시</th><th>이름</th><th>학년</th><th>유형</th><th>감각</th><th>정서</th><th>환경</th><th>습관</th><th>식탁</th><th></th></tr>'
+   +rows.map(function(o){return '<tr class="rec'+(CUR===o.id?' cur':'')+'" data-id="'+esc(o.id)+'"><td>'+esc(String(o.t).slice(5))+'</td><td>'+esc(o.nm||'-')+'</td><td>'+esc(o.grade||'-')+'</td><td>'+esc(o.type)+'</td><td>'+o.S+'</td><td>'+o.E+'</td><td>'+o.V+'</td><td>'+o.L+'</td><td>'+esc(String(o.tType||'-').replace(' 식탁',''))+'</td><td class="x"><button title="삭제" data-del="'+esc(o.id)+'">✕</button></td></tr>';}).join('')
    +'</table></div>';
 }
 function findRec(id){for(var i=0;i<RECS.length;i++)if(String(RECS[i].id)===String(id))return RECS[i];return null;}
@@ -625,6 +955,11 @@ function openRecord(o){
   progress();
   $('nm').value=o.nm||'';$('grade').value=o.grade||'';$('resp').value=o.resp||'보호자';$('concern').value=o.concern||'';
   CUR=o.id;drawLog();
+  var ta=String(o.tAns||'');
+  if(ta.length===6){
+    tAns=ta.split('').map(Number);tSit=String(o.tSit||'').split(',').filter(Boolean);tMission=o.tMission||'';
+    paintTable();openTable(true);renderTable();
+  }else closeTable();
   render(score(),o);
   $('result').scrollIntoView({behavior:'smooth'});
 }
@@ -651,8 +986,8 @@ $('sync').onclick=function(){
 $('csv').onclick=function(){
   var l=filtered();if(!l.length){alert('내려받을 기록이 없습니다.');return;}
   var q=function(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';};
-  var rows=[['일시','이름','학년','응답자','보호자 걱정','유형','감각예민형','정서형','환경형','생활습관형','실천약속','상담메모','문항응답']].concat(
-    l.map(function(o){return [o.t,o.nm,o.grade,o.resp,o.concern,o.type,o.S,o.E,o.V,o.L,o.promise,o.memo,"'"+(o.ans||'')];}));
+  var rows=[['일시','이름','학년','응답자','보호자 걱정','유형','감각예민형','정서형','환경형','생활습관형','실천약속','상담메모','문항응답','식탁 유형','따뜻함','틀·규칙','식탁 체크','우리 집 상황','식탁 미션']].concat(
+    l.map(function(o){return [o.t,o.nm,o.grade,o.resp,o.concern,o.type,o.S,o.E,o.V,o.L,o.promise,o.memo,"'"+(o.ans||''),o.tType||'',o.tA,o.tB,o.tAns?"'"+o.tAns:'',o.tSit||'',String(o.tMission||'').replace(/^직접:/,'')];}));
   var blob=new Blob(['﻿'+rows.map(function(r){return r.map(q).join(',');}).join('\r\n')],{type:'text/csv;charset=utf-8'});
   var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='일일영양상담_식생활유형_'+new Date().toISOString().slice(0,10)+'.csv';
   document.body.appendChild(a);a.click();a.remove();
@@ -685,7 +1020,7 @@ $('reset').onclick=function(){
   ans.fill(null);ans.forEach(function(_,i){paint(i);$('q'+i).classList.remove('missing');});progress();
   ['nm','concern'].forEach(function(id){$(id).value='';});$('grade').value='';$('resp').selectedIndex=0;
   $('result').innerHTML='<div class="empty">왼쪽 20문항에 모두 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>';
-  CUR=null;drawLog();
+  CUR=null;SAVED_ID=null;closeTable();drawLog();
   window.scrollTo({top:0,behavior:'smooth'});
 };
 $('demo').onclick=function(){
@@ -696,5 +1031,5 @@ $('demo').onclick=function(){
   $('grade').value='초2';
 };
 
-buildQuestions();buildTypeGrid();progress();loadRecords();
+buildQuestions();buildTypeGrid();buildTable();progress();loadRecords();
 </script>

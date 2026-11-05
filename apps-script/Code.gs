@@ -19,13 +19,14 @@ var SHEET_NAME = '진단기록';
 
 var HEADERS = ['ID', '저장일시', '이름(별칭)', '학년', '응답자', '보호자 걱정', '진단 유형',
   '감각예민형', '정서형', '환경형', '생활습관형', '실천 약속', '상담 메모', '문항 응답(1~20)',
-  '식탁 유형', '따뜻함(0~3)', '틀·규칙(0~3)', '식탁 체크(1~6)', '우리 집 상황', '식탁 미션'];
+  '식탁 유형', '따뜻함(0~18)', '틀·규칙(0~18)', '식탁 응답(1~12)', '우리 집 상황', '식탁 미션'];
 
 function sheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  // 처음 만들 때, 또는 예전 버전 시트에 새 열(식탁 유형 등)이 없을 때 머리글을 채웁니다.
-  if (sh.getLastRow() === 0 || sh.getLastColumn() < HEADERS.length) {
+  // 처음 만들 때, 또는 예전 버전 시트의 머리글이 다를 때(새 열 추가 등) 머리글을 맞춥니다.
+  var head = sh.getLastRow() === 0 ? [] : sh.getRange(1, 1, 1, HEADERS.length).getDisplayValues()[0];
+  if (head.join('|') !== HEADERS.join('|')) {
     sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold').setBackground('#EAF3DE');
     sh.setFrozenRows(1);
   }

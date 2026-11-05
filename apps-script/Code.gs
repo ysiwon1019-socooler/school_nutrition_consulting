@@ -18,15 +18,16 @@ var ACCESS_CODE = '여기에-접근코드-입력';   // 예: 'nutri2026!' — �
 var SHEET_NAME = '진단기록';
 
 var HEADERS = ['ID', '저장일시', '이름(별칭)', '학년', '응답자', '보호자 걱정', '진단 유형',
-  '감각예민형', '정서형', '환경형', '생활습관형', '실천 약속', '상담 메모', '문항 응답(1~20)'];
+  '감각예민형', '정서형', '환경형', '생활습관형', '실천 약속', '상담 메모', '문항 응답(1~20)',
+  '식탁 유형', '따뜻함(0~3)', '틀·규칙(0~3)', '식탁 체크(1~6)', '우리 집 상황', '식탁 미션'];
 
 function sheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-  if (sh.getLastRow() === 0) {
-    sh.appendRow(HEADERS);
+  // 처음 만들 때, 또는 예전 버전 시트에 새 열(식탁 유형 등)이 없을 때 머리글을 채웁니다.
+  if (sh.getLastRow() === 0 || sh.getLastColumn() < HEADERS.length) {
+    sh.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight('bold').setBackground('#EAF3DE');
     sh.setFrozenRows(1);
-    sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold').setBackground('#EAF3DE');
   }
   return sh;
 }
@@ -49,7 +50,7 @@ function safe_(v) {
 function doGet(e) {
   var p = (e && e.parameter) || {};
   if (!ok_(p.code)) return json_({ ok: false, error: '접근 코드가 올바르지 않습니다.' });
-  if (p.action === 'ping') return json_({ ok: true });
+  if (p.action === 'ping') return json_({ ok: true, v: 2 });
 
   var sh = sheet_();
   var n = sh.getLastRow() - 1;
@@ -57,7 +58,8 @@ function doGet(e) {
   var rows = sh.getRange(2, 1, n, HEADERS.length).getDisplayValues();
   var records = rows.filter(function (r) { return r[0]; }).map(function (r) {
     return { id: r[0], t: r[1], nm: r[2], grade: r[3], resp: r[4], concern: r[5], type: r[6],
-      S: +r[7], E: +r[8], V: +r[9], L: +r[10], promise: r[11], memo: r[12], ans: r[13] };
+      S: +r[7], E: +r[8], V: +r[9], L: +r[10], promise: r[11], memo: r[12], ans: r[13],
+      tType: r[14], tA: r[15], tB: r[16], tAns: r[17], tSit: r[18], tMission: r[19] };
   });
   return json_({ ok: true, records: records });
 }
@@ -80,10 +82,24 @@ function doPost(e) {
       return json_({ ok: false, error: '기록을 찾지 못했습니다.' });
     }
     var r = d.record || {};
+    var values = function (id, when) {
+      return [id, "'" + when, safe_(r.nm), safe_(r.grade), safe_(r.resp), safe_(r.concern), safe_(r.type),
+        +r.S || 0, +r.E || 0, +r.V || 0, +r.L || 0, safe_(r.promise), safe_(r.memo), "'" + String(r.ans || ''),
+        safe_(r.tType), r.tA === '' || r.tA == null ? '' : +r.tA, r.tB === '' || r.tB == null ? '' : +r.tB,
+        r.tAns ? "'" + String(r.tAns) : '', safe_(r.tSit), safe_(r.tMission)];
+    };
+    if (d.action === 'update') {   // 저장한 기록의 메모·약속·식탁 결과를 고쳐 저장
+      var col = sh.getRange(1, 1, sh.getLastRow(), 2).getDisplayValues();
+      for (var j = 1; j < col.length; j++) {
+        if (col[j][0] === String(d.id)) {
+          sh.getRange(j + 1, 1, 1, HEADERS.length).setValues([values(col[j][0], col[j][1])]);
+          return json_({ ok: true, id: col[j][0], updated: true });
+        }
+      }
+    }
     var id = Utilities.getUuid().slice(0, 8);
     var when = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm');
-    sh.appendRow([id, when, safe_(r.nm), safe_(r.grade), safe_(r.resp), safe_(r.concern), safe_(r.type),
-      +r.S || 0, +r.E || 0, +r.V || 0, +r.L || 0, safe_(r.promise), safe_(r.memo), "'" + String(r.ans || '')]);
+    sh.appendRow(values(id, when));
     return json_({ ok: true, id: id, t: when });
   } finally {
     lock.releaseLock();

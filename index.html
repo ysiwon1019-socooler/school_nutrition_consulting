@@ -2,6 +2,8 @@
 <meta charset="utf-8">
 <title>우리 아이 식생활 유형 진단</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#2C2C2A; --ink2:#5F5E5A; --ink3:#888780;
@@ -15,22 +17,27 @@
   --red:#A32D2D;   --redbg:#FCEBEB;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--page);color:var(--ink);
+body{margin:0;background:#F4F8EC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg opacity='.5'%3E%3Cg transform='translate(40 52) rotate(-28)'%3E%3Cpath d='M-9 0 Q0 52 3 52 Q6 52 9 0 Z' fill='%23F7A65E'/%3E%3Cpath d='M-4 14h6M-2 26h5M-1 38h4' stroke='%23E0843A' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M0 0 C-10 -14 -12 -20 -6 -22 C-3 -14 -1 -8 0 0 C1 -10 4 -18 9 -20 C10 -12 5 -5 0 0' fill='%238FCB6B'/%3E%3C/g%3E%3Cg transform='translate(150 40)'%3E%3Ccircle r='19' fill='%23F38B7C'/%3E%3Cpath d='M0 -17 l4 -6 2 7 7 -2 -5 6 6 4 -8 0 -2 6 -4 -6 -6 4 1 -7 -7 -3 7 -2 z' fill='%237FBF5E'/%3E%3Ccircle cx='-6' cy='2' r='1.8' fill='%236B3A30'/%3E%3Ccircle cx='6' cy='2' r='1.8' fill='%236B3A30'/%3E%3Cpath d='M-4 8 q4 4 8 0' stroke='%236B3A30' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='-11' cy='7' r='3' fill='%23FFB8AE'/%3E%3Ccircle cx='11' cy='7' r='3' fill='%23FFB8AE'/%3E%3C/g%3E%3Cg transform='translate(262 70)'%3E%3Cpath d='M-5 6 L-7 30 Q0 34 7 30 L5 6 Z' fill='%23B7DB8F'/%3E%3Ccircle cx='-12' cy='0' r='11' fill='%237CC36A'/%3E%3Ccircle cx='12' cy='0' r='11' fill='%237CC36A'/%3E%3Ccircle cx='0' cy='-10' r='13' fill='%238CCF77'/%3E%3Ccircle cx='0' cy='4' r='10' fill='%237CC36A'/%3E%3Ccircle cx='-4' cy='-6' r='1.6' fill='%232F5A24'/%3E%3Ccircle cx='5' cy='-6' r='1.6' fill='%232F5A24'/%3E%3Cpath d='M-3 -1 q3 3 6 0' stroke='%232F5A24' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(88 160)'%3E%3Cpath d='M0 -10 C-8 -18 -24 -14 -24 2 C-24 18 -10 26 0 20 C10 26 24 18 24 2 C24 -14 8 -18 0 -10 Z' fill='%23F59A8E'/%3E%3Cpath d='M0 -10 Q1 -18 4 -22' stroke='%239C6B4A' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M3 -18 C10 -26 18 -22 18 -20 C12 -14 6 -15 3 -18 Z' fill='%238FCB6B'/%3E%3Ccircle cx='-12' cy='-2' r='3.5' fill='%23FFF' opacity='.55'/%3E%3C/g%3E%3Cg transform='translate(220 170) rotate(12)'%3E%3Cpath d='M-15 -6 Q-16 14 0 24 Q16 14 15 -6 Q0 -12 -15 -6 Z' fill='%23F57F86'/%3E%3Cpath d='M-12 -7 l5 -7 4 5 3 -7 3 7 4 -5 5 7 Q0 -12 -12 -7Z' fill='%237FBF5E'/%3E%3Cg fill='%23FFE7A6'%3E%3Ccircle cx='-7' cy='2' r='1.3'/%3E%3Ccircle cx='1' cy='0' r='1.3'/%3E%3Ccircle cx='8' cy='3' r='1.3'/%3E%3Ccircle cx='-4' cy='10' r='1.3'/%3E%3Ccircle cx='4' cy='11' r='1.3'/%3E%3Ccircle cx='0' cy='17' r='1.3'/%3E%3C/g%3E%3C/g%3E%3Cg transform='translate(150 262) rotate(-15)'%3E%3Cpath d='M-30 0 Q0 -18 30 0 Q0 14 -30 0 Z' fill='%239AD27E'/%3E%3Ccircle cx='-14' cy='-1' r='6' fill='%23C5EAA8'/%3E%3Ccircle cx='0' cy='-2' r='6.5' fill='%23C5EAA8'/%3E%3Ccircle cx='14' cy='-1' r='6' fill='%23C5EAA8'/%3E%3Ccircle cx='-2' cy='-3' r='1.2' fill='%233E6B2B'/%3E%3Ccircle cx='2' cy='-3' r='1.2' fill='%233E6B2B'/%3E%3C/g%3E%3Cg transform='translate(270 268) rotate(-20)'%3E%3Cpath d='M-24 -6 Q0 22 26 -8 Q28 -4 24 2 Q0 26 -26 -2 Z' fill='%23FFD66E'/%3E%3Cpath d='M-26 -2 l-3 -3' stroke='%239C7A3A' stroke-width='2.4' stroke-linecap='round'/%3E%3C/g%3E%3Cg transform='translate(36 262) rotate(18)'%3E%3Cellipse rx='9' ry='20' fill='%23FFD978'/%3E%3Cg fill='%23F4C24E'%3E%3Ccircle cx='-3' cy='-10' r='2'/%3E%3Ccircle cx='3' cy='-6' r='2'/%3E%3Ccircle cx='-3' cy='-1' r='2'/%3E%3Ccircle cx='3' cy='4' r='2'/%3E%3Ccircle cx='-3' cy='9' r='2'/%3E%3C/g%3E%3Cpath d='M-9 4 Q-14 20 -2 22 Q-4 10 -9 4Z M9 4 Q14 20 2 22 Q4 10 9 4Z' fill='%238FCB6B'/%3E%3C/g%3E%3Cg fill='%23A9D68E'%3E%3Cpath d='M200 112 q8 -10 16 0 q-8 10 -16 0Z'/%3E%3Cpath d='M30 110 q6 -8 12 0 q-6 8 -12 0Z'/%3E%3C/g%3E%3Cg fill='%23F7C6A8'%3E%3Ccircle cx='300' cy='150' r='3'/%3E%3Ccircle cx='120' cy='220' r='2.5'/%3E%3Ccircle cx='196' cy='300' r='2.5'/%3E%3Ccircle cx='10' cy='190' r='2.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;background-size:320px 320px;color:var(--ink);
   font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',-apple-system,sans-serif;
   font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
-h1{font-size:21px;font-weight:600;margin:0}
+h1{font-family:'Jua','Pretendard','Apple SD Gothic Neo',sans-serif;font-size:26px;font-weight:400;margin:0;color:#3F6E2A;letter-spacing:-.01em}
 h2{font-size:16px;font-weight:600;margin:0 0 12px}
 .wrap{max-width:1180px;margin:0 auto;padding:24px 16px 60px}
-header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+header{display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;margin-bottom:6px}
+.hero{display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;background:rgba(255,255,255,.82);border:1px solid #DCE6D0;
+  border-radius:999px;padding:10px 24px 10px 14px;box-shadow:0 2px 10px rgba(90,120,60,.07)}
+.hero svg{flex:none;width:148px;height:46px}
+@media(max-width:520px){.hero{border-radius:18px;padding:10px 16px}.hero svg{width:120px;height:38px}}
+.qstart{background:#FBFCF7;border:1px dashed #C7D9B4;border-radius:12px;padding:16px 18px}
+.qstart .lead{margin:0 0 12px}
+.qstart button{background:#4E8A35;border-color:#4E8A35}
 header .sub{color:var(--ink2);font-size:13px}
-.credit{margin:0 0 12px;font-size:12.5px;color:var(--ink2)}
+.credit{display:inline-block;margin:8px 0 20px 6px;font-size:12.5px;color:var(--ink2);background:rgba(255,255,255,.85);border-radius:999px;padding:3px 12px}
 .credit a{color:var(--purple);text-decoration:none}
 .credit a:hover{text-decoration:underline}
-.note{color:var(--ink3);font-size:13px;margin:0 0 18px;line-height:1.65}
-.note b{color:var(--ink2);font-weight:600}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
 @media(max-width:980px){.cols{grid-template-columns:1fr}}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:18px}
+.card{background:var(--paper);border:1px solid #DCE6D0;border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:0 2px 10px rgba(90,120,60,.07)}
 .step{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--ink3);margin-bottom:4px}
 .field{margin-bottom:14px}.field:last-child{margin-bottom:0}
 .lead{font-size:13px;color:var(--ink2);margin:-4px 0 14px;line-height:1.6}
@@ -156,10 +163,9 @@ table.log td.x button:hover{color:var(--red)}
 @media(min-width:1100px){
   .wrap{max-width:1480px;padding:44px 48px 80px}
   header{margin-bottom:12px}
-  h1{font-size:26px}
+  h1{font-size:30px}
   h2{font-size:17.5px;margin-bottom:16px}
   .credit{margin-bottom:18px;font-size:13px}
-  .note{font-size:14px;margin-bottom:30px;max-width:1000px;line-height:1.8}
   .cols{gap:36px}
   .card{padding:30px 34px;margin-bottom:28px;border-radius:14px}
   .step{margin-bottom:6px}
@@ -301,18 +307,24 @@ table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
   .qc{opacity:1}
   .sect{page-break-after:avoid}
   .sign{display:block}
-  h1{font-size:15pt}
+  h1{font-size:15pt;color:#000}
+  body{background:#fff!important}
 }
 </style>
 
 <div class="wrap">
 <header>
-  <h1>우리 아이 식생활 유형 진단</h1>
+  <div class="hero">
+    <svg viewBox="0 0 148 46" aria-hidden="true">
+      <g transform="translate(18 25)"><circle r="15" fill="#F38B7C"/><path d="M0 -13 l3 -5 2 6 6 -2 -4 5 5 3 -7 0 -2 5 -3 -5 -5 3 1 -6 -6 -2 6 -2 z" fill="#7FBF5E"/><circle cx="-5" cy="2" r="1.6" fill="#6B3A30"/><circle cx="5" cy="2" r="1.6" fill="#6B3A30"/><path d="M-3 7 q3 3 6 0" stroke="#6B3A30" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="-9" cy="6" r="2.5" fill="#FFB8AE"/><circle cx="9" cy="6" r="2.5" fill="#FFB8AE"/></g>
+      <g transform="translate(55 24)"><path d="M-4 5 L-6 21 Q0 24 6 21 L4 5 Z" fill="#B7DB8F"/><circle cx="-10" cy="0" r="9" fill="#7CC36A"/><circle cx="10" cy="0" r="9" fill="#7CC36A"/><circle cx="0" cy="-8" r="11" fill="#8CCF77"/><circle cx="0" cy="3" r="8.5" fill="#7CC36A"/><circle cx="-3.5" cy="-4" r="1.4" fill="#2F5A24"/><circle cx="4" cy="-4" r="1.4" fill="#2F5A24"/><path d="M-2.5 0 q2.5 2.5 5 0" stroke="#2F5A24" stroke-width="1.4" fill="none" stroke-linecap="round"/></g>
+      <g transform="translate(90 14) rotate(-24)"><path d="M-7 0 Q0 36 2 36 Q4 36 7 0 Z" fill="#F7A65E"/><path d="M-3 10h5M-2 19h4M-1 27h3" stroke="#E0843A" stroke-width="1.4" stroke-linecap="round"/><path d="M0 0 C-8 -10 -9 -14 -5 -15 C-2 -10 -1 -6 0 0 C1 -7 3 -13 7 -14 C8 -8 4 -4 0 0" fill="#8FCB6B"/></g>
+      <g transform="translate(128 24) rotate(10)"><path d="M-12 -5 Q-13 11 0 19 Q13 11 12 -5 Q0 -10 -12 -5 Z" fill="#F57F86"/><path d="M-10 -6 l4 -6 3 4 3 -6 3 6 3 -4 4 6 Q0 -10 -10 -6Z" fill="#7FBF5E"/><g fill="#FFE7A6"><circle cx="-5" cy="2" r="1.1"/><circle cx="2" cy="0" r="1.1"/><circle cx="6" cy="4" r="1.1"/><circle cx="-2" cy="8" r="1.1"/><circle cx="3" cy="10" r="1.1"/></g></g>
+    </svg>
+    <h1>우리 아이 식생활 유형 진단</h1>
+  </div>
 </header>
 <p class="credit">의견 보내실 곳 · <a href="mailto:ysiwon1019@gmail.com">ysiwon1019@gmail.com</a></p>
-<p class="note"><b>일일 영양상담 현장에서 5분 안에 끝나는 식생활 유형 진단 검사입니다.</b><br>
-보호자(또는 상담자가 아이와 함께)가 20문항에 답하면 <b>감각예민형 · 정서형 · 환경형 · 생활습관형</b> 중 우리 아이의 식생활 유형이 자동으로 나오고,
-유형별 상담 포인트와 가정에서 바로 실천할 수 있는 작은 약속을 제안합니다. 결과지는 인쇄해 가정에 보낼 수 있습니다. 원하는 가정은 <b>부모의 식탁 유형</b>(선택, 12문항)도 함께 살펴볼 수 있습니다.</p>
 
 <div class="cols">
 <div class="noprint">
@@ -336,6 +348,11 @@ table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
   <div class="card">
     <div class="step">STEP 2</div>
     <h2>식생활 진단 문항 (20문항)</h2>
+    <div class="qstart" id="qStart">
+      <p class="lead">감각예민형 · 정서형 · 환경형 · 생활습관형 중 우리 아이의 식생활 유형을 알아보는 20문항입니다. 약 3분 걸립니다.</p>
+      <button id="qOpen">🥕 식생활 진단 시작하기</button>
+    </div>
+    <div id="qBody" style="display:none">
     <p class="lead">최근 한 달 동안 우리 아이의 평소 모습을 떠올리며 가장 가까운 것을 골라 주세요. 정답은 없습니다.</p>
     <div class="progress"><div class="pt"><span>응답 진행</span><span id="ptxt">0 / 20</span></div><div class="pbar"><i id="pbar"></i></div></div>
     <div class="scale-legend"><span>0 전혀 아니다</span><span>1 가끔 그렇다</span><span>2 자주 그렇다</span><span>3 거의 항상 그렇다</span></div>
@@ -344,6 +361,7 @@ table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
       <button id="go">결과 보기</button>
       <button class="ghost" id="reset">새 아이 진단하기</button>
       <button class="ghost" id="demo">예시 응답 채우기</button>
+    </div>
     </div>
   </div>
 
@@ -379,7 +397,7 @@ table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
 
 <div>
   <div class="card" id="result">
-    <div class="empty">왼쪽 20문항에 모두 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>
+    <div class="empty"><b>식생활 진단 시작하기</b>를 눌러 20문항에 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>
   </div>
 
   <div class="card tres" id="tResult" style="display:none"></div>
@@ -1016,6 +1034,7 @@ function findRec(id){for(var i=0;i<RECS.length;i++)if(String(RECS[i].id)===Strin
 function openRecord(o){
   var a=String(o.ans||'');
   if(a.length!==QS.length){alert('이 기록에는 문항 응답이 없어 결과를 다시 볼 수 없습니다.');return;}
+  showQ(true);
   for(var i=0;i<QS.length;i++){ans[i]=+a.charAt(i);paint(i);$('q'+i).classList.remove('missing');}
   progress();
   $('nm').value=o.nm||'';$('grade').value=o.grade||'';$('resp').value=o.resp||'보호자';$('concern').value=o.concern||'';
@@ -1082,10 +1101,13 @@ $('go').onclick=function(){
   if(miss.length){alert('아직 답하지 않은 문항이 '+miss.length+'개 있습니다. (빨간색 문항)');$('q'+miss[0]).scrollIntoView({behavior:'smooth',block:'center'});return;}
   CUR=null;drawLog();render(score());
 };
+function showQ(on){$('qBody').style.display=on?'':'none';$('qStart').style.display=on?'none':'';}
+$('qOpen').onclick=function(){showQ(true);$('qBody').scrollIntoView({behavior:'smooth',block:'start'});};
 $('reset').onclick=function(){
+  showQ(false);
   ans.fill(null);ans.forEach(function(_,i){paint(i);$('q'+i).classList.remove('missing');});progress();
   ['nm','concern'].forEach(function(id){$(id).value='';});$('grade').value='';$('resp').selectedIndex=0;
-  $('result').innerHTML='<div class="empty">왼쪽 20문항에 모두 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>';
+  $('result').innerHTML='<div class="empty"><b>식생활 진단 시작하기</b>를 눌러 20문항에 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>';
   CUR=null;SAVED_ID=null;closeTable();drawLog();
   window.scrollTo({top:0,behavior:'smooth'});
 };

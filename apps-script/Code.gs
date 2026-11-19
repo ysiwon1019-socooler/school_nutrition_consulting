@@ -23,6 +23,23 @@ var HEADERS = ['ID', '저장일시', '이름(별칭)', '학년', '응답자', '�
   '식사 뒤 반응(C1~C6)', '회피(0~6)', '관심(0~6)', '선호물(0~6)', '더 살펴볼 신호(1~4)',
   '실천 계획(최소·만약)'];
 
+// ABC 관찰 기록(상담자용)은 별도 시트에 저장합니다.
+var ABC_SHEET = 'ABC관찰';
+var ABC_HEADERS = ['ID', '저장일시', '이름(별칭)', '학년', '관찰 일시', '식사 상황', '상황 메모', '배경 요인', '배경 메모',
+  '선행사건(A)', 'A 메모', '식행동(B)', 'B 메모', '후속결과(C)', 'C 메모', '학생 반응', '반응 메모', '섭취량'];
+var ABC_KEYS = ['id', 't', 'nm', 'grade', 'when', 'sit', 'sitM', 'bg', 'bgM', 'a', 'aM', 'b', 'bM', 'c', 'cM', 'r', 'rM', 'intake'];
+
+function abcSheet_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sh = ss.getSheetByName(ABC_SHEET) || ss.insertSheet(ABC_SHEET);
+  var head = sh.getLastRow() === 0 ? [] : sh.getRange(1, 1, 1, ABC_HEADERS.length).getDisplayValues()[0];
+  if (head.join('|') !== ABC_HEADERS.join('|')) {
+    sh.getRange(1, 1, 1, ABC_HEADERS.length).setValues([ABC_HEADERS]).setFontWeight('bold').setBackground('#EEF4FC');
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
 function sheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
@@ -56,7 +73,14 @@ function num_(v) { return v === '' || v == null ? '' : +v; }
 function doGet(e) {
   var p = (e && e.parameter) || {};
   if (!ok_(p.code)) return json_({ ok: false, error: '접근 코드가 올바르지 않습니다.' });
-  if (p.action === 'ping') return json_({ ok: true, v: 4 });
+  if (p.action === 'ping') return json_({ ok: true, v: 5 });
+  if (p.action === 'abc_list') {
+    var ash = abcSheet_(), an = ash.getLastRow() - 1;
+    if (an < 1) return json_({ ok: true, abc: [] });
+    var arows = ash.getRange(2, 1, an, ABC_HEADERS.length).getDisplayValues();
+    return json_({ ok: true, abc: arows.filter(function (r) { return r[0]; }).map(function (r) {
+      var o = {}; ABC_KEYS.forEach(function (k, i) { o[k] = r[i]; }); return o; }) });
+  }
 
   var sh = sheet_();
   var n = sh.getLastRow() - 1;
@@ -80,6 +104,25 @@ function doPost(e) {
   var lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
+    if (d.action === 'abc_add') {
+      var ar = d.record || {}, ash = abcSheet_();
+      var aid = 'A' + Utilities.getUuid().slice(0, 7);
+      var awhen = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm');
+      ash.appendRow(ABC_KEYS.map(function (k) {
+        if (k === 'id') return aid;
+        if (k === 't') return "'" + awhen;
+        if (k === 'when') return "'" + String(ar.when || awhen);
+        return safe_(ar[k]);
+      }));
+      return json_({ ok: true, id: aid, t: awhen });
+    }
+    if (d.action === 'abc_delete') {
+      var ash2 = abcSheet_(), aids = ash2.getRange(1, 1, ash2.getLastRow(), 1).getDisplayValues();
+      for (var k = aids.length - 1; k >= 1; k--) {
+        if (aids[k][0] === String(d.id)) { ash2.deleteRow(k + 1); return json_({ ok: true }); }
+      }
+      return json_({ ok: false, error: '관찰 기록을 찾지 못했습니다.' });
+    }
     var sh = sheet_();
     if (d.action === 'delete') {
       var ids = sh.getRange(1, 1, sh.getLastRow(), 1).getDisplayValues();

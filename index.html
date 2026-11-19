@@ -292,6 +292,34 @@ table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
 .addi li{margin-bottom:4px}
 .startpt{display:inline-block;font-size:11px;font-weight:600;color:#fff;background:var(--amber);border-radius:10px;padding:1px 8px;margin-bottom:3px}
 .hv-have li b{font-weight:600}
+.cblock{margin-top:22px;padding:14px 16px 6px;background:#F7F5FD;border:1px solid #DCD8F3;border-radius:12px}
+.opt-tag{display:inline-block;font-size:11px;font-weight:600;color:var(--purple);background:#fff;border:1px solid #CFCAF0;border-radius:10px;padding:0 8px;margin-left:6px;vertical-align:2px}
+.cblock .q{border-top-color:rgba(0,0,0,.07)}
+.abc{background:#F3F7FE;border-left:3px solid #7A9BD8;border-radius:0 8px 8px 0;padding:10px 13px;margin:8px 0 6px}
+.abc .k{font-size:12px;font-weight:600;color:#3D5FA0;margin-bottom:3px}
+.abc .v{font-size:13.5px;line-height:1.65}
+.cres{background:#FBFAFF;border:1px solid #E1DDF5;border-radius:10px;padding:12px 14px}
+.crow{display:grid;grid-template-columns:150px 1fr 40px;gap:10px;align-items:center;margin-bottom:7px;font-size:13px}
+.crow .nmm em{display:block;font-style:normal;font-size:11px;color:var(--ink3)}
+.crow .bar i{background:#B9B3E6}.crow.hi .bar i{background:#8D85DB}.crow.hi .nmm{font-weight:600}
+.crow .sc{text-align:right;font-size:12px;color:var(--ink3)}
+.cbox{margin-top:10px;border-top:1px dashed #D5D0F0;padding-top:10px}
+.cbox .k{font-size:13px;font-weight:600;color:var(--purple);margin-bottom:4px}
+.cbox p{font-size:13px;color:var(--ink2);margin:0 0 8px;line-height:1.6}
+.citem{background:#fff;border:1px solid #E1DDF5;border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:13.5px;line-height:1.6}
+.citem b{display:block;margin-bottom:2px}
+.ctry{color:#2A4F0B;background:var(--greenbg);border-radius:6px;padding:6px 9px;margin-top:6px}
+.flags{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+@media(max-width:520px){.flags{grid-template-columns:1fr}.crow{grid-template-columns:110px 1fr 36px}}
+.flags label{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:6px;cursor:pointer;font-size:13.5px}
+.flags label.on{border-color:var(--red);background:var(--redbg)}
+.flags input{margin-top:4px;flex:none}
+.refer{border-radius:10px;padding:12px 15px;margin-top:10px;font-size:13.5px;line-height:1.65}
+.refer .k{font-weight:600;margin-bottom:4px}
+.refer p{margin:4px 0}.refer ul{margin:4px 0;padding-left:18px}
+.refer.stop{background:var(--redbg);border:1px solid #D98A8A;color:#5E1A1A}
+.refer.go{background:#EEF4FC;border:1px solid #A9C2E8;color:#1F3B66}
+.flagtop{background:var(--redbg);border:1px solid #D98A8A;color:#791F1F;border-radius:8px;padding:9px 13px;font-size:13.5px;margin-bottom:12px}
 .sign{display:none}
 .printonly{display:none}
 @media print{
@@ -302,7 +330,7 @@ table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
   .printonly{display:block}
   .cols{display:block}
   .card{border:none;padding:0;margin:0;border-radius:0}
-  .verdict,.row,.first,.promise,.tverdict,.combo,.sit,.dor,.rules,.hv>div,table.week{page-break-inside:avoid}
+  .verdict,.row,.first,.promise,.abc,.cres,.citem,.refer,.flags,.tverdict,.combo,.sit,.dor,.rules,.hv>div,table.week{page-break-inside:avoid}
   .tres{page-break-before:always}
   .qc{opacity:1}
   .sect{page-break-after:avoid}
@@ -357,6 +385,11 @@ table.week td.wl{text-align:left;width:46%;font-size:12.5px;line-height:1.45}
     <div class="progress"><div class="pt"><span>응답 진행</span><span id="ptxt">0 / 20</span></div><div class="pbar"><i id="pbar"></i></div></div>
     <div class="scale-legend"><span>0 전혀 아니다</span><span>1 가끔 그렇다</span><span>2 자주 그렇다</span><span>3 거의 항상 그렇다</span></div>
     <div id="qlist"></div>
+    <div class="cblock">
+      <div class="tgh"><b>식사 뒤 어른의 반응 <span class="opt-tag">선택 · 보호자 응답</span></b><button class="ghost mini" id="cClear" type="button">응답 지우기</button></div>
+      <p class="lead" style="margin:4px 0 10px">아이가 잘 먹지 않을 때 어른들이 흔히 하는 반응입니다. 어느 집에나 있는 일이니 편하게 답해 주세요. 답하지 않아도 결과를 볼 수 있고, 6문항 모두 답하면 결과지에 ‘행동을 이어지게 할 수 있는 반응’을 함께 살펴볼 수 있습니다.</p>
+      <div id="clist"></div>
+    </div>
     <div class="btnrow">
       <button id="go">결과 보기</button>
       <button class="ghost" id="reset">새 아이 진단하기</button>
@@ -465,6 +498,7 @@ var TYPES={
   home:['싫어하는 채소를 잘게 다지거나 바삭하게 구워 식감을 바꿔 주기','식탁에 새 음식은 한 번에 1가지, 좋아하는 음식 옆에 “완두콩 한 알” 크기로','먹지 않아도 괜찮으니 장보기·씻기·만지기부터 함께하기'],
   camp:['오감 탐색 놀이: 눈 가리고 채소 만지고 냄새 맞히기','같은 재료 3가지 조리법 맛보기(당근 생/구이/주스)','“한 입 도전 스티커” — 먹기보다 탐색 단계에 스티커'],
   no:'“한 입만 먹어! 안 먹으면 간식 없어.”',yes:'“먹지 않아도 돼. 대신 냄새만 맡아볼까? 어떤 느낌이야?”',
+  abc:'감각 기능 — 거부는 고집이 아니라 불쾌한 감각을 피하려는 행동일 수 있어요. 조리법·크기를 바꾸고(다지기·굽기), 보기→만지기→냄새 맡기→한 입 순서로 조금씩 다가가게 하며, 작은 시도도 바로 인정해 주세요.',
   promise:['새로운 음식 “만지기·냄새 맡기” 1가지 해보기','싫은 채소를 다른 조리법으로 1번 맛보기','식감 표현 단어로 맛 설명해보기(아삭·쫄깃·부드러운)']},
  E:{n:'정서형',icon:'💗',color:'purple',
   short:'기분·스트레스에 따라 먹는 양과 음식이 달라져요.',
@@ -475,6 +509,7 @@ var TYPES={
   home:['간식·디저트를 칭찬이나 벌의 도구로 쓰지 않기','“배가 고픈 거야, 마음이 허전한 거야?” 배고픔 신호 함께 확인하기','식탁에서는 꾸중 대신 오늘 좋았던 일 1가지 나누기'],
   camp:['“배고픔 신호등” 활동: 진짜 배고픔 vs 마음 배고픔 구분하기','기분 카드와 음식 연결 놀이 — 음식 말고 할 수 있는 일 찾기','천천히 음미하기(마인드풀 이팅) 건포도 한 알 체험'],
   no:'“울지 마, 이거 먹고 기분 풀어.”',yes:'“지금 속상하구나. 과자 말고 잠깐 같이 걸을까?”',
+  abc:'배경 요인(기분) — 먹는 행동 앞에 기분이 먼저 와요. 감정에 이름을 붙여 주고(“속상하구나”), 음식이 아닌 기분 전환 방법을 함께 정하며, 음식을 칭찬·보상으로 쓰는 일을 조금씩 줄여 주세요.',
   promise:['간식 먹기 전 “진짜 배고픈가?” 스스로 물어보기','기분이 안 좋을 때 음식 말고 할 일 1가지 정하기','식사 시간에 오늘 좋았던 일 이야기하기']},
  V:{n:'환경형',icon:'🏠',color:'teal',
   short:'가정의 식사 환경·분위기가 식습관을 만들어요.',
@@ -485,6 +520,7 @@ var TYPES={
   home:['식사 중에는 TV 끄고 스마트폰은 식탁 밖에 두기','과자는 찬장 안으로, 과일·우유는 눈높이에','보호자가 먼저 채소를 맛있게 먹는 모습 보여주기'],
   camp:['“우리 집 식탁 그리기” — 누가, 무엇을 보며, 어디서 먹나','가정용 “미디어 없는 식사” 약속 카드 만들기','장바구니 게임: 집에 두면 좋은 간식 고르기'],
   no:'“(TV 보면서) 빨리 먹어, 다 먹어야 일어나.”',yes:'“TV는 식사 끝나고 보자. 오늘 반찬 중에 뭐가 제일 맛있어?”',
+  abc:'선행사건(A) — 행동 바로 앞의 환경이 먹는 행동을 불러와요. 간식은 눈에 덜 띄는 곳에 두고, 식사 중 미디어는 끄고, 함께 앉아 먹는 자리를 만들면 행동이 따라 바뀝니다.',
   promise:['식사할 때 TV·스마트폰 끄기','가족과 함께 식사하기 주 3회','집 간식을 과일·우유로 1가지 바꾸기']},
  L:{n:'생활습관형',icon:'⏰',color:'amber',
   short:'불규칙한 식사·수면·활동 리듬이 식생활을 흔들어요.',
@@ -495,6 +531,7 @@ var TYPES={
   home:['아침에 “바나나+우유”처럼 3분 아침 준비해 두기','잠자기 2시간 전에는 먹지 않기, 취침 시각 고정','단 음료 대신 물병 들고 다니기, 한 입에 20번 씹기'],
   camp:['“나의 하루 시계” 그리기 — 식사·잠·운동 시간 표시','음료 속 각설탕 찾기 실험','꼭꼭 씹기 챌린지(오이 한 조각 30번 씹기)'],
   no:'“또 아침 안 먹었어? 그러니까 키가 안 크지.”',yes:'“아침에 바나나 하나만 먹어볼까? 내일 몇 시에 일어날지 같이 정하자.”',
+  abc:'배경 요인·습관 — 수면·기상 리듬이 배고픔 신호를 흔들어요. 기상·식사 시간을 먼저 고정하고, ‘언제·어디서’를 정한 작은 습관 하나(예: 아침 7시에 식탁에서 우유 한 컵)부터 시작해 주세요.',
   promise:['아침 먹기(작은 것이라도) 매일','잠자기 2시간 전부터 먹지 않기','단 음료 대신 물 마시기 하루 1번']}
 };
 var ORDER=['S','E','V','L'];
@@ -526,6 +563,91 @@ var LABELS=['전혀 아니다','가끔','자주','거의 항상'];
 var MAX=15; // 유형별 5문항 × 3점
 
 var ans=new Array(QS.length).fill(null);
+
+/* ── 식사 뒤 어른의 반응 (선택 6문항, 후속결과 C) ─────────
+   기능별 2문항씩, 각 0~6점: 회피(esc) · 관심(att) · 선호물(tan). 기존 20문항 채점과는 별개입니다. */
+var CQ=[
+ ['esc','아이가 싫다고 하면 그 음식을 바로 치워 주거나 남기게 한다'],
+ ['esc','아이가 거부하면 양을 줄여 주거나 식사를 일찍 끝내게 한다'],
+ ['att','안 먹으면 옆에서 오래 달래거나 설득한다'],
+ ['att','식사 중 떼나 장난에 꾸중·잔소리가 길어진다'],
+ ['tan','안 먹으면 좋아하는 음식을 따로 만들어 주거나 꺼내 준다'],
+ ['tan','다 먹으면 과자나 단 음식을 상으로 준다']
+];
+var CFN={
+ esc:{n:'회피',icon:'🙈',d:'싫은 음식·상황에서 벗어나기',
+  why:'아이가 거부하면 음식이 치워지거나 식사가 끝나는 경험이 반복되면, 거부가 ‘싫은 음식을 피하는 방법’이 될 수 있어요.',
+  try:'치워 주기 대신 “조금만 덜어 줄게” 하고 접시에 아주 조금 남겨 두세요. 냄새 맡기·만져 보기만 해도 인정해 주고, 정해 둔 식사 시간(약 20분)이 끝나면 조용히 치웁니다.'},
+ att:{n:'관심',icon:'👀',d:'어른의 관심·말 걸기 얻기',
+  why:'안 먹거나 장난칠 때 어른의 관심(달래기·설득·꾸중)이 집중되면, 그 행동이 ‘관심을 받는 방법’이 될 수 있어요.',
+  try:'안 먹는 행동에는 짧고 담담하게 반응하고, 한 입 시도하거나 바르게 앉아 있을 때 더 많이 말 걸고 웃어 주세요. 식탁 대화는 음식 이야기보다 하루 이야기로 채워 보세요.'},
+ tan:{n:'선호물',icon:'🍪',d:'좋아하는 음식·간식 얻기',
+  why:'안 먹으면 좋아하는 음식이 나오거나, 다 먹으면 단 음식을 받는 경험이 반복되면, 식사가 ‘좋아하는 것을 얻는 과정’이 될 수 있어요.',
+  try:'따로 만들어 주는 대신 가족 메뉴에 아이가 먹을 수 있는 반찬 하나를 늘 함께 올려 두세요. 디저트는 상이 아니라 정해진 간식 시간에 그냥 주세요.'}
+};
+var CKEYS=['esc','att','tan'];
+var cAns=new Array(CQ.length).fill(null);
+function cDone(){return cAns.every(function(a){return a!=null;});}
+function cAny(){return cAns.some(function(a){return a!=null;});}
+function cScore(){var c={esc:0,att:0,tan:0};CQ.forEach(function(q,i){c[q[0]]+=cAns[i]||0;});return c;}
+function buildCQ(){
+  $('clist').innerHTML=CQ.map(function(q,i){
+    var h='<div class="q" id="cq'+i+'"><div class="qt"><span class="qn">C'+(i+1)+'</span><span>'+esc(q[1])+'</span></div><div class="ans">';
+    for(var v=0;v<4;v++)h+='<label data-v="'+v+'"><input type="radio" name="c'+i+'" value="'+v+'"><span>'+v+' '+LABELS[v]+'</span></label>';
+    return h+'</div></div>';}).join('');
+  $('clist').addEventListener('change',function(e){var nm=e.target.name||'';if(!/^c\d$/.test(nm))return;
+    var i=+nm.slice(1);cAns[i]=+e.target.value;paintC();});
+  $('cClear').onclick=function(){cAns.fill(null);paintC();};
+}
+function paintC(){
+  CQ.forEach(function(_,i){document.querySelectorAll('#cq'+i+' label').forEach(function(l){
+    var on=cAns[i]!=null&&+l.dataset.v===cAns[i];l.querySelector('input').checked=on;l.classList.toggle('on',on);});
+    if(cAns[i]!=null)$('cq'+i).classList.remove('missing');});
+}
+
+/* ── 더 살펴볼 신호 (3단계 연결) ───────────── */
+var FLAGS=['최근 체중이 눈에 띄게 줄었다','먹는 음식 종류나 양이 극단적으로 적다','삼킴 곤란이나 심한 구역이 이어진다','체형·체중 걱정을 자주 말한다'];
+var flags=[0,0,0,0];
+function cBox(){
+  if(!cDone())return '';
+  var c=cScore(),hi=CKEYS.filter(function(k){return c[k]>=3;});
+  var h='<div class="sect bi">식사 뒤 어른의 반응 살펴보기</div><div class="cres bi">';
+  h+='<div class="cbars">'+CKEYS.map(function(k){var f=CFN[k],v=c[k];
+    return '<div class="crow'+(v>=3?' hi':'')+'"><span class="nmm">'+f.icon+' '+f.n+'<em>'+f.d+'</em></span><span class="bar"><i style="width:'+(v/6*100)+'%"></i></span><span class="sc">'+v+'/6</span></div>';}).join('')+'</div>';
+  if(hi.length){
+    h+='<div class="cbox"><div class="k">이 행동을 이어지게 할 수 있는 반응</div>'
+      +'<p>아이의 행동은 바로 뒤에 일어나는 일(후속결과)에 따라 더 자주 나타나기도 합니다. 보호자 탓이 아니라 누구나 하는 자연스러운 반응이에요. 반응을 조금만 바꿔도 행동이 달라질 수 있어요.</p>'
+      +hi.map(function(k){var f=CFN[k];return '<div class="citem"><b>'+f.icon+' '+f.n+' ('+c[k]+'/6)</b><div>'+esc(f.why)+'</div><div class="ctry">→ '+esc(f.try)+'</div></div>';}).join('')
+      +'</div>';
+  }else{
+    h+='<div class="muted" style="margin-top:6px">행동을 이어지게 할 만한 반응이 두드러지지 않아요. 지금의 반응 방식을 이어 가시면 됩니다. ✓</div>';
+  }
+  return h+'</div>';
+}
+function flagBox(r){
+  var h='<div class="sect">더 살펴볼 신호 <span class="opt-tag">선택 · 상담자 확인</span></div><div class="flags" id="flags">';
+  FLAGS.forEach(function(f,i){h+='<label'+(flags[i]?' class="on"':'')+'><input type="checkbox" data-f="'+i+'"'+(flags[i]?' checked':'')+'><span>'+esc(f)+'</span></label>';});
+  h+='</div><div id="refer"></div>';
+  return h;
+}
+function drawRefer(r){
+  var flagged=flags.some(Boolean),c=cDone()?cScore():null,why=[];
+  ORDER.forEach(function(k){if(r.sc[k]>=10)why.push(TYPES[k].n+' '+r.sc[k]+'점(10점 이상)');});
+  if(c)CKEYS.forEach(function(k){if(c[k]>=4)why.push('식사 뒤 반응 · '+CFN[k].n+' '+c[k]+'점(4점 이상)');});
+  var h='';
+  if(flagged){
+    h='<div class="refer stop"><div class="k">⚠ 전문가 상담과 보건교사·담임 협의를 먼저 권합니다</div>'
+     +'<p>체크한 신호('+FLAGS.filter(function(_,i){return flags[i];}).join(', ')+')는 식습관 지도보다 <b>건강 상태 확인이 먼저</b> 필요할 수 있는 신호입니다. 소아청소년과 등 전문가 상담을 먼저 권하고, 학교에서는 보건교사·담임교사와 협의해 주세요.</p>'
+     +'<p class="muted">이 경우 식습관을 바꾸기 위한 행동 안내(행동과학으로 보면, 식사 뒤 반응 살펴보기)는 잠시 미뤄 두고 표시하지 않습니다.</p></div>';
+  }else if(why.length){
+    h='<div class="refer go"><div class="k">📋 개별 영양상담과 급식 장면 ABC 관찰을 권합니다</div>'
+     +'<ul>'+why.map(li).join('')+'</ul>'
+     +'<p>급식 시간에 <b>A</b>(식사 직전 상황) → <b>B</b>(아이의 식행동) → <b>C</b>(바로 뒤 어른·친구의 반응)를 2~3회 살펴보면, 이 행동이 왜 이어지는지 더 정확히 볼 수 있어요.</p></div>';
+  }
+  $('refer').innerHTML=h;
+  document.querySelectorAll('#result .bi').forEach(function(el){el.style.display=flagged?'none':'';});
+  $('flagTop').style.display=flagged?'':'none';
+}
 
 function buildQuestions(){
   var h='';
@@ -580,6 +702,7 @@ function render(r,saved){
   var h='<div class="printonly" style="margin-bottom:10px"><h1>우리 아이 식생활 유형 진단 결과지</h1>'
        +'<div style="font-size:10pt;color:#444">일일 영양상담 · '+ds+'</div></div>';
   if(saved)h+='<div class="savedbadge noprint">저장된 기록 · '+esc(saved.t)+'</div>';
+  h+='<div class="flagtop" id="flagTop" style="display:none">⚠ 결과지 아래 <b>더 살펴볼 신호</b>가 체크되어 있습니다. 전문가 상담과 보건교사·담임 협의를 먼저 권합니다.</div>';
   h+='<div class="step">진단 결과'+(nm?' · '+esc(nm):'')+(grade?' ('+esc(grade)+')':'')+' · 응답: '+esc(resp)+'</div>';
 
   if(!r.main.length){
@@ -617,6 +740,8 @@ function render(r,saved){
   }
   keys.forEach(function(k,j){h+='<div class="tpanel" data-k="'+k+'"'+(j>0?' style="display:none"':'')+'>'+panel(k,!r.main.length)+'</div>';});
 
+  h+=cBox();
+
   // 약속
   h+='<div class="sect">이번 주 우리 가족 실천 약속 (1~2개 고르기)</div><div class="promise" id="promise">';
   keys.forEach(function(k){TYPES[k].promise.forEach(function(p){
@@ -624,6 +749,7 @@ function render(r,saved){
   h+='</div>';
   h+='<div class="row"><div class="k">상담 메모</div><textarea id="memo" class="noprint" placeholder="상담 중 나눈 이야기, 아이의 반응 등을 적어 주세요."></textarea><div class="printonly memo" id="memoPrint"></div></div>';
 
+  h+=flagBox(r);
   h+='<div class="sign" style="margin-top:18px;font-size:10pt">상담자: ____________ &nbsp;&nbsp; 보호자 확인: ____________</div>';
   h+='<div class="warn">이 검사는 일일 영양상담을 위한 간이 선별 도구이며 의학적 진단이 아닙니다. 체중 변화가 크거나, 먹는 양이 극단적으로 적거나, 삼킴 곤란·심한 구역이 지속되면 소아청소년과 등 전문가 상담을 권합니다.</div>';
 
@@ -636,6 +762,9 @@ function render(r,saved){
   $('promise').addEventListener('change',function(e){e.target.parentNode.classList.toggle('on',e.target.checked);markDirty();});
   $('memo').addEventListener('input',function(){$('memoPrint').textContent=this.value;markDirty();});
   $('print').onclick=printAll;
+  $('flags').addEventListener('change',function(e){var i=e.target.dataset.f;if(i==null)return;
+    flags[+i]=e.target.checked?1:0;e.target.parentNode.classList.toggle('on',e.target.checked);drawRefer(r);markDirty();});
+  drawRefer(r);
   SAVED_ID=saved?saved.id:null;
   if(saved){
     $('memo').value=saved.memo||'';$('memoPrint').textContent=saved.memo||'';
@@ -655,6 +784,7 @@ function panel(k,soft){
   var t=TYPES[k];
   var h='<div class="sect">'+t.icon+' '+t.n+(soft?' — 상대적으로 가장 높은 영역':'')+'</div>';
   h+='<div class="row top"><div class="k">왜 그럴까요?</div><div class="v">'+esc(t.why)+'</div></div>';
+  h+='<div class="abc bi"><div class="k">🔬 행동과학으로 보면</div><div class="v">'+esc(t.abc)+'</div></div>';
   h+='<div class="first"><div class="k">가장 먼저 해볼 것</div><div class="v">'+esc(t.home[0])+'</div></div>';
   h+='<div class="row"><div class="k">상담 포인트 (상담자용)</div><ul>'+t.counsel.map(li).join('')+'</ul></div>';
   h+='<div class="row"><div class="k">가정에서 이렇게 해 보세요</div><ul>'+t.home.map(li).join('')+'</ul></div>';
@@ -972,7 +1102,9 @@ function currentRecord(r){
     promise:[].map.call(document.querySelectorAll('#promise input:checked'),function(x){return x.value;}).join(' / '),
     memo:($('memo')||{}).value||'',ans:ans.join(''),
     tType:tDone?TTYPES[tScore().key].n:'',tA:tDone?tScore().A:'',tB:tDone?tScore().B:'',
-    tAns:tDone?tAns.join(''):'',tSit:tDone?tSit.join(','):'',tMission:tDone?tMission:''};
+    tAns:tDone?tAns.join(''):'',tSit:tDone?tSit.join(','):'',tMission:tDone?tMission:'',
+    cAns:cDone()?cAns.join(''):'',cEsc:cDone()?cScore().esc:'',cAtt:cDone()?cScore().att:'',cTan:cDone()?cScore().tan:'',
+    flags:flags.join('')};
 }
 var SAVED_ID=null;
 function markDirty(){var b=$('save');if(b&&SAVED_ID){b.disabled=false;b.textContent='수정 내용 저장';}}
@@ -1045,6 +1177,8 @@ function openRecord(o){
   for(var i=0;i<QS.length;i++){ans[i]=+a.charAt(i);paint(i);$('q'+i).classList.remove('missing');}
   progress();
   $('nm').value=o.nm||'';$('grade').value=o.grade||'';$('resp').value=o.resp||'보호자';$('concern').value=o.concern||'';
+  var ca=String(o.cAns||'');cAns=ca.length===CQ.length?ca.split('').map(Number):new Array(CQ.length).fill(null);paintC();
+  var fl=String(o.flags||'');flags=FLAGS.map(function(_,i){return fl.charAt(i)==='1'?1:0;});
   CUR=o.id;drawLog();
   var ta=String(o.tAns||'');
   if(ta.length===6)ta=ta.split('').map(function(c){return c==='1'?'33':'00';}).join(''); // 예전 6문항(체크) 기록 → 12문항 기준(체크=두 문항 모두 '거의 항상')
@@ -1078,8 +1212,9 @@ $('sync').onclick=function(){
 $('csv').onclick=function(){
   var l=filtered();if(!l.length){alert('내려받을 기록이 없습니다.');return;}
   var q=function(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';};
-  var rows=[['일시','이름','학년','응답자','보호자 걱정','유형','감각예민형','정서형','환경형','생활습관형','실천약속','상담메모','문항응답','식탁 유형','따뜻함','틀·규칙','식탁 체크','우리 집 상황','식탁 미션']].concat(
-    l.map(function(o){return [o.t,o.nm,o.grade,o.resp,o.concern,o.type,o.S,o.E,o.V,o.L,o.promise,o.memo,"'"+(o.ans||''),o.tType||'',o.tA,o.tB,o.tAns?"'"+o.tAns:'',o.tSit||'',String(o.tMission||'').replace(/^직접:/,'')];}));
+  var rows=[['일시','이름','학년','응답자','보호자 걱정','유형','감각예민형','정서형','환경형','생활습관형','실천약속','상담메모','문항응답','식탁 유형','따뜻함','틀·규칙','식탁 체크','우리 집 상황','식탁 미션','식사 뒤 반응(C1~C6)','회피','관심','선호물','더 살펴볼 신호']].concat(
+    l.map(function(o){return [o.t,o.nm,o.grade,o.resp,o.concern,o.type,o.S,o.E,o.V,o.L,o.promise,o.memo,"'"+(o.ans||''),o.tType||'',o.tA,o.tB,o.tAns?"'"+o.tAns:'',o.tSit||'',String(o.tMission||'').replace(/^직접:/,''),o.cAns?"'"+o.cAns:'',o.cEsc==null?'':o.cEsc,o.cAtt==null?'':o.cAtt,o.cTan==null?'':o.cTan,
+      FLAGS.filter(function(_,i){return String(o.flags||'').charAt(i)==='1';}).join(' / ')];}));
   var blob=new Blob(['﻿'+rows.map(function(r){return r.map(q).join(',');}).join('\r\n')],{type:'text/csv;charset=utf-8'});
   var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='일일영양상담_식생활유형_'+new Date().toISOString().slice(0,10)+'.csv';
   document.body.appendChild(a);a.click();a.remove();
@@ -1106,7 +1241,11 @@ $('go').onclick=function(){
   var miss=[];ans.forEach(function(a,i){if(a==null)miss.push(i);});
   miss.forEach(function(i){$('q'+i).classList.add('missing');});
   if(miss.length){alert('아직 답하지 않은 문항이 '+miss.length+'개 있습니다. (빨간색 문항)');$('q'+miss[0]).scrollIntoView({behavior:'smooth',block:'center'});return;}
-  CUR=null;drawLog();render(score());
+  if(cAny()&&!cDone()){
+    var cm=[];cAns.forEach(function(a,i){if(a==null)cm.push(i);});cm.forEach(function(i){$('cq'+i).classList.add('missing');});
+    alert('‘식사 뒤 어른의 반응’은 선택 문항입니다. 남은 '+cm.length+'개도 답하시거나, [응답 지우기]를 눌러 비워 주세요.');
+    $('cq'+cm[0]).scrollIntoView({behavior:'smooth',block:'center'});return;}
+  CUR=null;flags=[0,0,0,0];drawLog();render(score());
 };
 function showQ(on){$('qBody').style.display=on?'':'none';$('qStart').style.display=on?'none':'';}
 $('qOpen').onclick=function(){showQ(true);$('qBody').scrollIntoView({behavior:'smooth',block:'start'});};
@@ -1115,12 +1254,14 @@ $('reset').onclick=function(){
   ans.fill(null);ans.forEach(function(_,i){paint(i);$('q'+i).classList.remove('missing');});progress();
   ['nm','concern'].forEach(function(id){$(id).value='';});$('grade').value='';$('resp').selectedIndex=0;
   $('result').innerHTML='<div class="empty"><b>식생활 진단 시작하기</b>를 눌러 20문항에 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>';
+  cAns.fill(null);paintC();document.querySelectorAll('#clist .q').forEach(function(q){q.classList.remove('missing');});flags=[0,0,0,0];
   CUR=null;SAVED_ID=null;closeTable();drawLog();
   window.scrollTo({top:0,behavior:'smooth'});
 };
 $('demo').onclick=function(){
   var ex={S:[3,2,3,2,3],E:[1,0,1,1,0],V:[2,1,1,2,2],L:[1,0,1,0,1]},idx={S:0,E:0,V:0,L:0};
   QS.forEach(function(q,i){ans[i]=ex[q[0]][idx[q[0]]++];paint(i);});progress();
+  cAns=[2,2,1,0,2,1];paintC();
   if(!$('nm').value)$('nm').value='예시 아이';
   if(!$('concern').value)$('concern').value='채소를 입에 대지도 않아요';
   $('grade').value='초2';
@@ -1129,5 +1270,5 @@ $('demo').onclick=function(){
 function showRec(on){$('recBody').style.display=on?'':'none';$('recStart').style.display=on?'none':'';}
 $('recOpen').onclick=function(){showRec(true);loadRecords();};
 $('recClose').onclick=function(){showRec(false);$('records').scrollIntoView({behavior:'smooth',block:'start'});};
-buildQuestions();buildTypeGrid();buildTable();progress();drawConn();
+buildQuestions();buildCQ();buildTypeGrid();buildTable();progress();drawConn();
 </script>

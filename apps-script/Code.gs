@@ -21,7 +21,8 @@ var HEADERS = ['ID', '저장일시', '이름(별칭)', '학년', '응답자', '�
   '감각예민형', '정서형', '환경형', '생활습관형', '실천 약속', '상담 메모', '문항 응답(1~20)',
   '식탁 유형', '따뜻함(0~18)', '틀·규칙(0~18)', '식탁 응답(1~12)', '우리 집 상황', '식탁 미션',
   '식사 뒤 반응(C1~C6)', '회피(0~6)', '관심(0~6)', '선호물(0~6)', '더 살펴볼 신호(1~4)',
-  '실천 계획(최소·만약)', '응답 버전', '학생 미션'];
+  '실천 계획(최소·만약)', '응답 버전', '학생 미션',
+  '식탁 응답 버전', '식탁 학생 미션', '식탁 확인 필요'];
 
 // ABC 관찰 기록(상담자용)은 별도 시트에 저장합니다.
 var ABC_SHEET = 'ABC관찰';
@@ -73,7 +74,7 @@ function num_(v) { return v === '' || v == null ? '' : +v; }
 function doGet(e) {
   var p = (e && e.parameter) || {};
   if (!ok_(p.code)) return json_({ ok: false, error: '접근 코드가 올바르지 않습니다.' });
-  if (p.action === 'ping') return json_({ ok: true, v: 6 });
+  if (p.action === 'ping') return json_({ ok: true, v: 7 });
   if (p.action === 'abc_list') {
     var ash = abcSheet_(), an = ash.getLastRow() - 1;
     if (an < 1) return json_({ ok: true, abc: [] });
@@ -90,7 +91,8 @@ function doGet(e) {
     return { id: r[0], t: r[1], nm: r[2], grade: r[3], resp: r[4], concern: r[5], type: r[6],
       S: +r[7], E: +r[8], V: +r[9], L: +r[10], promise: r[11], memo: r[12], ans: r[13],
       tType: r[14], tA: r[15], tB: r[16], tAns: r[17], tSit: r[18], tMission: r[19],
-      cAns: r[20], cEsc: r[21], cAtt: r[22], cTan: r[23], flags: r[24], plan: r[25], ver: r[26] || 'parent', kidMission: r[27] };
+      cAns: r[20], cEsc: r[21], cAtt: r[22], cTan: r[23], flags: r[24], plan: r[25], ver: r[26] || 'parent', kidMission: r[27],
+      tVer: r[28] || (r[17] ? 'parent' : ''), tKidMission: r[29], tNoFood: r[30] };
   });
   return json_({ ok: true, records: records });
 }
@@ -138,7 +140,8 @@ function doPost(e) {
         safe_(r.tType), r.tA === '' || r.tA == null ? '' : +r.tA, r.tB === '' || r.tB == null ? '' : +r.tB,
         r.tAns ? "'" + String(r.tAns) : '', safe_(r.tSit), safe_(r.tMission),
         r.cAns ? "'" + String(r.cAns) : '', num_(r.cEsc), num_(r.cAtt), num_(r.cTan),
-        r.flags ? "'" + String(r.flags) : '', safe_(r.plan), safe_(r.ver || 'parent'), safe_(r.kidMission)];
+        r.flags ? "'" + String(r.flags) : '', safe_(r.plan), safe_(r.ver || 'parent'), safe_(r.kidMission),
+        safe_(r.tVer), safe_(r.tKidMission), r.tNoFood ? "'1" : ''];
     };
     if (d.action === 'update') {   // 저장한 기록의 메모·약속·식탁 결과를 고쳐 저장
       var col = sh.getRange(1, 1, sh.getLastRow(), 2).getDisplayValues();

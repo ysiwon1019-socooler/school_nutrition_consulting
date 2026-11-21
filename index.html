@@ -367,13 +367,53 @@ table.abcsum td.av{text-align:left}
 .ib em{font-style:normal;font-size:10.5px;color:var(--ink3)}
 table.abclist td{font-size:12px;text-align:left;vertical-align:top}
 table.abclist td em{display:block;font-style:normal;color:var(--ink3);font-size:11px}
+.kidbar{display:none;align-items:center;gap:10px;flex-wrap:wrap;background:#FFF6D9;border:1px solid #F0D27A;border-radius:999px;padding:6px 8px 6px 16px;margin:0 0 16px;font-size:13.5px;color:#6B4E0A}
+.kidtip{display:none;font-size:13px;background:#F2F8EA;border:1px solid #CFE3BC;border-radius:8px;padding:8px 12px;margin:-4px 0 12px;color:#2A4F0B}
+.kidtip.warn2{background:#FFF6D9;border-color:#F0D27A;color:#6B4E0A}
+.kidtip button{margin-left:6px}
+.kidq{display:none}
+body.kid .kidbar{display:flex}
+body.kid #kidNameTip{display:block}
+body.kid .kidq{display:block}
+body.kid #concernField,body.kid #qLead,body.kid #qBody>.progress,body.kid #qBody>.scale-legend,body.kid #qlist,body.kid .cblock,body.kid #parentBtns,
+body.kid #typeCard,body.kid #tOpenCard,body.kid #tCard,body.kid #tResult{display:none!important}
+body.kid:not(.unlocked) #records{display:none}
+.kprog{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:14px}
+.kprog .pbar{flex:1}
+.kq{background:#FFFDF5;border:2px solid #F0D27A;border-radius:16px;padding:18px 18px 14px;text-align:center;margin-bottom:14px}
+.kqn{font-family:'Jua',sans-serif;font-size:16px;color:#B07A10}
+.kqt{font-size:20px;font-weight:600;line-height:1.5;margin:6px 0 10px;word-break:keep-all}
+.kans{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:620px){.kans{grid-template-columns:1fr 1fr}}
+.kopt{background:#fff;color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:14px 6px;font-size:15px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:4px}
+.kopt .kf{font-size:30px;line-height:1}
+.kopt.on{border-color:#4E8A35;background:var(--greenbg);color:#2A4F0B}
+.kbtns{justify-content:space-between;align-items:center}
+.kdone{font-family:'Jua',sans-serif;font-size:24px;text-align:center;color:#3F6E2A;padding:24px 0 8px}
+.kidres .kidh{font-family:'Jua',sans-serif;font-size:22px;color:#3F6E2A;margin-bottom:12px}
+.kidcard{border-radius:16px;padding:18px 20px;margin-bottom:12px;border:2px solid}
+.kidcard .kn{font-family:'Jua',sans-serif;font-size:26px;margin-bottom:6px}
+.kidcard .km{font-size:15.5px;line-height:1.7;color:var(--ink)}
+.kidcare{background:#FDF0F6;border:1px solid #F3C1D6;color:#8A2F59;border-radius:12px;padding:12px 16px;font-size:15px;margin:4px 0 12px}
+.kidh2{font-family:'Jua',sans-serif;font-size:19px;color:var(--ink);margin:16px 0 8px}
+.kmis label{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-size:15px;background:#fff}
+.kmis label.on{border-color:#4E8A35;background:var(--greenbg)}
+.kmis input{width:18px;height:18px;flex:none}
+.kidplan{background:#FFF6D9;border-radius:12px;padding:12px 14px;font-size:14.5px;margin:6px 0 10px}
+.kidnote{font-size:12.5px;color:var(--ink3);line-height:1.6}
+.kidinfo{font-size:13px;background:#F3F7FE;border:1px solid #C9D9F0;border-radius:8px;padding:8px 12px;margin:0 0 10px;color:#1F3B66}
+.kidflag{font-size:13.5px;font-weight:600;background:#FDF0F6;border:1px solid #E59AB9;color:#8A2F59;border-radius:8px;padding:8px 12px;margin:0 0 10px}
+.modal{position:fixed;inset:0;background:rgba(30,40,20,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.mbox{background:#fff;border-radius:16px;padding:22px;max-width:380px;width:100%;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.mt{font-size:17px;font-weight:600;margin-bottom:6px}.mdesc{font-size:13.5px;color:var(--ink2);margin-bottom:12px;line-height:1.6}
+.mbox input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:16px}
 .sign{display:none}
 .printonly{display:none}
 @media print{
   @page{size:A4;margin:13mm}
   body{background:#fff;font-size:10.5pt;line-height:1.5;color:#000}
   .wrap{max-width:none;padding:0}
-  .noprint,header,.note,.credit,.btnrow{display:none!important}
+  .noprint,header,.credit,.btnrow,.modal{display:none!important}
   .printonly{display:block}
   .cols{display:block}
   .card{border:none;padding:0;margin:0;border-radius:0}
@@ -404,6 +444,7 @@ table.abclist td em{display:block;font-style:normal;color:var(--ink3);font-size:
   </div>
 </header>
 <p class="credit">의견 보내실 곳 · <a href="mailto:ysiwon1019@gmail.com">ysiwon1019@gmail.com</a></p>
+<div class="kidbar noprint" id="kidBar">🧒 <b>학생 모드</b> · 학생이 직접 답하고 있어요 <button class="ghost mini" id="kidExit">학생 모드 끝내기</button></div>
 
 <div class="cols">
 <div class="noprint">
@@ -412,13 +453,16 @@ table.abclist td em{display:block;font-style:normal;color:var(--ink3);font-size:
     <div class="step">STEP 1</div>
     <h2>기본 정보 <span style="font-weight:400;font-size:12.5px;color:var(--ink3)">— 모두 선택 입력</span></h2>
     <div class="field g3">
-      <div><span class="lbl">아이 이름(별칭)</span><input type="text" id="nm" placeholder="김영양"></div>
+      <div><span class="lbl" id="nmLbl">아이 이름(별칭)</span><input type="text" id="nm" placeholder="김영양"></div>
       <div><span class="lbl">학년</span>
-        <select id="grade"><option value="">선택</option><option>유아</option><option>초1</option><option>초2</option><option>초3</option><option>초4</option><option>초5</option><option>초6</option><option>중학생</option></select></div>
+        <select id="grade"><option value="">선택</option><option>유아</option><option>초1</option><option>초2</option><option>초3</option><option>초4</option><option>초5</option><option>초6</option><option>중학생</option><option>고등학생</option></select></div>
       <div><span class="lbl">응답자</span>
         <select id="resp"><option>보호자</option><option>아이 본인</option><option>보호자+아이 함께</option></select></div>
     </div>
-    <div class="field">
+    <div class="kidtip" id="kidNameTip">🙈 실명 말고 <b>별명</b>을 써 주세요. (예: 당근왕, 초록별)</div>
+    <div class="kidtip warn2" id="gradeHint" style="display:none">📖 1~2학년(유아)은 <b>어른이 문항을 읽어 주고 아이가 골라요.</b> ‘보호자+아이 함께’로 바꾸기를 권해요.
+      <button class="ghost mini" id="gradeFix" type="button">보호자+아이 함께로 바꾸기</button></div>
+    <div class="field" id="concernField">
       <span class="lbl">보호자가 가장 걱정하는 점</span>
       <input type="text" id="concern" placeholder="예: 채소를 전혀 안 먹어요 / 밥을 너무 오래 먹어요">
     </div>
@@ -432,7 +476,8 @@ table.abclist td em{display:block;font-style:normal;color:var(--ink3);font-size:
       <button id="qOpen">🥕 식생활 진단 시작하기</button>
     </div>
     <div id="qBody" style="display:none">
-    <p class="lead">최근 한 달 동안 우리 아이의 평소 모습을 떠올리며 가장 가까운 것을 골라 주세요. 정답은 없습니다.</p>
+    <div class="kidq" id="kidQ"></div>
+    <p class="lead" id="qLead">최근 한 달 동안 우리 아이의 평소 모습을 떠올리며 가장 가까운 것을 골라 주세요. 정답은 없습니다.</p>
     <div class="progress"><div class="pt"><span>응답 진행</span><span id="ptxt">0 / 20</span></div><div class="pbar"><i id="pbar"></i></div></div>
     <div class="scale-legend"><span>0 전혀 아니다</span><span>1 가끔 그렇다</span><span>2 자주 그렇다</span><span>3 거의 항상 그렇다</span></div>
     <div id="qlist"></div>
@@ -441,7 +486,7 @@ table.abclist td em{display:block;font-style:normal;color:var(--ink3);font-size:
       <p class="lead" style="margin:4px 0 10px">아이가 잘 먹지 않을 때 어른들이 흔히 하는 반응입니다. 어느 집에나 있는 일이니 편하게 답해 주세요. 답하지 않아도 결과를 볼 수 있고, 6문항 모두 답하면 결과지에 ‘행동을 이어지게 할 수 있는 반응’을 함께 살펴볼 수 있습니다.</p>
       <div id="clist"></div>
     </div>
-    <div class="btnrow">
+    <div class="btnrow" id="parentBtns">
       <button id="go">결과 보기</button>
       <button class="ghost" id="reset">새 아이 진단하기</button>
       <button class="ghost" id="demo">예시 응답 채우기</button>
@@ -471,7 +516,7 @@ table.abclist td em{display:block;font-style:normal;color:var(--ink3);font-size:
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="typeCard">
     <div class="step">참고</div>
     <h2>4가지 식생활 유형</h2>
     <div class="typegrid" id="typegrid"></div>
@@ -557,6 +602,12 @@ table.abclist td em{display:block;font-style:normal;color:var(--ink3);font-size:
 </div>
 </div>
 
+<div class="modal" id="modal" style="display:none"><div class="mbox">
+  <div class="mt" id="mTitle"></div><div class="mdesc" id="mDesc"></div>
+  <input type="password" id="mIn" autocomplete="off"><div class="cfgmsg err" id="mErr"></div>
+  <div class="btnrow"><button id="mOk">확인</button><button class="ghost" id="mCancel">취소</button></div>
+</div></div>
+
 <script>
 var $=function(id){return document.getElementById(id);};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
@@ -572,6 +623,7 @@ var TYPES={
   home:['싫어하는 채소를 잘게 다지거나 바삭하게 구워 식감을 바꿔 주기','식탁에 새 음식은 한 번에 1가지, 좋아하는 음식 옆에 “완두콩 한 알” 크기로','먹지 않아도 괜찮으니 장보기·씻기·만지기부터 함께하기'],
   camp:['오감 탐색 놀이: 눈 가리고 채소 만지고 냄새 맞히기','같은 재료 3가지 조리법 맛보기(당근 생/구이/주스)','“한 입 도전 스티커” — 먹기보다 탐색 단계에 스티커'],
   no:'“한 입만 먹어! 안 먹으면 간식 없어.”',yes:'“먹지 않아도 돼. 대신 냄새만 맡아볼까? 어떤 느낌이야?”',
+  kid:{name:'감각 탐험가',icon:'🔍',msg:'맛과 냄새, 느낌을 섬세하게 느끼는 친구예요. 새 음식은 보기 → 냄새 맡기 → 한 입처럼 천천히 친해지면 돼요.',missions:['새 반찬을 한 번 냄새 맡아 보기','싫어하는 채소를 다른 요리(볶음·튀김 등)로 한 번 만나 보기','음식 맛을 ‘아삭·쫄깃·부드러운’ 같은 말로 표현해 보기']},
   abc:'감각 기능 — 거부는 고집이 아니라 불쾌한 감각을 피하려는 행동일 수 있어요. 조리법·크기를 바꾸고(다지기·굽기), 보기→만지기→냄새 맡기→한 입 순서로 조금씩 다가가게 하며, 작은 시도도 바로 인정해 주세요.',
   promise:['새로운 음식 “만지기·냄새 맡기” 1가지 해보기','싫은 채소를 다른 조리법으로 1번 맛보기','식감 표현 단어로 맛 설명해보기(아삭·쫄깃·부드러운)']},
  E:{n:'정서형',icon:'💗',color:'purple',
@@ -583,6 +635,7 @@ var TYPES={
   home:['간식·디저트를 칭찬이나 벌의 도구로 쓰지 않기','“배가 고픈 거야, 마음이 허전한 거야?” 배고픔 신호 함께 확인하기','식탁에서는 꾸중 대신 오늘 좋았던 일 1가지 나누기'],
   camp:['“배고픔 신호등” 활동: 진짜 배고픔 vs 마음 배고픔 구분하기','기분 카드와 음식 연결 놀이 — 음식 말고 할 수 있는 일 찾기','천천히 음미하기(마인드풀 이팅) 건포도 한 알 체험'],
   no:'“울지 마, 이거 먹고 기분 풀어.”',yes:'“지금 속상하구나. 과자 말고 잠깐 같이 걸을까?”',
+  kid:{name:'마음 신호등',icon:'🚦',msg:'내 기분을 잘 느끼는 친구예요. 마음이 흔들릴 때 먹는 것 말고도 기분을 돌보는 방법을 찾으면 몸과 마음이 더 편해져요.',missions:['간식 먹기 전에 ‘진짜 배고픈가?’ 한 번 물어보기','기분이 안 좋을 때 음식 말고 할 일 1가지 정하기(물 마시기·그림 그리기·산책)','밥 먹을 때 오늘 좋았던 일 1가지 이야기하기']},
   abc:'배경 요인(기분) — 먹는 행동 앞에 기분이 먼저 와요. 감정에 이름을 붙여 주고(“속상하구나”), 음식이 아닌 기분 전환 방법을 함께 정하며, 음식을 칭찬·보상으로 쓰는 일을 조금씩 줄여 주세요.',
   promise:['간식 먹기 전 “진짜 배고픈가?” 스스로 물어보기','기분이 안 좋을 때 음식 말고 할 일 1가지 정하기','식사 시간에 오늘 좋았던 일 이야기하기']},
  V:{n:'환경형',icon:'🏠',color:'teal',
@@ -594,6 +647,7 @@ var TYPES={
   home:['식사 중에는 TV 끄고 스마트폰은 식탁 밖에 두기','과자는 찬장 안으로, 과일·우유는 눈높이에','보호자가 먼저 채소를 맛있게 먹는 모습 보여주기'],
   camp:['“우리 집 식탁 그리기” — 누가, 무엇을 보며, 어디서 먹나','가정용 “미디어 없는 식사” 약속 카드 만들기','장바구니 게임: 집에 두면 좋은 간식 고르기'],
   no:'“(TV 보면서) 빨리 먹어, 다 먹어야 일어나.”',yes:'“TV는 식사 끝나고 보자. 오늘 반찬 중에 뭐가 제일 맛있어?”',
+  kid:{name:'환경 탐정',icon:'🕵️',msg:'주변을 잘 보고 따라 배우는 친구예요. 밥 먹는 자리를 조금만 바꿔도 먹는 습관이 쉽게 좋아질 수 있어요.',missions:['한 끼만이라도 TV·휴대폰 끄고 밥 먹어 보기','이번 주에 가족과 함께 밥 먹기 1번 더 하기','간식 고를 때 과일이나 우유를 한 번 골라 보기']},
   abc:'선행사건(A) — 행동 바로 앞의 환경이 먹는 행동을 불러와요. 간식은 눈에 덜 띄는 곳에 두고, 식사 중 미디어는 끄고, 함께 앉아 먹는 자리를 만들면 행동이 따라 바뀝니다.',
   promise:['식사할 때 TV·스마트폰 끄기','가족과 함께 식사하기 주 3회','집 간식을 과일·우유로 1가지 바꾸기']},
  L:{n:'생활습관형',icon:'⏰',color:'amber',
@@ -605,6 +659,7 @@ var TYPES={
   home:['아침에 “바나나+우유”처럼 3분 아침 준비해 두기','잠자기 2시간 전에는 먹지 않기, 취침 시각 고정','단 음료 대신 물병 들고 다니기, 한 입에 20번 씹기'],
   camp:['“나의 하루 시계” 그리기 — 식사·잠·운동 시간 표시','음료 속 각설탕 찾기 실험','꼭꼭 씹기 챌린지(오이 한 조각 30번 씹기)'],
   no:'“또 아침 안 먹었어? 그러니까 키가 안 크지.”',yes:'“아침에 바나나 하나만 먹어볼까? 내일 몇 시에 일어날지 같이 정하자.”',
+  kid:{name:'생활 리듬 지킴이',icon:'⏰',msg:'하루를 바쁘게 보내는 친구예요. 일어나는 시간과 밥 먹는 시간을 조금씩 일정하게 맞추면 몸이 훨씬 가벼워져요.',missions:['아침에 작은 것 하나라도 먹고 가기(우유·바나나)','자기 전 1시간은 간식 안 먹기','단 음료 대신 물 마시기 하루 1번']},
   abc:'배경 요인·습관 — 수면·기상 리듬이 배고픔 신호를 흔들어요. 기상·식사 시간을 먼저 고정하고, ‘언제·어디서’를 정한 작은 습관 하나(예: 아침 7시에 식탁에서 우유 한 컵)부터 시작해 주세요.',
   promise:['아침 먹기(작은 것이라도) 매일','잠자기 2시간 전부터 먹지 않기','단 음료 대신 물 마시기 하루 1번']}
 };
@@ -634,6 +689,156 @@ var QS=[
  ['L','밥을 5~10분 안에 급하게 먹거나, 몸을 움직이는 활동이 적다']
 ];
 var LABELS=['전혀 아니다','가끔','자주','거의 항상'];
+
+/* ── 학생 직접 응답 모드 ─────────────────────
+   QS_KID는 QS와 순서·유형이 같은 1:1 대응 문항입니다. 답은 같은 ans[]에 담아 score()·MAX를 그대로 씁니다.
+   학생 화면에는 점수·막대·‘높음’ 같은 표현을 보여 주지 않고, 상세 결과는 접근 코드로 엽니다. */
+var QS_KID=[
+ '처음 보는 음식은 먹어 보기 전에 싫다고 해요.',
+ 'TV나 휴대폰을 보면서 밥을 먹어요.',
+ '아침을 안 먹고 학교에 가요.',
+ '기분이 안 좋거나 속상하면 과자나 단 것이 먹고 싶어요.',
+ '물컹하거나 미끈거리는 음식은 먹기 싫어요.',
+ '밤늦게 자거나, 자기 전에 간식을 먹어요.',
+ '긴장하거나 혼나고 나면 밥이 잘 안 먹혀요.',
+ '혼자서 밥을 먹는 날이 많아요.',
+ '음식 냄새 때문에 먹기 싫을 때가 있어요.',
+ '심심하거나 할 일이 없으면 뭔가를 먹어요.',
+ '우리 집에는 과자나 단 음료가 늘 있어서 내가 꺼내 먹어요.',
+ '탄산음료나 주스 같은 단 음료를 하루에 한 번 넘게 마셔요.',
+ '음식이 섞이거나 소스가 묻어 있으면 먹기 싫어요.',
+ '우리 가족은 채소를 잘 안 먹거나, 배달 음식이나 외식을 자주 먹어요.',
+ '“다 먹으면 과자 줄게”처럼 음식을 상으로 받을 때가 많아요.',
+ '밥 먹는 시간이 날마다 달라요.',
+ '억지로 먹으면 토할 것 같거나 뱉게 돼요.',
+ '스트레스를 받으면 평소보다 훨씬 많이, 또는 훨씬 적게 먹어요.',
+ '밥 먹을 때 “다 먹어”, “그건 먹지 마” 같은 말을 자주 들어요.',
+ '밥을 아주 빨리(10분 안에) 먹거나, 몸을 움직여 노는 시간이 적어요.'
+];
+var LABELS_KID=['아니에요','가끔 그래요','자주 그래요','거의 매일 그래요'],FACES_KID=['😶','🙂','😃','🤩'];
+var KID_BAL={name:'골고루 친구',icon:'🌱',color:'green',msg:'지금 먹는 습관이 골고루 잘 지켜지고 있어요! 지금처럼 하면서 새로운 음식에도 가끔 도전해 봐요.',
+  missions:['처음 보는 음식 한 번 도전해 보기','물 자주 마시기','밥 먹을 때 꼭꼭 씹어 먹기']};
+var MODE='parent',UNLOCK=false,KID_I=0,KID_MISSION='',REC_VER='parent',REC_KM='',MKEY='nutri-mode-v1',LOCKKEY='nutri-kid-lock-v1';
+var TTS=('speechSynthesis' in window)&&typeof SpeechSynthesisUtterance!=='undefined';
+function isKidResp(v){return v==='아이 본인'||v==='보호자+아이 함께';}
+function lockCode(){return getCfg().code||lsGet(LOCKKEY,'');}
+function kidEmotion(r){return ans[17]===3||r.sc.E>=10;}
+
+/* 접근 코드 창 */
+var M_OK=null,M_CANCEL=null;
+function modal(title,desc,ok,cancel){
+  $('mTitle').textContent=title;$('mDesc').innerHTML=desc;$('mIn').value='';$('mErr').textContent='';
+  M_OK=ok;M_CANCEL=cancel||null;$('modal').style.display='';setTimeout(function(){$('mIn').focus();},30);
+}
+function closeModal(){$('modal').style.display='none';}
+$('mOk').onclick=function(){var v=$('mIn').value.trim();if(M_OK&&M_OK(v)!==false)closeModal();};
+$('mCancel').onclick=function(){closeModal();if(M_CANCEL)M_CANCEL();};
+$('mIn').addEventListener('keydown',function(e){if(e.key==='Enter')$('mOk').click();});
+function askSetCode(done,cancel){
+  modal('학생 모드 잠금 코드 정하기','이 기기에는 구글 시트 접근 코드가 저장되어 있지 않습니다. 학생 상세 결과를 열거나 학생 모드를 끝낼 때 쓸 <b>잠금 코드(4자리 이상)</b>를 정해 주세요. 이 기기에만 저장됩니다.',
+    function(v){if(v.length<4){$('mErr').textContent='4자리 이상으로 정해 주세요.';return false;}lsSet(LOCKKEY,v);setTimeout(done,0);},cancel);
+}
+function askCode(title,done,cancel){
+  if(!lockCode())return askSetCode(done,cancel);
+  modal(title,'선생님(부모님)이 <b>접근 코드</b>를 입력해 주세요.',function(v){
+    if(v!==lockCode()){$('mErr').textContent='코드가 맞지 않습니다.';$('mIn').value='';return false;}setTimeout(done,0);},cancel);
+}
+
+/* 모드 전환 */
+var Q_START_TXT=null;
+function setMode(m,resp){
+  MODE=m;UNLOCK=false;lsSet(MKEY,{m:m,resp:resp||''});
+  document.body.classList.toggle('kid',m==='child');document.body.classList.remove('unlocked');
+  $('nmLbl').textContent=m==='child'?'별명 (실명 말고)':'아이 이름(별칭)';
+  $('nm').placeholder=m==='child'?'예: 당근왕':'김영양';
+  if(!Q_START_TXT)Q_START_TXT=[$('qStart').querySelector('.lead').innerHTML,$('qOpen').innerHTML];
+  $('qStart').querySelector('.lead').innerHTML=m==='child'?'요즘 나의 먹는 모습을 알아보는 20문항이에요. 한 문항씩 천천히 골라 보세요. 약 5분 걸려요.':Q_START_TXT[0];
+  $('qOpen').innerHTML=m==='child'?'🥕 시작하기':Q_START_TXT[1];
+  // 다른 문항을 쓰므로 응답을 비웁니다.
+  ans.fill(null);ans.forEach(function(_,i){paint(i);});progress();cAns.fill(null);paintC();flags=[0,0,0,0];
+  KID_I=0;KID_MISSION='';SAVED_ID=null;CUR=null;closeTable();showQ(false);
+  $('result').innerHTML=m==='child'?'<div class="empty">🥕 <b>시작하기</b>를 눌러 20문항에 답하면 나의 결과가 여기에 나와요.</div>'
+    :'<div class="empty"><b>식생활 진단 시작하기</b>를 눌러 20문항에 답한 뒤 <b>결과 보기</b>를 눌러 주세요.</div>';
+  gradeHint();
+}
+function gradeHint(){
+  var young=['유아','초1','초2'].indexOf($('grade').value)>=0;
+  $('gradeHint').style.display=MODE==='child'&&$('resp').value==='아이 본인'&&young?'block':'none';
+}
+var PREV_RESP='보호자';
+$('resp').addEventListener('change',function(){
+  var v=this.value,kid=isKidResp(v);
+  if(kid&&MODE!=='child'){
+    var go=function(){setMode('child',v);PREV_RESP=v;};
+    if(lockCode())go();else askSetCode(go,function(){$('resp').value='보호자';});
+  }else if(!kid&&MODE==='child'){
+    $('resp').value=PREV_RESP;
+    var out=function(){$('resp').value='보호자';PREV_RESP='보호자';setMode('parent');};
+    if(UNLOCK)out();else askCode('학생 모드 끝내기',out);
+  }else{PREV_RESP=v;if(MODE==='child')lsSet(MKEY,{m:'child',resp:v});gradeHint();}
+});
+$('grade').addEventListener('change',gradeHint);
+$('gradeFix').onclick=function(){$('resp').value='보호자+아이 함께';PREV_RESP='보호자+아이 함께';lsSet(MKEY,{m:'child',resp:PREV_RESP});gradeHint();};
+$('kidExit').onclick=function(){
+  var out=function(){$('resp').value='보호자';PREV_RESP='보호자';setMode('parent');window.scrollTo({top:0,behavior:'smooth'});};
+  if(UNLOCK){if(confirm('학생 모드를 끝내고 보호자 모드로 돌아갈까요?'))out();}else askCode('학생 모드 끝내기',out);
+};
+
+/* 학생 문항: 한 화면에 한 문항 */
+function speak(t){if(!TTS)return;try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t);u.lang='ko-KR';u.rate=0.9;speechSynthesis.speak(u);}catch(e){}}
+function drawKidQ(){
+  var n=QS_KID.length,done=ans.filter(function(a){return a!=null;}).length,h='';
+  h+='<p class="lead kidlead">요즘(최근 한 달) 나의 모습을 떠올리며 골라 보세요. 정답은 없어요. 솔직하게 고를수록 나에게 맞는 미션을 찾을 수 있어요.</p>';
+  h+='<div class="kprog"><span>'+Math.min(KID_I+1,n)+' / '+n+'</span><div class="pbar"><i style="width:'+(done/n*100)+'%"></i></div></div>';
+  if(KID_I>=n){
+    h+='<div class="kdone">🎉 다 했어요! 수고했어요.</div><div class="btnrow kbtns"><button class="ghost" id="kPrev">◀ 이전</button><button id="kGo">나의 결과 보기</button></div>';
+  }else{
+    h+='<div class="kq"><div class="kqn">'+(KID_I+1)+'번</div><div class="kqt">'+esc(QS_KID[KID_I])+'</div>'
+      +(TTS?'<button class="ghost mini ksp" id="kSpeak" type="button">🔊 읽어 주기</button>':'')+'</div><div class="kans">';
+    for(var v=0;v<4;v++)h+='<button type="button" class="kopt'+(ans[KID_I]===v?' on':'')+'" data-v="'+v+'"><span class="kf">'+FACES_KID[v]+'</span>'+LABELS_KID[v]+'</button>';
+    h+='</div><div class="btnrow kbtns"><button class="ghost" id="kPrev"'+(KID_I===0?' disabled':'')+'>◀ 이전</button>'
+      +'<button class="ghost" id="kNext"'+(ans[KID_I]==null?' disabled':'')+'>다음 ▶</button><button class="ghost mini" id="kDemo" type="button">예시 응답</button></div>';
+  }
+  $('kidQ').innerHTML=h;
+  if($('kPrev'))$('kPrev').onclick=function(){if(KID_I>0){KID_I--;drawKidQ();}};
+  if($('kNext'))$('kNext').onclick=function(){KID_I++;drawKidQ();};
+  if($('kSpeak'))$('kSpeak').onclick=function(){speak((KID_I+1)+'번. '+QS_KID[KID_I]+' '+LABELS_KID.join(', '));};
+  if($('kDemo'))$('kDemo').onclick=function(){var ex=[2,1,3,1,2,3,0,1,2,1,2,3,1,1,0,2,1,1,1,2];
+    ex.forEach(function(v,i){ans[i]=v;paint(i);});progress();KID_I=QS_KID.length;
+    if(!$('nm').value)$('nm').value='초록별';if(!$('grade').value)$('grade').value='초4';drawKidQ();};
+  if($('kGo'))$('kGo').onclick=kidGo;
+  document.querySelectorAll('#kidQ .kopt').forEach(function(b){b.onclick=function(){
+    ans[KID_I]=+b.dataset.v;paint(KID_I);progress();drawKidQ();
+    setTimeout(function(){if(KID_I<QS_KID.length){KID_I++;drawKidQ();}},250);};});
+}
+function kidGo(){
+  var miss=ans.indexOf(null);if(miss>=0){KID_I=miss;drawKidQ();return;}
+  KID_MISSION='';SAVED_ID=null;CUR=null;flags=[0,0,0,0];renderKid(score());
+}
+function renderKid(r){
+  var nm=$('nm').value.trim(),keys=r.main.length?r.main:[],cards=keys.length?keys.map(function(k){var t=TYPES[k];return {kid:t.kid,color:t.color};}):[{kid:KID_BAL,color:'green'}];
+  var h='<div class="kidres"><div class="kidh">'+(nm?esc(nm)+', ':'')+'지금 나와 가장 가까운 모습</div>';
+  cards.forEach(function(c){h+='<div class="kidcard v-'+c.color+'"><div class="kn">'+c.kid.icon+' '+esc(c.kid.name)+'</div><div class="km">'+esc(c.kid.msg)+'</div></div>';});
+  if(kidEmotion(r))h+='<div class="kidcare">💬 힘들 때는 선생님이나 부모님께 이야기해도 괜찮아요.</div>';
+  h+='<div class="kidh2">이번 주 나의 미션, 하나만 골라요</div><div class="kmis" id="kMis">';
+  cards.forEach(function(c){c.kid.missions.forEach(function(m){h+='<label'+(m===KID_MISSION?' class="on"':'')+'><input type="radio" name="kmis" value="'+esc(m)+'"'+(m===KID_MISSION?' checked':'')+'><span>'+esc(m)+'</span></label>';});});
+  h+='</div><div class="kidplan">✏️ 고른 미션을 <b>나채움 플래너</b>의 이번 주 약속으로 적어 보세요.</div>';
+  h+='<div class="kidnote">이 결과는 ‘지금의 모습’이에요. 습관과 마음은 언제든 바뀔 수 있어요. 병을 찾는 검사가 아니라 나를 알아보는 활동이에요.</div>';
+  h+='<div class="btnrow"><button id="kShow">👩‍🏫 선생님(부모님)께 보여 주기</button><button class="ghost" id="kBack">◀ 문항 다시 보기</button></div></div>';
+  $('result').innerHTML=h;
+  $('kMis').addEventListener('change',function(e){KID_MISSION=e.target.value;
+    document.querySelectorAll('#kMis label').forEach(function(l){l.classList.toggle('on',l.querySelector('input').checked);});});
+  $('kShow').onclick=function(){askCode('선생님(부모님) 확인',function(){UNLOCK=true;document.body.classList.add('unlocked');render(score());$('result').scrollIntoView({behavior:'smooth'});});};
+  $('kBack').onclick=function(){KID_I=0;showQ(true);drawKidQ();$('qBody').scrollIntoView({behavior:'smooth'});};
+  $('result').scrollIntoView({behavior:'smooth'});
+}
+function kidNext(){ // 다음 학생: 응답을 비우고 다시 잠급니다.
+  UNLOCK=false;document.body.classList.remove('unlocked');
+  ans.fill(null);ans.forEach(function(_,i){paint(i);});progress();KID_I=0;KID_MISSION='';SAVED_ID=null;CUR=null;flags=[0,0,0,0];
+  $('nm').value='';showQ(false);
+  $('result').innerHTML='<div class="empty">🥕 <b>시작하기</b>를 눌러 20문항에 답하면 나의 결과가 여기에 나와요.</div>';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 var MAX=15; // 유형별 5문항 × 3점
 
 var ans=new Array(QS.length).fill(null);
@@ -772,12 +977,19 @@ function score(){
 /* ── 결과 렌더 ───────────────────────────── */
 function render(r,saved){
   var nm=$('nm').value.trim(),grade=$('grade').value,resp=$('resp').value,concern=$('concern').value.trim();
+  REC_VER=saved?(saved.ver||'parent'):(MODE==='child'?'child':'parent');REC_KM=saved?(saved.kidMission||''):KID_MISSION;
+  var isKid=REC_VER==='child';if(saved&&saved.resp)resp=saved.resp;
   var today=new Date();var ds=saved?saved.t.slice(0,10).replace(/-/g,'.'):today.getFullYear()+'.'+(today.getMonth()+1)+'.'+today.getDate();
   var h='<div class="printonly" style="margin-bottom:10px"><h1>우리 아이 식생활 유형 진단 결과지</h1>'
        +'<div style="font-size:10pt;color:#444">일일 영양상담 · '+ds+'</div></div>';
   if(saved)h+='<div class="savedbadge noprint">저장된 기록 · '+esc(saved.t)+'</div>';
   h+='<div class="flagtop" id="flagTop" style="display:none">⚠ 결과지 아래 <b>더 살펴볼 신호</b>가 체크되어 있습니다. 전문가 상담과 보건교사·담임 협의를 먼저 권합니다.</div>';
-  h+='<div class="step">진단 결과'+(nm?' · '+esc(nm):'')+(grade?' ('+esc(grade)+')':'')+' · 응답: '+esc(resp)+'</div>';
+  h+='<div class="step">진단 결과'+(nm?' · '+esc(nm):'')+(grade?' ('+esc(grade)+')':'')+' · 응답: '+(isKid?(resp==='보호자+아이 함께'?'보호자+아이 함께':'학생 본인')+'(학생용 문항)':esc(resp))+'</div>';
+  if(isKid){
+    h+='<div class="kidinfo">보호자 응답과 학생 응답은 서로 다를 수 있어요. 차이는 상담 대화의 출발점으로 씁니다.</div>';
+    if(kidEmotion(r))h+='<div class="kidflag noprint">💬 정서 관련 응답이 높음 – 면담 권장</div>';
+    if(REC_KM)h+='<div class="kidinfo">🎯 학생이 고른 이번 주 미션: <b>'+esc(REC_KM)+'</b></div>';
+  }
 
   if(!r.main.length){
     h+='<div class="verdict v-green"><div class="lab">식생활 유형</div><div class="name">🌱 균형 잡힌 식생활</div>'
@@ -801,7 +1013,7 @@ function render(r,saved){
   if(concern){h+='<div class="row top" style="margin-top:12px"><div class="k">보호자 주요 걱정</div><div class="v">'+esc(concern)+'</div></div>';}
 
   // 가장 높게 응답한 문항
-  var hi=QS.map(function(q,i){return {i:i,v:ans[i],q:q};}).filter(function(o){return o.v>=2;})
+  var hi=QS.map(function(q,i){return {i:i,v:ans[i],q:isKid?[q[0],QS_KID[i]]:q};}).filter(function(o){return o.v>=2;})
           .sort(function(a,b){return b.v-a.v;}).slice(0,5);
   if(hi.length){
     h+='<div class="row"><div class="k">눈여겨볼 응답 (자주·거의 항상)</div><ul>'
@@ -834,7 +1046,8 @@ function render(r,saved){
   h+='<div class="sign" style="margin-top:18px;font-size:10pt">상담자: ____________ &nbsp;&nbsp; 보호자 확인: ____________</div>';
   h+='<div class="warn">이 검사는 일일 영양상담을 위한 간이 선별 도구이며 의학적 진단이 아닙니다. 체중 변화가 크거나, 먹는 양이 극단적으로 적거나, 삼킴 곤란·심한 구역이 지속되면 소아청소년과 등 전문가 상담을 권합니다.</div>';
 
-  h+='<div class="btnrow noprint"><button id="print">결과지 인쇄</button><button class="ghost" id="save">'+(saved?'저장됨 ✓':'진단 기록 저장')+'</button><button class="ghost" id="toTop">문항 다시 보기</button></div>';
+  h+='<div class="btnrow noprint"><button id="print">결과지 인쇄</button><button class="ghost" id="save">'+(saved?'저장됨 ✓':'진단 기록 저장')+'</button><button class="ghost" id="toTop">문항 다시 보기</button>'
+    +(MODE==='child'?'<button class="ghost" id="kView">학생 화면으로</button><button class="ghost" id="kNextBtn">다음 학생 시작</button>':'')+'</div>';
   $('result').innerHTML=h;
 
   if($('rtabs'))$('rtabs').addEventListener('click',function(e){var k=e.target.dataset&&e.target.dataset.k;if(!k)return;
@@ -864,7 +1077,9 @@ function render(r,saved){
     saveRecord(r).then(function(where){btn.textContent=(where==='sheet'?'구글 시트에 ':'이 기기에 ')+(upd?'수정 저장 ✓':'저장 완료 ✓');})
       .catch(function(){btn.disabled=false;btn.textContent=upd?'수정 내용 저장':'진단 기록 저장';});};
   if(tDone&&!saved)renderTable();
-  $('toTop').onclick=function(){$('qlist').scrollIntoView({behavior:'smooth'});};
+  $('toTop').onclick=function(){if(MODE==='child'){KID_I=0;showQ(true);drawKidQ();$('qBody').scrollIntoView({behavior:'smooth'});}else $('qlist').scrollIntoView({behavior:'smooth'});};
+  if($('kView'))$('kView').onclick=function(){UNLOCK=false;document.body.classList.remove('unlocked');renderKid(score());};
+  if($('kNextBtn'))$('kNextBtn').onclick=kidNext;
   if(window.innerWidth<=980)$('result').scrollIntoView({behavior:'smooth'});
 }
 
@@ -906,8 +1121,17 @@ function drawCompare(r,saved){
   var curId=SAVED_ID||(saved&&saved.id);
   allRecs().then(function(list){
     if(!$('compare')||LAST_R!==r)return;
-    var others=list.filter(function(o){return key(o)===me&&String(o.id)!==String(curId)&&String(o.ans||'').length===QS.length;});
-    if(!others.length){box.innerHTML=tip;return;}
+    var same=function(o){return key(o)===me&&String(o.id)!==String(curId)&&String(o.ans||'').length===QS.length;};
+    var others=list.filter(function(o){return same(o)&&(o.ver||'parent')===REC_VER;});
+    var opp=list.filter(function(o){return same(o)&&(o.ver||'parent')!==REC_VER;}).sort(function(a,b){return String(a.t)<String(b.t)?1:-1;})[0];
+    var pc='';
+    if(opp){var P=REC_VER==='parent'?r.sc:opp,C=REC_VER==='child'?r.sc:opp,big=[];
+      pc='<div class="sect noprint">보호자 응답과 학생 응답 비교 <span class="opt-tag">선생님용</span></div><div class="noprint" style="overflow-x:auto"><table class="cmp"><tr><th>유형</th><th>보호자</th><th>학생</th><th>차이</th></tr>'
+        +ORDER.map(function(k){var a=+P[k],b=+C[k],d=Math.abs(a-b);if(d>=4)big.push(TYPES[k].n);
+          return '<tr'+(d>=4?' class="me"':'')+'><td>'+TYPES[k].icon+' '+TYPES[k].n+'</td><td>'+a+'</td><td>'+b+'</td><td>'+d+(d>=4?' ⚑':'')+'</td></tr>';}).join('')
+        +'</table></div><div class="cmpnote noprint">'+(big.length?'⚑ 4점 이상 차이: <b>'+esc(big.join(', '))+'</b> — 어느 쪽이 맞는지가 아니라, 서로 다르게 보는 이유를 상담 대화로 함께 확인해 보세요.':'네 유형 모두 차이가 4점 미만이에요.')
+        +' <span class="muted">(상대 응답: '+esc(String(opp.t).slice(0,10))+')</span></div>';}
+    if(!others.length){box.innerHTML=pc+tip;return;}
     var cur={t:saved?saved.t:stamp(new Date()),S:r.sc.S,E:r.sc.E,V:r.sc.V,L:r.sc.L,
       type:r.main.length?r.main.map(function(k){return TYPES[k].n;}).join('+'):'균형',me:true,unsaved:!curId};
     var rows=others.map(function(o){return {t:String(o.t),S:+o.S,E:+o.E,V:+o.V,L:+o.L,type:o.type};}).concat([cur])
@@ -926,7 +1150,7 @@ function drawCompare(r,saved){
       h+='<div class="cmpnote">'+(dn.length?'<div>🌱 지난 회차보다 점수가 줄었어요: '+esc(dn.join(', '))+'</div>':'')
         +(up.length?'<div>🔎 지난 회차보다 점수가 늘었어요: '+esc(up.join(', '))+' — 요즘 어떤 변화가 있었는지 함께 이야기해 보세요.</div>':'')
         +(!dn.length&&!up.length?'<div>지난 회차와 점수가 같아요.</div>':'')+'</div>';}
-    box.innerHTML=h+tip;
+    box.innerHTML=h+pc+tip;
   });
 }
 
@@ -1254,7 +1478,7 @@ function currentRecord(r){
     tType:tDone?TTYPES[tScore().key].n:'',tA:tDone?tScore().A:'',tB:tDone?tScore().B:'',
     tAns:tDone?tAns.join(''):'',tSit:tDone?tSit.join(','):'',tMission:tDone?tMission:'',
     cAns:cDone()?cAns.join(''):'',cEsc:cDone()?cScore().esc:'',cAtt:cDone()?cScore().att:'',cTan:cDone()?cScore().tan:'',
-    flags:flags.join(''),plan:collectPlan()};
+    flags:flags.join(''),plan:collectPlan(),ver:REC_VER,kidMission:REC_VER==='child'?REC_KM:''};
 }
 var SAVED_ID=null;
 function markDirty(){var b=$('save');if(b&&SAVED_ID){b.disabled=false;b.textContent='수정 내용 저장';}}
@@ -1316,7 +1540,7 @@ function drawLog(){
   var rows=l.slice().reverse();
   $('logwrap').innerHTML='<div class="muted" style="margin-bottom:6px">'+l.length+'명 · 행을 누르면 결과를 다시 볼 수 있습니다 · 복합 유형은 각 유형에 모두 집계</div>'
    +'<div style="overflow-x:auto"><table class="log"><tr><th>일시</th><th>이름</th><th>학년</th><th>유형</th><th>감각</th><th>정서</th><th>환경</th><th>습관</th><th>식탁</th><th></th></tr>'
-   +rows.map(function(o){return '<tr class="rec'+(CUR===o.id?' cur':'')+'" data-id="'+esc(o.id)+'"><td>'+esc(String(o.t).slice(5))+'</td><td>'+esc(o.nm||'-')+'</td><td>'+esc(o.grade||'-')+'</td><td>'+esc(o.type)+'</td><td>'+o.S+'</td><td>'+o.E+'</td><td>'+o.V+'</td><td>'+o.L+'</td><td>'+esc(String(o.tType||'-').replace(' 식탁',''))+'</td><td class="x"><button title="삭제" data-del="'+esc(o.id)+'">✕</button></td></tr>';}).join('')
+   +rows.map(function(o){return '<tr class="rec'+(CUR===o.id?' cur':'')+'" data-id="'+esc(o.id)+'"><td>'+esc(String(o.t).slice(5))+'</td><td>'+esc(o.nm||'-')+'</td><td>'+esc(o.grade||'-')+'</td><td>'+(o.ver==='child'?'🧒 ':'')+esc(o.type)+'</td><td>'+o.S+'</td><td>'+o.E+'</td><td>'+o.V+'</td><td>'+o.L+'</td><td>'+esc(String(o.tType||'-').replace(' 식탁',''))+'</td><td class="x"><button title="삭제" data-del="'+esc(o.id)+'">✕</button></td></tr>';}).join('')
    +'</table></div>';
 }
 function findRec(id){for(var i=0;i<RECS.length;i++)if(String(RECS[i].id)===String(id))return RECS[i];return null;}
@@ -1326,7 +1550,7 @@ function openRecord(o){
   showQ(true);
   for(var i=0;i<QS.length;i++){ans[i]=+a.charAt(i);paint(i);$('q'+i).classList.remove('missing');}
   progress();
-  $('nm').value=o.nm||'';$('grade').value=o.grade||'';$('resp').value=o.resp||'보호자';$('concern').value=o.concern||'';
+  $('nm').value=o.nm||'';$('grade').value=o.grade||'';if(MODE!=='child')$('resp').value=o.resp||'보호자';$('concern').value=o.concern||'';
   var ca=String(o.cAns||'');cAns=ca.length===CQ.length?ca.split('').map(Number):new Array(CQ.length).fill(null);paintC();
   var fl=String(o.flags||'');flags=FLAGS.map(function(_,i){return fl.charAt(i)==='1'?1:0;});
   CUR=o.id;drawLog();
@@ -1362,9 +1586,10 @@ $('sync').onclick=function(){
 $('csv').onclick=function(){
   var l=filtered();if(!l.length){alert('내려받을 기록이 없습니다.');return;}
   var q=function(s){return '"'+String(s==null?'':s).replace(/"/g,'""')+'"';};
-  var rows=[['일시','이름','학년','응답자','보호자 걱정','유형','감각예민형','정서형','환경형','생활습관형','실천약속','상담메모','문항응답','식탁 유형','따뜻함','틀·규칙','식탁 체크','우리 집 상황','식탁 미션','식사 뒤 반응(C1~C6)','회피','관심','선호물','더 살펴볼 신호','실천 계획(최소 약속·만약-그러면)']].concat(
+  var rows=[['일시','이름','학년','응답자','보호자 걱정','유형','감각예민형','정서형','환경형','생활습관형','실천약속','상담메모','문항응답','식탁 유형','따뜻함','틀·규칙','식탁 체크','우리 집 상황','식탁 미션','식사 뒤 반응(C1~C6)','회피','관심','선호물','더 살펴볼 신호','실천 계획(최소 약속·만약-그러면)','응답 버전','학생 미션']].concat(
     l.map(function(o){return [o.t,o.nm,o.grade,o.resp,o.concern,o.type,o.S,o.E,o.V,o.L,o.promise,o.memo,"'"+(o.ans||''),o.tType||'',o.tA,o.tB,o.tAns?"'"+o.tAns:'',o.tSit||'',String(o.tMission||'').replace(/^직접:/,''),o.cAns?"'"+o.cAns:'',o.cEsc==null?'':o.cEsc,o.cAtt==null?'':o.cAtt,o.cTan==null?'':o.cTan,
-      FLAGS.filter(function(_,i){return String(o.flags||'').charAt(i)==='1';}).join(' / '),planText(o.plan)];}));
+      FLAGS.filter(function(_,i){return String(o.flags||'').charAt(i)==='1';}).join(' / '),planText(o.plan),
+      (o.ver||'parent')==='child'?'학생':'보호자',o.kidMission||''];}));
   var blob=new Blob(['﻿'+rows.map(function(r){return r.map(q).join(',');}).join('\r\n')],{type:'text/csv;charset=utf-8'});
   var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='일일영양상담_식생활유형_'+new Date().toISOString().slice(0,10)+'.csv';
   document.body.appendChild(a);a.click();a.remove();
@@ -1398,7 +1623,7 @@ $('go').onclick=function(){
   CUR=null;flags=[0,0,0,0];drawLog();render(score());
 };
 function showQ(on){$('qBody').style.display=on?'':'none';$('qStart').style.display=on?'none':'';}
-$('qOpen').onclick=function(){showQ(true);$('qBody').scrollIntoView({behavior:'smooth',block:'start'});};
+$('qOpen').onclick=function(){showQ(true);if(MODE==='child'){KID_I=Math.max(0,ans.indexOf(null));drawKidQ();}$('qBody').scrollIntoView({behavior:'smooth',block:'start'});};
 $('reset').onclick=function(){
   showQ(false);
   ans.fill(null);ans.forEach(function(_,i){paint(i);$('q'+i).classList.remove('missing');});progress();
@@ -1564,4 +1789,5 @@ $('admTabs').addEventListener('click',function(e){var t=e.target.dataset&&e.targ
 $('recOpen').onclick=function(){showRec(true);loadRecords();};
 $('recClose').onclick=function(){showRec(false);$('records').scrollIntoView({behavior:'smooth',block:'start'});};
 buildQuestions();buildCQ();buildTypeGrid();buildTable();buildAbc();progress();drawConn();
+(function(){var m=lsGet(MKEY,null);if(m&&m.m==='child'){var rv=isKidResp(m.resp)?m.resp:'아이 본인';$('resp').value=rv;PREV_RESP=rv;setMode('child',rv);}})();
 </script>
